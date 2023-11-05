@@ -49,7 +49,7 @@ export default function Page() {
   }
 
   return (
-    <div className="container flex min-h-[100dvh] max-w-3xl flex-col p-5">
+    <div className="container flex min-h-[100dvh] max-w-3xl flex-col p-5 font-mono">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -61,9 +61,15 @@ export default function Page() {
             name="url"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>URL to shorten</FormLabel>
+                <FormLabel className="text-md font-semibold">
+                  URL to shorten
+                </FormLabel>
                 <FormControl>
-                  <Input placeholder="https://github.com/nrjdalal" {...field} />
+                  <Input
+                    className="font-mono placeholder:text-slate-400"
+                    placeholder="https://github.com/nrjdalal"
+                    {...field}
+                  />
                 </FormControl>
                 <FormDescription>Enter a valid https URL</FormDescription>
                 <FormMessage />
@@ -71,13 +77,17 @@ export default function Page() {
             )}
           />
 
-          <Button className="w-full" type="submit">
+          <Button className="w-full font-medium" type="submit">
             Shorten
           </Button>
         </form>
       </Form>
 
-      <Button className="mt-5" onClick={() => signOut()} variant={'outline'}>
+      <Button
+        className="mt-5 font-medium"
+        onClick={() => signOut()}
+        variant={'outline'}
+      >
         Sign Out
       </Button>
 
