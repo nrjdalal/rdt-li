@@ -1,6 +1,12 @@
+import { db } from '@/lib/db'
+import { shortUrls, users } from '@/lib/db/schema'
+import { Anchor, User } from 'lucide-react'
 import Link from 'next/link'
 
 export default async function Page() {
+  const getUsers = await db.select().from(users)
+  const getShortUrls = await db.select().from(shortUrls)
+
   return (
     <main className="flex flex-col items-center p-5">
       <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
@@ -15,6 +21,19 @@ export default async function Page() {
           <h1 className="font-heading text-3xl sm:text-5xl">
             An open source URL shortener.
           </h1>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex flex-col items-center space-y-1 rounded-md border-2 border-violet-400 bg-violet-100 px-8 py-6">
+              <User className="h-8 w-8" />
+              <p className="text-xs">Users</p>
+              <p>{getUsers?.length}</p>
+            </div>
+
+            <div className="flex flex-col items-center space-y-1 rounded-md border-2 border-indigo-400 bg-indigo-100 px-8 py-6">
+              <Anchor className="h-8 w-8" />
+              <p className="text-xs">Short Links</p>
+              <p>{getShortUrls?.length}</p>
+            </div>
+          </div>
           <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
             Redirect.link is a URL shortener that shortens URL to rdt.li/slug
             and also tracks number of visits. It is built with Next.js, Drizzle,
