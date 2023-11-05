@@ -6,16 +6,20 @@ import { permanentRedirect } from 'next/navigation'
 const Page = async ({ params }: { params: { slug: string } }) => {
   const slug = params.slug[0]
 
-  const redirectUrl = await db
-    .select()
+  let redirectUrl: any = await db
+    .select({
+      visits: shortUrls.visits,
+    })
     .from(shortUrls)
     .where(eq(shortUrls.id, slug))
+
+  redirectUrl = redirectUrl[0].visits || []
 
   if (redirectUrl.length) {
     const update = await db
       .update(shortUrls)
       .set({
-        visits: [new Date().toUTCString(), ...(redirectUrl[0].visits || [])],
+        visits: [new Date().toUTCString(), ...redirectUrl],
         updatedAt: new Date(),
       })
       .where(eq(shortUrls.id, slug))
