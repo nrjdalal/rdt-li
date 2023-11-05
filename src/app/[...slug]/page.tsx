@@ -17,13 +17,14 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   const redirectUrlVisits = redirectUrl[0].visits
 
   if (redirectUrlVisits.length) {
-    await db
-      .update(shortUrls)
-      .set({
-        visits: [new Date().toUTCString(), ...(redirectUrlVisits || [])],
-        updatedAt: new Date(),
-      })
-      .where(eq(shortUrls.id, slug))
+    await db.transaction(async () => {
+      await db
+        .update(shortUrls)
+        .set({
+          visits: [new Date().toUTCString(), ...(redirectUrlVisits || [])],
+        })
+        .where(eq(shortUrls.id, slug))
+    })
 
     permanentRedirect(redirectUrl[0].url)
   }
