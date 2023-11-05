@@ -73,7 +73,9 @@ const Page = () => {
                 />
               </div>
             </div>
-            <p className="line-clamp-2 break-all">{shortUrl.url}</p>
+            <p className="line-clamp-2 break-all text-[0.65rem] text-slate-600">
+              {shortUrl.url}
+            </p>
           </div>
 
           <div className="flex justify-between text-xs">
