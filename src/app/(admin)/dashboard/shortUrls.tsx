@@ -59,7 +59,7 @@ const Page = () => {
     <div className="mt-5 flex flex-col space-y-5">
       {data?.map((shortUrl: { id: string; url: string; visits: any }) => (
         <div
-          className="flex flex-col space-y-1.5 rounded-md border p-3 text-sm"
+          className="flex flex-col space-y-1.5 rounded-md border bg-background p-3 text-sm"
           key={shortUrl.id}
         >
           <div className="flex flex-col gap-1.5 font-mono text-xs">
