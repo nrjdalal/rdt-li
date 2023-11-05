@@ -1,9 +1,9 @@
 'use client'
 
-import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { Eye } from 'lucide-react'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { Eye, Trash } from 'lucide-react'
 import Link from 'next/link'
-import { getShortUrls } from './apis/shortUrls'
+import { deleteShortUrl, getShortUrls } from './apis/shortUrls'
 
 const Page = () => {
   const queryClient = useQueryClient()
@@ -12,6 +12,19 @@ const Page = () => {
     queryKey: ['shortUrls'],
     queryFn: async () => {
       return (await getShortUrls()).reverse()
+    },
+  })
+
+  const mutation = useMutation({
+    mutationFn: async ({ id }: { id: string }) => {
+      return await deleteShortUrl({
+        id,
+      })
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['shortUrls'],
+      })
     },
   })
 
@@ -24,18 +37,19 @@ const Page = () => {
           className="flex flex-col space-y-5 rounded-md border p-3 text-sm"
           key={shortUrl.id}
         >
-          <div>
+          <div className="flex font-mono text-xs">
             <Link
-              className="font-mono text-xs text-blue-500"
+              className="text-blue-500"
               href={`/${shortUrl.id}`}
               target="_blank"
             >
               rdt.li/{shortUrl.id}
             </Link>
-            <span className="mx-2">→</span>
-            <Link href={shortUrl.url} className="text-blue-500">
+
+            <p>
+              <span className="mx-2">→</span>
               {shortUrl.url}
-            </Link>
+            </p>
           </div>
 
           <div className="flex justify-between text-xs">
@@ -49,10 +63,16 @@ const Page = () => {
               </p>
             </div>
             <div className="flex items-center gap-1 font-mono">
-              <Eye className="h-3 w-3 text-slate-600" />
+              <Eye className="h-3 w-3 text-slate-500" />
               <p className="pt-px">
                 {shortUrl?.visits?.length ? shortUrl.visits.length : 0}
               </p>
+              <Trash
+                className="h-3 w-3 cursor-pointer text-red-500"
+                onClick={() => {
+                  mutation.mutate({ id: shortUrl.id })
+                }}
+              />
             </div>
           </div>
         </div>

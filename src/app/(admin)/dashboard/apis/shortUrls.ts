@@ -38,3 +38,10 @@ export const createShortUrl = async ({ url }: { url: string }) => {
   })
   return shortUrl
 }
+
+export const deleteShortUrl = async ({ id }: { id: string }) => {
+  const session = await getServerSession(authOptions)
+  if (!session) throw new Error('Session not found')
+  const shortUrl = await db.delete(shortUrls).where(eq(shortUrls.id, id))
+  return shortUrl
+}

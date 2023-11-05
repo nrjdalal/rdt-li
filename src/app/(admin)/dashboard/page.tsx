@@ -13,9 +13,10 @@ import {
 import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { signOut } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
-import { createShortUrl, getShortUrls } from './apis/shortUrls'
+import { createShortUrl } from './apis/shortUrls'
 import ShowUrl from './shortUrls'
 
 const formSchema = z.object({
@@ -69,9 +70,16 @@ export default function Page() {
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+
+          <Button className="w-full" type="submit">
+            Submit
+          </Button>
         </form>
       </Form>
+
+      <Button className="mt-5" onClick={() => signOut()} variant={'outline'}>
+        Sign Out
+      </Button>
 
       <ShowUrl />
     </div>
