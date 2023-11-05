@@ -1,8 +1,10 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Copy, Eye, Loader, Loader2, Trash } from 'lucide-react'
 import Link from 'next/link'
+import { Chart } from 'react-google-charts'
 import { toast } from 'sonner'
 import { deleteShortUrl, getShortUrls } from './apis/shortUrls'
 
@@ -37,6 +39,23 @@ const Page = () => {
     )
   }
 
+  const getGraphData = (visits: any) => {
+    if (!visits) return []
+
+    let data: any = []
+    data = visits.map((item: any) => new Date(item).toLocaleDateString())
+    data = data.reduce((acc: any, curr: any) => {
+      acc[curr] = (acc[curr] || 0) + 1
+      return acc
+    }, {})
+    data = Object.entries(data)
+      .map(([key, value]) => [key, value])
+      .slice(0, 7)
+    console.log(data)
+
+    return data
+  }
+
   return (
     <div className="mt-5 flex flex-col space-y-5">
       {data?.map((shortUrl: { id: string; url: string; visits: any }) => (
@@ -46,12 +65,12 @@ const Page = () => {
         >
           <div className="flex flex-col gap-1.5 font-mono text-xs">
             <div className="flex items-center justify-end">
-              <div className="flex items-center gap-1 px-2">
+              {/* <div className="flex items-center gap-1 px-2">
                 <Eye className="h-3 w-3 text-slate-500" />
                 <p className="pt-px">
                   {shortUrl?.visits?.length ? shortUrl.visits.length : 0}
                 </p>
-              </div>
+              </div> */}
 
               <div className="flex gap-1.5 rounded-lg bg-blue-50 p-1 px-2 text-[0.6rem]">
                 <Link
@@ -95,6 +114,22 @@ const Page = () => {
               </p>
             </div>
           </div>
+
+          <Chart
+            className={cn(shortUrl?.visits?.length ? 'block' : 'hidden')}
+            chartType="Bar"
+            width="100%"
+            height={shortUrl?.visits?.length ? '100px' : '0px'}
+            data={[
+              [
+                '',
+                `${
+                  shortUrl?.visits?.length ? shortUrl.visits.length : 0
+                } Views`,
+              ],
+              ...getGraphData(shortUrl.visits),
+            ]}
+          />
         </div>
       ))}
     </div>
