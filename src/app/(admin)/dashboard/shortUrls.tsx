@@ -51,9 +51,8 @@ const Page = () => {
     data = Object.entries(data)
       .map(([key, value]) => [key, value])
       .slice(0, 7)
-    console.log(data)
 
-    return data
+    return data.reverse()
   }
 
   return (
