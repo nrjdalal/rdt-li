@@ -1,7 +1,7 @@
 'use client'
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { Copy, Eye, Trash } from 'lucide-react'
+import { Copy, Eye, Loader, Loader2, Trash } from 'lucide-react'
 import Link from 'next/link'
 import { toast } from 'sonner'
 import { deleteShortUrl, getShortUrls } from './apis/shortUrls'
@@ -29,7 +29,13 @@ const Page = () => {
     },
   })
 
-  isLoading && <p>Loading...</p>
+  if (isLoading) {
+    return (
+      <div className="flex h-36 items-center justify-center">
+        <Loader2 className="animate-spin" />
+      </div>
+    )
+  }
 
   return (
     <div className="mt-5 flex flex-col space-y-5">
