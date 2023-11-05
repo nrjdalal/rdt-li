@@ -1,9 +1,9 @@
 <a href="https://nextjs.org">
-  <h1 align="center">Onset Next.js Starter</h1>
+  <h1 align="center">Redirect.link URL Shortener</h1>
 </a>
 
 <p align="center">
-  An open source Next.js starter with step-by-step instructions if required.
+  Redirect.link is a URL shortener that shortens URL to rdt.li/slug and also tracks number of visits. It is built with Next.js, Drizzle, NextAuth and Postgres.
 </p>
 
 <p align="center">
@@ -20,7 +20,7 @@
   <a href="#credits"><strong>Credits</strong></a>
 </p>
 
-Onset is a Next.js starter that comes with step-by-step instructions to understand how everything works, easy for both beginners and experts alike and giving you the confidence to customize it to your needs. Built with Next.js 14, Drizzle (Postgres), NextAuth/Auth.js.
+Made via Onset a Next.js starter that comes with step-by-step instructions to understand how everything works, easy for both beginners and experts alike and giving you the confidence to customize it to your needs. Built with Next.js 14, Drizzle (Postgres), NextAuth/Auth.js.
 
 <!-- About: An open source Next.js bare starter with step-by-step instructions if required. Built with Next.js 14, Drizzle (Postgres), NextAuth/Auth.js. -->
 <!-- Keywords: drizzle neondb nextauthjs nextjs postgres shadcn tailwindcss typescript vercel -->
