@@ -14,9 +14,9 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     .from(shortUrls)
     .where(eq(shortUrls.id, slug))
 
-  const redirectUrlVisits = redirectUrl[0].visits
+  const redirectUrlVisits = redirectUrl[0].visits || []
 
-  if (redirectUrlVisits.length) {
+  if (redirectUrlVisits?.length) {
     await db.transaction(async () => {
       await db
         .update(shortUrls)
