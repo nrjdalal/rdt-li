@@ -14,9 +14,9 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     .from(shortUrls)
     .where(eq(shortUrls.id, slug))
 
-  const redirectUrlVisits = redirectUrl[0].visits || []
-
   if (redirectUrl.length) {
+    const redirectUrlVisits = redirectUrl[0].visits || []
+
     await db.transaction(async () => {
       await db
         .update(shortUrls)
@@ -25,9 +25,9 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         })
         .where(eq(shortUrls.id, slug))
     })
-  }
 
-  if (redirectUrl[0].url) permanentRedirect(redirectUrl[0].url)
+    permanentRedirect(redirectUrl[0].url)
+  }
 
   return (
     <p className="w-full border-b-2 p-5 text-center">No such URL exists.</p>
