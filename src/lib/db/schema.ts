@@ -1,6 +1,7 @@
 import type { AdapterAccount } from '@auth/core/adapters'
 import {
   integer,
+  json,
   pgTable,
   primaryKey,
   text,
@@ -56,3 +57,14 @@ export const verificationTokens = pgTable(
     compoundKey: primaryKey(vt.identifier, vt.token),
   }),
 )
+
+export const shortUrls = pgTable('shortUrls', {
+  userId: text('userId')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  id: text('id').notNull().primaryKey(),
+  url: text('url').notNull(),
+  visits: json('visits').$type<string[]>(),
+  createdAt: timestamp('createdAt', { mode: 'date' }).notNull(),
+  updatedAt: timestamp('updatedAt', { mode: 'date' }).notNull(),
+})

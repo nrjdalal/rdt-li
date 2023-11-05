@@ -2,6 +2,8 @@ import './globals.css'
 import { fontMono, fontSans } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
+import { Toaster } from 'sonner'
+import Provider from './provider'
 
 export const metadata: Metadata = {
   title: 'Onset',
@@ -22,7 +24,10 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        {children}
+        <Provider>
+          {children}
+          <Toaster expand={true} richColors />
+        </Provider>
       </body>
     </html>
   )
