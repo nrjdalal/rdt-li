@@ -3,6 +3,8 @@ import { shortUrls, users } from '@/lib/db/schema'
 import { Anchor, User } from 'lucide-react'
 import Link from 'next/link'
 
+export const revalidate = 60
+
 export default async function Page() {
   const getUsers = await db.select().from(users)
   const getShortUrls = await db.select().from(shortUrls)
