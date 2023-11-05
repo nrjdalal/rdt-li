@@ -28,7 +28,7 @@ export default async function Page() {
               Login
             </Link>
             <Link
-              href="https://github.com/nrjdalal/rdt-li"
+              href="https://rdt.li/WdWIbR"
               target="_blank"
               rel="noreferrer"
               className="rounded-md border px-8 py-2.5"
@@ -48,7 +48,7 @@ export default async function Page() {
             Redirect.link is open source and powered by open source software.
             The source code is available on{' '}
             <Link
-              href="https://github.com/nrjdalal/rdt-li"
+              href="https://rdt.li/WdWIbR"
               target="_blank"
               rel="noreferrer"
               className="underline underline-offset-4"
