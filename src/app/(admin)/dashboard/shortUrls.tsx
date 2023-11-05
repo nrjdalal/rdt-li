@@ -53,7 +53,7 @@ const Page = () => {
 
   if (isLoading) {
     return (
-      <div className="flex h-36 items-center justify-center">
+      <div className="flex h-40 items-center justify-center">
         <Loader2 className="animate-spin" />
       </div>
     )
@@ -124,19 +124,21 @@ const Page = () => {
                   <AlertDialogTrigger>
                     <Trash className="h-3 w-3 cursor-pointer text-red-500" />
                   </AlertDialogTrigger>
-                  <AlertDialogContent>
+                  <AlertDialogContent className="font-mono">
                     <AlertDialogHeader>
-                      <AlertDialogTitle>
+                      <AlertDialogTitle className="text-sm">
                         Do you want to delete this short URL?
                       </AlertDialogTitle>
-                      <AlertDialogDescription>
-                        This action cannot be undone.
+                      <AlertDialogDescription className="text-xs">
+                        {shortUrl.id} for {shortUrl.url}
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogCancel className="text-xs">
+                        Cancel
+                      </AlertDialogCancel>
                       <AlertDialogAction
-                        className="bg-red-500"
+                        className="bg-red-500 text-xs"
                         onClick={() => {
                           mutation.mutate({ id: shortUrl.id })
                           toast.info('Deleted')
