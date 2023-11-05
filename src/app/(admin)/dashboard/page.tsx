@@ -72,7 +72,7 @@ export default function Page() {
           />
 
           <Button className="w-full" type="submit">
-            Submit
+            Shorten
           </Button>
         </form>
       </Form>
