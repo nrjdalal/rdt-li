@@ -23,13 +23,13 @@ export default async function Page() {
           </h1>
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col items-center space-y-1 rounded-md border-2 border-violet-400 bg-violet-100 px-8 py-6">
-              <User className="h-8 w-8" />
+              <User className="h-8 w-8 text-violet-600" />
               <p className="text-xs">Users</p>
               <p>{getUsers?.length}</p>
             </div>
 
             <div className="flex flex-col items-center space-y-1 rounded-md border-2 border-indigo-400 bg-indigo-100 px-8 py-6">
-              <Anchor className="h-8 w-8" />
+              <Anchor className="h-8 w-8 text-indigo-600" />
               <p className="text-xs">Short Links</p>
               <p>{getShortUrls?.length}</p>
             </div>
