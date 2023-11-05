@@ -1,7 +1,7 @@
 'use client'
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { Eye, Trash } from 'lucide-react'
+import { Copy, Eye, Trash } from 'lucide-react'
 import Link from 'next/link'
 import { deleteShortUrl, getShortUrls } from './apis/shortUrls'
 
@@ -37,7 +37,7 @@ const Page = () => {
           className="flex flex-col space-y-5 rounded-md border p-3 text-sm"
           key={shortUrl.id}
         >
-          <div className="flex font-mono text-xs">
+          <div className="flex items-center font-mono text-xs">
             <Link
               className="text-blue-500"
               href={`/${shortUrl.id}`}
@@ -45,6 +45,13 @@ const Page = () => {
             >
               rdt.li/{shortUrl.id}
             </Link>
+
+            <Copy
+              onClick={() => {
+                navigator.clipboard.writeText(`https://rdt.li/${shortUrl.id}`)
+              }}
+              className="mx-2 h-3 w-3 cursor-pointer text-slate-500"
+            />
 
             <p>
               <span className="mx-2">→</span>
