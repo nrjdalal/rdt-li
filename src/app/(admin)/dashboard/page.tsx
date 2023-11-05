@@ -71,7 +71,9 @@ export default function Page() {
                     {...field}
                   />
                 </FormControl>
-                <FormDescription>Enter a valid https URL</FormDescription>
+                <FormDescription className="text-xs">
+                  Enter a valid https URL
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
