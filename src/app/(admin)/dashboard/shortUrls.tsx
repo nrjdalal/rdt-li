@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/accordion'
 import { cn } from '@/lib/utils'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { BarChart, Copy, Eye, Loader2, Trash } from 'lucide-react'
+import { ArrowUp, BarChart, Copy, Eye, Loader2, Trash } from 'lucide-react'
 import Link from 'next/link'
 import { Chart } from 'react-google-charts'
 import { toast } from 'sonner'
@@ -71,6 +71,16 @@ const Page = () => {
           <div className="flex flex-col gap-1.5 font-mono text-xs">
             <div className="flex items-center justify-end">
               <div className="flex items-center gap-1 px-2">
+                {shortUrl?.visits?.length ? (
+                  <>
+                    <ArrowUp className="h-3 w-3 text-green-500" />
+                    <p className="flex text-green-500">
+                      {getGraphData(shortUrl.visits).reverse()[0][1]}
+                    </p>
+                  </>
+                ) : (
+                  ''
+                )}
                 <Eye className="h-3 w-3 text-slate-500" />
                 <p className="pt-px">
                   {shortUrl?.visits?.length ? shortUrl.visits.length : 0}
