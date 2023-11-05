@@ -52,7 +52,7 @@ export default async function Page() {
               href="https://rdt.li/WdWIbR"
               target="_blank"
               rel="noreferrer"
-              className="rounded-md border px-8 py-2.5"
+              className="rounded-md bg-background border px-8 py-2.5"
             >
               GitHub
             </Link>
