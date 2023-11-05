@@ -6,6 +6,17 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog'
 import { cn } from '@/lib/utils'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { ArrowUp, BarChart, Copy, Eye, Loader2, Trash } from 'lucide-react'
@@ -90,7 +101,7 @@ const Page = () => {
                 </p>
               </div>
 
-              <div className="flex gap-1.5 rounded-lg bg-blue-50 p-1 px-2 text-[0.6rem]">
+              <div className="flex items-center gap-1.5 rounded-lg bg-blue-50 p-1 px-2 text-[0.6rem]">
                 <Link
                   className="text-blue-500"
                   href={`/${shortUrl.id}`}
@@ -98,6 +109,7 @@ const Page = () => {
                 >
                   rdt.li/{shortUrl.id}
                 </Link>
+                <div className="h-1 w-1 rounded-full bg-slate-500/10" />
                 <Copy
                   onClick={() => {
                     navigator.clipboard.writeText(
@@ -105,15 +117,36 @@ const Page = () => {
                     )
                     toast.success('Copied to clipboard')
                   }}
-                  className="ml-1 mt-0.5 h-3 w-3 cursor-pointer text-slate-500"
+                  className="h-3 w-3 cursor-pointer text-slate-500"
                 />
-                <Trash
-                  className="mt-0.5 h-3 w-3 cursor-pointer text-red-500"
-                  onClick={() => {
-                    mutation.mutate({ id: shortUrl.id })
-                    toast.info('Deleted')
-                  }}
-                />
+                <div className="h-1 w-1 rounded-full bg-slate-500/10" />
+                <AlertDialog>
+                  <AlertDialogTrigger>
+                    <Trash className="h-3 w-3 cursor-pointer text-red-500" />
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>
+                        Do you want to delete this short URL?
+                      </AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This action cannot be undone.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction
+                        className="bg-red-500"
+                        onClick={() => {
+                          mutation.mutate({ id: shortUrl.id })
+                          toast.info('Deleted')
+                        }}
+                      >
+                        Delete
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               </div>
             </div>
             <p className="line-clamp-2 break-all text-[0.65rem] text-slate-600">
