@@ -54,7 +54,7 @@ const Page = () => {
             />
 
             <p>
-              <span className="mx-2">→</span>
+              <span className="mr-2">→</span>
               {shortUrl.url}
             </p>
           </div>
