@@ -108,27 +108,20 @@ const Page = () => {
             </p>
           </div>
 
-          <div className="flex justify-between text-xs">
-            <div className="flex items-end font-mono text-[8px] text-slate-500">
-              <p className="pt-0.5">
-                {shortUrl?.visits?.length
-                  ? `Last visited at ${new Date(
-                      shortUrl.visits[0],
-                    ).toLocaleString()}`
-                  : ''}
-              </p>
-            </div>
-          </div>
-
           <Accordion
             className={cn(shortUrl?.visits?.length ? 'block' : 'hidden')}
             type="single"
             collapsible
           >
-            <AccordionItem className="!border-b-0" value="item-1">
+            <AccordionItem className="-my-4 !border-b-0" value="item-1">
               <AccordionTrigger>
-                <p className="flex items-center gap-2 text-[0.6rem]">
-                  <BarChart className="h-3 w-3" /> Last 7 days performance graph
+                <p className="flex items-center gap-2 font-sans text-[0.6rem] font-light text-slate-500">
+                  <BarChart className="h-3 w-3" />{' '}
+                  {shortUrl?.visits?.length
+                    ? `Last visited at ${new Date(
+                        shortUrl.visits[0],
+                      ).toLocaleString()}, expand for more`
+                    : ''}
                 </p>
               </AccordionTrigger>
               <AccordionContent>
