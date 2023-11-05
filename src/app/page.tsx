@@ -7,21 +7,18 @@ export default async function Page() {
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
             href="https://twitter.com/nrjdalal_com"
-            className="bg-muted rounded-2xl border bg-slate-100 px-4 py-1.5 text-sm font-medium"
+            className="rounded-2xl border bg-muted bg-slate-100 px-4 py-1.5 text-xs font-medium"
             target="_blank"
           >
-            Follow along on Twitter
+            Follow creator on Twitter
           </Link>
           <h1 className="font-heading text-3xl sm:text-5xl">
-            An open source Next.js bare starter.
-            <br />
-            With step-by-step instructions if required.
+            An open source URL shortener.
           </h1>
-          <p className="text-muted-foreground max-w-[42rem] leading-normal sm:text-xl sm:leading-8">
-            Onset is a Next.js starter that comes with step-by-step instructions
-            to understand how everything works, easy for both beginners and
-            experts alike and giving you the confidence to customize it to your
-            needs. Built with Next.js 14, Drizzle (Postgres), NextAuth/Auth.js.
+          <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
+            Redirect.link is a URL shortener that shortens URL to rdt.li/slug
+            and also tracks number of visits. It is built with Next.js, Drizzle,
+            NextAuth and Postgres.
           </p>
           <div className="mt-4 space-x-4">
             <Link
@@ -31,7 +28,7 @@ export default async function Page() {
               Login
             </Link>
             <Link
-              href="https://github.com/nrjdalal/onset"
+              href="https://github.com/nrjdalal/rdt-li"
               target="_blank"
               rel="noreferrer"
               className="rounded-md border px-8 py-2.5"
@@ -47,18 +44,18 @@ export default async function Page() {
           <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl">
             Proudly Open Source
           </h2>
-          <p className="text-muted-foreground max-w-[85%] leading-normal sm:text-lg sm:leading-7">
-            Onset is open source and powered by open source software. <br /> The
-            code is available on{' '}
+          <p className="max-w-[85%] text-xs leading-normal text-muted-foreground">
+            Redirect.link is open source and powered by open source software.
+            The source code is available on{' '}
             <Link
-              href="https://github.com/nrjdalal/onset"
+              href="https://github.com/nrjdalal/rdt-li"
               target="_blank"
               rel="noreferrer"
               className="underline underline-offset-4"
             >
               GitHub
             </Link>
-            .{' '}
+            .
           </p>
         </div>
       </section>
