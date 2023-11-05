@@ -3,6 +3,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Copy, Eye, Trash } from 'lucide-react'
 import Link from 'next/link'
+import { toast } from 'sonner'
 import { deleteShortUrl, getShortUrls } from './apis/shortUrls'
 
 const Page = () => {
@@ -37,26 +38,24 @@ const Page = () => {
           className="flex flex-col space-y-5 rounded-md border p-3 text-sm"
           key={shortUrl.id}
         >
-          <div className="flex items-center font-mono text-xs">
-            <Link
-              className="text-blue-500"
-              href={`/${shortUrl.id}`}
-              target="_blank"
-            >
-              rdt.li/{shortUrl.id}
-            </Link>
-
-            <Copy
-              onClick={() => {
-                navigator.clipboard.writeText(`https://rdt.li/${shortUrl.id}`)
-              }}
-              className="mx-2 h-3 w-3 cursor-pointer text-slate-500"
-            />
-
-            <p>
-              <span className="mr-2">→</span>
-              {shortUrl.url}
-            </p>
+          <div className="flex flex-col gap-1.5 font-mono text-xs">
+            <div className="flex">
+              <Link
+                className="text-blue-500"
+                href={`/${shortUrl.id}`}
+                target="_blank"
+              >
+                rdt.li/{shortUrl.id}
+              </Link>
+              <Copy
+                onClick={() => {
+                  navigator.clipboard.writeText(`https://rdt.li/${shortUrl.id}`)
+                  toast.success('Copied to clipboard')
+                }}
+                className="mx-2 mt-0.5 h-3 w-3 cursor-pointer text-slate-500"
+              />
+            </div>
+            <p className="line-clamp-2 break-all">{shortUrl.url}</p>
           </div>
 
           <div className="flex justify-between text-xs">
@@ -78,6 +77,7 @@ const Page = () => {
                 className="h-3 w-3 cursor-pointer text-red-500"
                 onClick={() => {
                   mutation.mutate({ id: shortUrl.id })
+                  toast.info('Deleted')
                 }}
               />
             </div>
