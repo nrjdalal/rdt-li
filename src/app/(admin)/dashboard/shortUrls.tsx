@@ -20,7 +20,10 @@ const Page = () => {
   const { isError, isLoading, data } = useQuery({
     queryKey: ['shortUrls'],
     queryFn: async () => {
-      return (await getShortUrls()).reverse()
+      return (await getShortUrls()).sort(
+        (a: any, b: any) =>
+          new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
+      )
     },
   })
 
@@ -140,15 +143,7 @@ const Page = () => {
                   chartType="Bar"
                   width="100%"
                   height={shortUrl?.visits?.length ? '100px' : '0px'}
-                  data={[
-                    [
-                      '',
-                      `${
-                        shortUrl?.visits?.length ? shortUrl.visits.length : 0
-                      } Views`,
-                    ],
-                    ...getGraphData(shortUrl.visits),
-                  ]}
+                  data={[['', 'Visits'], ...getGraphData(shortUrl.visits)]}
                 />
               </AccordionContent>
             </AccordionItem>

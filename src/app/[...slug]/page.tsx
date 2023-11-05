@@ -16,6 +16,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       .update(shortUrls)
       .set({
         visits: [new Date().toUTCString(), ...(redirectUrl[0].visits || [])],
+        updatedAt: new Date(),
       })
       .where(eq(shortUrls.id, slug))
       .returning({
