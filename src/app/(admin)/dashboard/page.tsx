@@ -13,7 +13,9 @@ import {
 import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { Star, StarIcon } from 'lucide-react'
 import { signOut } from 'next-auth/react'
+import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { createShortUrl } from './apis/shortUrls'
@@ -61,8 +63,16 @@ export default function Page() {
             name="url"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-md font-semibold">
-                  URL to shorten
+                <FormLabel className="text-md flex items-center justify-between font-semibold">
+                  <p>URL to shorten</p>
+                  <Link
+                    href="https://rdt.li/Ri4uZw"
+                    target="_blank"
+                    className="flex items-center gap-1.5 rounded-md bg-blue-500 px-3 py-0.5 text-[0.6rem] text-white"
+                  >
+                    <p className="mt-0.5">Github</p>
+                    <Star className="h-3.5 w-3.5" />
+                  </Link>
                 </FormLabel>
                 <FormControl>
                   <Input
