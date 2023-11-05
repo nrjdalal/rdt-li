@@ -1,7 +1,7 @@
 import { db } from '@/lib/db'
 import { shortUrls } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
-import { redirect } from 'next/navigation'
+import { permanentRedirect } from 'next/navigation'
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const slug = params.slug[0]
@@ -22,7 +22,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         url: shortUrls.url,
       })
 
-    return redirect(update[0].url)
+    permanentRedirect(update[0].url)
   }
 
   return (
