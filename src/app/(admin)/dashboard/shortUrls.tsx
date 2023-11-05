@@ -1,8 +1,14 @@
 'use client'
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
 import { cn } from '@/lib/utils'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { Copy, Eye, Loader, Loader2, Trash } from 'lucide-react'
+import { BarChart, Copy, Eye, Loader2, Trash } from 'lucide-react'
 import Link from 'next/link'
 import { Chart } from 'react-google-charts'
 import { toast } from 'sonner'
@@ -64,12 +70,12 @@ const Page = () => {
         >
           <div className="flex flex-col gap-1.5 font-mono text-xs">
             <div className="flex items-center justify-end">
-              {/* <div className="flex items-center gap-1 px-2">
+              <div className="flex items-center gap-1 px-2">
                 <Eye className="h-3 w-3 text-slate-500" />
                 <p className="pt-px">
                   {shortUrl?.visits?.length ? shortUrl.visits.length : 0}
                 </p>
-              </div> */}
+              </div>
 
               <div className="flex gap-1.5 rounded-lg bg-blue-50 p-1 px-2 text-[0.6rem]">
                 <Link
@@ -114,21 +120,36 @@ const Page = () => {
             </div>
           </div>
 
-          <Chart
+          <Accordion
             className={cn(shortUrl?.visits?.length ? 'block' : 'hidden')}
-            chartType="Bar"
-            width="100%"
-            height={shortUrl?.visits?.length ? '100px' : '0px'}
-            data={[
-              [
-                '',
-                `${
-                  shortUrl?.visits?.length ? shortUrl.visits.length : 0
-                } Views`,
-              ],
-              ...getGraphData(shortUrl.visits),
-            ]}
-          />
+            type="single"
+            collapsible
+          >
+            <AccordionItem className="!border-b-0" value="item-1">
+              <AccordionTrigger>
+                <p className="flex items-center gap-2 text-[0.6rem]">
+                  <BarChart className="h-3 w-3" /> Last 7 days performance graph
+                </p>
+              </AccordionTrigger>
+              <AccordionContent>
+                <Chart
+                  className={cn(shortUrl?.visits?.length ? 'block' : 'hidden')}
+                  chartType="Bar"
+                  width="100%"
+                  height={shortUrl?.visits?.length ? '100px' : '0px'}
+                  data={[
+                    [
+                      '',
+                      `${
+                        shortUrl?.visits?.length ? shortUrl.visits.length : 0
+                      } Views`,
+                    ],
+                    ...getGraphData(shortUrl.visits),
+                  ]}
+                />
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       ))}
     </div>
