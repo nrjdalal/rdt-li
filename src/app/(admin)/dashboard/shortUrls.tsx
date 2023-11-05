@@ -35,25 +35,43 @@ const Page = () => {
     <div className="mt-5 flex flex-col space-y-5">
       {data?.map((shortUrl: { id: string; url: string; visits: any }) => (
         <div
-          className="flex flex-col space-y-5 rounded-md border p-3 text-sm"
+          className="flex flex-col space-y-1.5 rounded-md border p-3 text-sm"
           key={shortUrl.id}
         >
           <div className="flex flex-col gap-1.5 font-mono text-xs">
-            <div className="flex">
-              <Link
-                className="text-blue-500"
-                href={`/${shortUrl.id}`}
-                target="_blank"
-              >
-                rdt.li/{shortUrl.id}
-              </Link>
-              <Copy
-                onClick={() => {
-                  navigator.clipboard.writeText(`https://rdt.li/${shortUrl.id}`)
-                  toast.success('Copied to clipboard')
-                }}
-                className="mx-2 mt-0.5 h-3 w-3 cursor-pointer text-slate-500"
-              />
+            <div className="flex items-center justify-end">
+              <div className="flex items-center gap-1 px-2">
+                <Eye className="h-3 w-3 text-slate-500" />
+                <p className="pt-px">
+                  {shortUrl?.visits?.length ? shortUrl.visits.length : 0}
+                </p>
+              </div>
+
+              <div className="flex gap-1.5 rounded-lg bg-blue-50 p-1 px-2 text-[0.6rem]">
+                <Link
+                  className="text-blue-500"
+                  href={`/${shortUrl.id}`}
+                  target="_blank"
+                >
+                  rdt.li/{shortUrl.id}
+                </Link>
+                <Copy
+                  onClick={() => {
+                    navigator.clipboard.writeText(
+                      `https://rdt.li/${shortUrl.id}`,
+                    )
+                    toast.success('Copied to clipboard')
+                  }}
+                  className="ml-1 mt-0.5 h-3 w-3 cursor-pointer text-slate-500"
+                />
+                <Trash
+                  className="mt-0.5 h-3 w-3 cursor-pointer text-red-500"
+                  onClick={() => {
+                    mutation.mutate({ id: shortUrl.id })
+                    toast.info('Deleted')
+                  }}
+                />
+              </div>
             </div>
             <p className="line-clamp-2 break-all">{shortUrl.url}</p>
           </div>
@@ -67,19 +85,6 @@ const Page = () => {
                     ).toLocaleString()}`
                   : ''}
               </p>
-            </div>
-            <div className="flex items-center gap-1 font-mono">
-              <Eye className="h-3 w-3 text-slate-500" />
-              <p className="pt-px">
-                {shortUrl?.visits?.length ? shortUrl.visits.length : 0}
-              </p>
-              <Trash
-                className="h-3 w-3 cursor-pointer text-red-500"
-                onClick={() => {
-                  mutation.mutate({ id: shortUrl.id })
-                  toast.info('Deleted')
-                }}
-              />
             </div>
           </div>
         </div>
