@@ -5,15 +5,15 @@ import Link from 'next/link'
 
 const Page = () => {
   return (
-    <div className="flex min-h-[100dvh] items-center justify-center gap-4">
+    <div className="flex min-h-[100dvh] flex-col items-center justify-center gap-5 p-5">
       <Link
         href={'/'}
-        className="rounded-md bg-slate-900 px-8 py-2.5 text-white"
+        className="w-full rounded-md bg-slate-900 px-8 py-2.5 text-center text-white"
       >
         Home
       </Link>
       <button
-        className="flex items-center gap-2 rounded-md border px-8 py-2.5"
+        className="flex w-full items-center justify-center gap-2 rounded-md border bg-background px-8 py-2.5"
         onClick={() => signIn('google')}
       >
         <svg
