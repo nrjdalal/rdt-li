@@ -124,15 +124,16 @@ export default function Page() {
 
       <ShowUrl />
 
-      <Link href="https://vercel.com" target="_blank">
-        <Image
-          className="mt-4"
-          src="/powered-by-vercel.svg"
-          alt="Powered by Vercel"
-          height={32}
-          width={128}
-        />
-      </Link>
+      <div className="mt-8 flex w-full justify-center">
+        <Link href="https://vercel.com" target="_blank">
+          <Image
+            src="/powered-by-vercel.svg"
+            alt="Powered by Vercel"
+            height={32}
+            width={128}
+          />
+        </Link>
+      </div>
     </div>
   )
 }
