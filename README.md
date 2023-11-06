@@ -75,6 +75,7 @@ bun dev
 
 1. Get your Google OAuth credentials at https://console.cloud.google.com/ into your .env
 Make sure to add `https://your_url` to "Authorised JavaScript origins" and `https://your_url/api/auth/callback/google` to Authorised redirect URIs
+2. Set `your_url` as `NEXT_PUBLIC_CUSTOM_DOMAIN` in your .env
 3. Set up Neon account and copy postgres url including `?sslmode=require` into your .env
 4. Set up your tables using the SQL Editor on Neon:
 ```sql
@@ -121,6 +122,7 @@ CREATE TABLE "shortUrls" (
 
 ```
 4. Deploy on Vercel
+5. Optional: Set up a custom url at https://vercel.com/{your_org}/{your_repo}/settings/domains and make sure to add this url to your .env and to your Google OAuth credentials
 
 ## Roadmap
 
