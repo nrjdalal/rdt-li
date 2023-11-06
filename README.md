@@ -22,7 +22,7 @@
   </a>
 </p>
 
-<p align="center"><a href="https://rdt.li/m5NksJ" tardet="_blank">Try now</a> or <a href="#installation">self host</a> it.</p>
+<p align="center"><a href="https://rdt.li/m5NksJ" tardet="_blank">Try now</a> or <a href="#one-click-deploy">self host</a> it.</p>
 
 <p align="center">
   <a href="#features"><strong>Features</strong></a> ·
