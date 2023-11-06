@@ -35,6 +35,7 @@ export default function RootLayout({
       {process.env.NEXT_PUBLIC_APP_URL === 'https://rdt.li' && (
         <Script
           async
+          defer
           src="https://umami-rdt-li.vercel.app/script.js"
           data-website-id="27fe7c5f-3f22-4efa-8d44-aff3d5dadc51"
         />
