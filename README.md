@@ -1,6 +1,9 @@
-<blockquote align="center"> • News: API coming soon </blockquote>
-<blockquote align="center"> • News: Ability to add name for links soon </blockquote>
-<blockquote align="center"> • News: Ability to change short or redirect links coming soon </blockquote>
+<h3 align="center"> News (Coming Soon) </h3>
+<blockquote align="center"> • API v1 for progmatic use </blockquote>
+<blockquote align="center"> • Ability to add name for links identification </blockquote>
+<blockquote align="center"> • Ability to change short or redirect links </blockquote>
+
+<br/>
 
 <a href="https://nextjs.org">
   <h1 align="center">
