@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://twitter.com/nrjdalal_com">
+  <a href="https://rdt.li/lNB90I">
     <img src="https://img.shields.io/twitter/follow/nrjdalal_com?style=flat&label=nrjdalal_com&logo=twitter&color=0bf&logoColor=fff" alt="Follow Neeraj on Twitter" />
   </a>
 </p>
