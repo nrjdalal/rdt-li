@@ -56,7 +56,7 @@ export default async function Page() {
 
           <div className="mt-4 space-x-4">
             <Link
-              href="/dashboard"
+              href="/x"
               className="rounded-md bg-slate-900 px-8 py-2.5 text-white"
             >
               Login
