@@ -55,7 +55,7 @@ Made via [Onset](https://onset.vercel.app) a Next.js starter that comes with ste
 
 ## One Click Deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnrjdalal%2Frdt-li)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnrjdalal%2Frdt-li&env=POSTGRES_URL,NEXTAUTH_SECRET,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,NEXT_PUBLIC_APP_URL&project-name=rdt-li-by-nrjdalal&repository-name=rdt-li-by-nrjdalal)
 
 ## Local Development
 
