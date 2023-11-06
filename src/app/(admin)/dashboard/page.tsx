@@ -124,13 +124,15 @@ export default function Page() {
 
       <ShowUrl />
 
-      <Image
-        className="mx-auto mt-8"
-        src="/powered-by-vercel.svg"
-        alt="Powered by Vercel"
-        height={32}
-        width={128}
-      />
+      <Link href="https://vercel.com" target="_blank">
+        <Image
+          className="mt-4"
+          src="/powered-by-vercel.svg"
+          alt="Powered by Vercel"
+          height={32}
+          width={128}
+        />
+      </Link>
     </div>
   )
 }
