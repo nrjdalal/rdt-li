@@ -12,7 +12,7 @@ export default async function Page() {
 
   return (
     <main className="container flex max-w-screen-md flex-col items-center p-5">
-      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
+      <section className="space-y-6 pb-32 pt-6 md:pt-10 lg:py-32">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
             href="https://rdt.li/lNB90I"
@@ -64,8 +64,8 @@ export default async function Page() {
         </div>
       </section>
 
-      <h2 className="flex items-center text-2xl font-medium">
-        <ArrowDown className="text-blue-300" />
+      <h2 className="flex items-center text-xl font-medium">
+        <ArrowDown className="text-blue-200" />
         <span className="ml-1 text-blue-500">Image Demo</span>
         <ArrowDown className="text-blue-300" />
       </h2>
