@@ -1,5 +1,6 @@
 'use client'
 
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -11,6 +12,11 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Home, Star } from 'lucide-react'
@@ -79,6 +85,20 @@ export default function Page() {
                       <p className="mt-0.5">Github</p>
                       <Star className="h-3.5 w-3.5" />
                     </Link>
+                    <Popover>
+                      <PopoverTrigger>
+                        <Avatar className="h-6 w-6">
+                          <AvatarImage src="https://github.com/shadcn.png" />
+                          <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                      </PopoverTrigger>
+                      <PopoverContent
+                        className="mr-5 mt-1.5 w-24 cursor-pointer py-2 text-center font-mono text-xs lg:mr-0"
+                        onClick={() => signOut()}
+                      >
+                        Sign Out
+                      </PopoverContent>
+                    </Popover>
                   </div>
                 </FormLabel>
                 <FormControl>
@@ -101,14 +121,6 @@ export default function Page() {
           </Button>
         </form>
       </Form>
-
-      <Button
-        className="mt-5 font-medium"
-        onClick={() => signOut()}
-        variant={'outline'}
-      >
-        Sign Out
-      </Button>
 
       <ShowUrl />
 
