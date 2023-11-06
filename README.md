@@ -1,4 +1,4 @@
-<h3 align="center"> New: API Coming Soon </h3>
+<div style="background-color:green; padding: 4px;><h3 align="center"> New: API Coming Soon </h3></div>
 
 <a href="https://nextjs.org">
   <h1 align="center">
