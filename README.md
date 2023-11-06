@@ -3,8 +3,6 @@
 <blockquote align="center"> • Ability to add name for links identification </blockquote>
 <blockquote align="center"> • Ability to change short or redirect links </blockquote>
 
-<br/>
-
 <a href="https://nextjs.org">
   <h1 align="center">
    <a href="https://rdt.li/m5NksJ" tardet="_blank">
