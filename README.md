@@ -1,4 +1,6 @@
-<blockquote align="center"> New: API Coming Soon </blockquote>
+<blockquote align="center"> • News: API coming soon </blockquote>
+<blockquote align="center"> • News: Ability to add name for links soon </blockquote>
+<blockquote align="center"> • News: Ability to change short or redirect links coming soon </blockquote>
 
 <a href="https://nextjs.org">
   <h1 align="center">
