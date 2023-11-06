@@ -43,9 +43,10 @@ export default async function Page() {
             </div>
           </div>
           <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-            Redirect.link is a URL shortener that shortens URL to rdt.li/slug
-            and also tracks number of visits. It is built with Next.js, Drizzle,
-            NextAuth and Postgres.
+            Redirect.link is a URL shortener that shortens URL to{' '}
+            {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}/slug and also
+            tracks number of visits. It is built with Next.js, Drizzle, NextAuth
+            and Postgres.
           </p>
 
           <p className="text-xs">
