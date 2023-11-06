@@ -1,4 +1,4 @@
-<blockquote align="center" style="color: cyan; font-weight: 500; font-size: 18px;"> News (Coming Soon) </blockquote>
+<blockquote align="center"><h3>News (Coming Soon)</h3></blockquote>
 <blockquote align="center"> • API v1 for progmatic use </blockquote>
 <blockquote align="center"> • Ability to add name for links identification </blockquote>
 <blockquote align="center"> • Ability to change short or redirect links </blockquote>
