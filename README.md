@@ -17,7 +17,7 @@
   </a>
 </p>
 
-![](/public/demo.jpeg)
+[![](/public/demo.jpeg)](https://rdt.li/m5NksJ)
 
 <p align="center">
   <a href="#features"><strong>Features</strong></a> ·
