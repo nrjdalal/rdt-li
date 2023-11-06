@@ -1,9 +1,16 @@
 <a href="https://nextjs.org">
-  <h1 align="center">Redirect.link URL Shortener</h1>
+  <h1 align="center">
+   <a href="https://rdt.li/m5NksJ" tardet="_blank">
+    Redirect.link
+   </a>
+   URL Shortener
+  </h1>
 </a>
 
 <p align="center">
-  Redirect.link is a URL shortener that shortens URL to rdt.li/slug and also tracks number of visits. It is built with Next.js, Drizzle, NextAuth and Postgres.
+  <a href="https://rdt.li/m5NksJ" tardet="_blank">
+    Redirect.link
+   </a> is a URL shortener that shortens URL to rdt.li/slug and also tracks number of visits. It is built with Next.js, Drizzle, NextAuth and Postgres.
 </p>
 
 <p align="center">
@@ -49,7 +56,7 @@ Clone & create this repo locally with the following command:
 bunx create-next-app onset-starter --example "https://github.com/nrjdalal/onset"
 ```
 
-1. Install dependencies using pnpm:
+1. Install dependencies using bun:
 
 ```sh
 bun install
