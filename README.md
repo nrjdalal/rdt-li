@@ -69,7 +69,7 @@ Clone & create this repo locally with the following command:
 
 > Note: You can use `npx` or `pnpx` as well
 
-```bash
+```sh
 bunx create-next-app rdt-li --example "https://github.com/nrjdalal/rdt-li"
 ```
 

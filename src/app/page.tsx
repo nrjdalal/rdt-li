@@ -1,6 +1,6 @@
 import { db } from '@/lib/db'
 import { shortUrls, users } from '@/lib/db/schema'
-import { Anchor, ArrowDown, User } from 'lucide-react'
+import { Anchor, ArrowDown, Star, User } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -9,11 +9,14 @@ export const revalidate = 60
 export default async function Page() {
   const getUsers = await db.select().from(users)
   const getShortUrls = await db.select().from(shortUrls)
+  const githubInfo = await fetch(
+    'https://api.github.com/repos/nrjdalal/rdt-li',
+  ).then((res) => res.json())
 
   return (
     <main className="container flex max-w-screen-md flex-col items-center p-5">
       <section className="space-y-6 pb-32 pt-6 md:pt-10 lg:py-32">
-        <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
+        <div className="container flex w-full max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
             href="https://rdt.li/lNB90I"
             className="rounded-2xl border bg-background px-4 py-1.5 text-xs font-medium"
@@ -21,6 +24,7 @@ export default async function Page() {
           >
             Follow creator on Twitter
           </Link>
+
           <h1 className="font-heading text-3xl sm:text-5xl">
             <span className="font-mono font-semibold">
               {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}
@@ -29,6 +33,7 @@ export default async function Page() {
             <br />
             URL shortener
           </h1>
+
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col items-center space-y-1 rounded-md border-2 border-violet-400 bg-violet-100 px-8 py-6">
               <User className="h-8 w-8 text-violet-600" />
@@ -42,6 +47,7 @@ export default async function Page() {
               <p>{getShortUrls?.length}</p>
             </div>
           </div>
+
           <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
             Redirect.link is a URL shortener that shortens URL to{' '}
             {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}/slug and also
@@ -54,7 +60,7 @@ export default async function Page() {
             GitHub for more information)
           </p>
 
-          <div className="mt-4 space-x-4">
+          <div className="mt-4 flex space-x-4">
             <Link
               href="/x"
               className="rounded-md bg-slate-900 px-8 py-2.5 text-white"
@@ -65,9 +71,15 @@ export default async function Page() {
               href="https://rdt.li/WdWIbR"
               target="_blank"
               rel="noreferrer"
-              className="rounded-md border bg-background px-8 py-2.5"
+              className="relative flex gap-2 rounded-md border bg-background px-8 py-2.5"
             >
-              GitHub
+              <p>Github</p>
+              <div className="absolute -top-4 right-2 flex items-center gap-1 rounded-md bg-foreground p-0.5 px-2 text-background">
+                <Star className="h-2.5 w-2.5" />
+                <p className="pt-0.5 font-mono text-[0.6rem] font-bold">
+                  {githubInfo?.stargazers_count || 0}
+                </p>
+              </div>
             </Link>
           </div>
         </div>
