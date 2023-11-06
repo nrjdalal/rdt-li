@@ -16,13 +16,13 @@
   <a href="https://rdt.li/m5NksJ" tardet="_blank">Redirect.link</a> is a URL shortener that shortens URL to rdt.li/slug and also tracks number of visits. It is built with Next.js, Drizzle, NextAuth and Postgres.
 </p>
 
+<p align="center"><a href="https://rdt.li/m5NksJ" tardet="_blank">Try now</a> or <a href="#one-click-deploy">self host</a> it.</p>
+
 <p align="center">
   <a href="https://rdt.li/lNB90I">
     <img src="https://img.shields.io/twitter/follow/nrjdalal_com?style=flat&label=nrjdalal_com&logo=twitter&color=0bf&logoColor=fff" alt="Follow Neeraj on Twitter" />
   </a>
 </p>
-
-<p align="center"><a href="https://rdt.li/m5NksJ" tardet="_blank">Try now</a> or <a href="#one-click-deploy">self host</a> it.</p>
 
 <p align="center">
   <a href="#features"><strong>Features</strong></a> ·
