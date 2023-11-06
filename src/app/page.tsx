@@ -74,7 +74,7 @@ export default async function Page() {
               className="relative flex gap-2 rounded-md border bg-background px-8 py-2.5"
             >
               <p>Github</p>
-              <div className="absolute -top-3.5 right-2 flex items-center gap-1 rounded-md bg-foreground p-0.5 px-2 text-background">
+              <div className="absolute -top-3.5 right-2.5 flex items-center gap-1 rounded-md bg-foreground p-0.5 px-2 text-background">
                 <Star className="h-2.5 w-2.5" />
                 <p className="pt-0.5 font-mono text-[0.6rem] font-bold">
                   {githubInfo?.stargazers_count || 0}
