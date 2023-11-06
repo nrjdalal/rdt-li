@@ -107,15 +107,14 @@ const Page = () => {
                   href={`/${shortUrl.id}`}
                   target="_blank"
                 >
-                  rdt.li/{shortUrl.id}
+                  {process.env.NEXT_PUBLIC_CUSTOM_DOMAIN}/{shortUrl.id}
                 </Link>
                 <div className="h-1 w-1 rounded-full bg-slate-500/10" />
                 <Copy
                   onClick={() => {
-                    navigator.clipboard.writeText(
-                      `https://rdt.li/${shortUrl.id}`,
-                    )
-                    toast.success('Copied to clipboard')
+                    const url = `https://${process.env.NEXT_PUBLIC_CUSTOM_DOMAIN}/${shortUrl.id}`;
+                    navigator.clipboard.writeText(url);
+                    toast.success('Copied to clipboard');
                   }}
                   className="h-3 w-3 cursor-pointer text-slate-500"
                 />
