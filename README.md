@@ -12,6 +12,8 @@
   </a>
 </p>
 
+![](/public/demo.jpeg)
+
 <p align="center">
   <a href="#features"><strong>Features</strong></a> ·
   <a href="#roadmap"><strong>Roadmap</strong></a> ·
