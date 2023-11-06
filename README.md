@@ -22,10 +22,14 @@
   </a>
 </p>
 
+<p align="center"><a href="https://rdt.li/m5NksJ" tardet="_blank">Try now</a> or <a href="#installation">self host</a> it.</p>
+
 [![](/public/demo.jpeg)](https://rdt.li/m5NksJ)
 
 <p align="center">
   <a href="#features"><strong>Features</strong></a> ·
+  <a href="#one-click-deploy"><strong>Deploy</strong></a> ·
+  <a href="#local-development"><strong>Development</strong></a> ·
   <a href="#roadmap"><strong>Roadmap</strong></a> ·
   <a href="#author"><strong>Author</strong></a> ·
   <a href="#credits"><strong>Credits</strong></a>
@@ -49,7 +53,11 @@ Made via [Onset](https://onset.vercel.app) a Next.js starter that comes with ste
 - [Vercel](https://vercel.com/) – Easily preview & deploy changes with git
 - [Neon](https://neon.tech/) – The fully managed serverless Postgres with a generous free tier
 
-### Installation
+## One Click Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnrjdalal%2Frdt-li)
+
+## Local Development
 
 Clone & create this repo locally with the following command:
 
@@ -96,4 +104,4 @@ Created by [@nrjdalal](https://twitter.com/nrjdalal_com) in 2023, released under
 
 This project is inspired by [@shadcn](https://twitter.com/shadcn)'s [Taxonomy](https://github.com/shadcn-ui/taxonomy).
 
-![Vercel](https://images.ctfassets.net/e5382hct74si/78Olo8EZRdUlcDUFQvnzG7/fa4cdb6dc04c40fceac194134788a0e2/1618983297-powered-by-vercel.svg)
+[![Vercel](https://images.ctfassets.net/e5382hct74si/78Olo8EZRdUlcDUFQvnzG7/fa4cdb6dc04c40fceac194134788a0e2/1618983297-powered-by-vercel.svg)](https://vercel.com)

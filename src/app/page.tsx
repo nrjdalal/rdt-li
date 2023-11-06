@@ -45,6 +45,12 @@ export default async function Page() {
             and also tracks number of visits. It is built with Next.js, Drizzle,
             NextAuth and Postgres.
           </p>
+
+          <p className="text-xs">
+            Try now or <span className="font-semibold">self host</span> (check
+            GitHub for more information)
+          </p>
+
           <div className="mt-4 space-x-4">
             <Link
               href="/dashboard"
