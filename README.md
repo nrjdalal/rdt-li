@@ -24,8 +24,6 @@
 
 <p align="center"><a href="https://rdt.li/m5NksJ" tardet="_blank">Try now</a> or <a href="#installation">self host</a> it.</p>
 
-[![](/public/demo.jpeg)](https://rdt.li/m5NksJ)
-
 <p align="center">
   <a href="#features"><strong>Features</strong></a> ·
   <a href="#one-click-deploy"><strong>Deploy</strong></a> ·
@@ -35,12 +33,14 @@
   <a href="#credits"><strong>Credits</strong></a>
 </p>
 
-Made via [Onset](https://onset.vercel.app) a Next.js starter that comes with step-by-step instructions to understand how everything works, easy for both beginners and experts alike and giving you the confidence to customize it to your needs. Built with Next.js 14, Drizzle (Postgres), NextAuth/Auth.js.
+[![](/public/demo.jpeg)](https://rdt.li/m5NksJ)
 
 <!-- About: An open source Next.js bare starter with step-by-step instructions if required. Built with Next.js 14, Drizzle (Postgres), NextAuth/Auth.js. -->
 <!-- Keywords: drizzle neondb nextauthjs nextjs postgres shadcn tailwindcss typescript vercel -->
 
 ## Features
+
+Made via [Onset](https://onset.vercel.app) a Next.js starter that comes with step-by-step instructions to understand how everything works, easy for both beginners and experts alike and giving you the confidence to customize it to your needs. Built with Next.js 14, Drizzle (Postgres), NextAuth/Auth.js.
 
 ### Frameworks
 
