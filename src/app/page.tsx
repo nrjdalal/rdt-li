@@ -22,8 +22,10 @@ export default async function Page() {
             Follow creator on Twitter
           </Link>
           <h1 className="font-heading text-3xl sm:text-5xl">
-            <span className="font-mono font-semibold">rdt.li</span> an open
-            source
+            <span className="font-mono font-semibold">
+              {process.env.NEXT_PUBLIC_APP_URL}
+            </span>{' '}
+            an open source
             <br />
             URL shortener
           </h1>
