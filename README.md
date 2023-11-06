@@ -73,22 +73,16 @@ Clone & create this repo locally with the following command:
 bunx create-next-app rdt-li --example "https://github.com/nrjdalal/rdt-li"
 ```
 
-1. Install dependencies using bun:
-
-```sh
-bun install
-```
-
-2. Copy `.env.example` to `.env.local` and update the variables.
+1. Copy `.env.example` to `.env.local` and update the variables.
 
 ```sh
 cp .env.example .env.local
 ```
 
-3. Run the database migrations:
+2. Install dependencies using bun:
 
 ```sh
-bun db:push
+bun install
 ```
 
 3. Start the development server:
