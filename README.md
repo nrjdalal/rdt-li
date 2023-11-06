@@ -33,6 +33,8 @@
   <a href="#credits"><strong>Credits</strong></a>
 </p>
 
+<br/>
+
 <p align="center">
   <a href="https://rdt.li/m5NksJ" target="_black">
     <img src="/public/demo.jpeg" alt="rdt.li dashboard example" width="500" />
