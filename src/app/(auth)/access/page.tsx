@@ -8,12 +8,12 @@ const Page = () => {
     <div className="flex min-h-[100dvh] flex-col items-center justify-center gap-5 p-5">
       <Link
         href={'/'}
-        className="w-full rounded-md bg-slate-900 px-8 py-2.5 text-center text-white"
+        className="w-full max-w-lg rounded-md bg-slate-900 px-8 py-2.5 text-center text-white"
       >
         Home
       </Link>
       <button
-        className="flex w-full items-center justify-center gap-2 rounded-md border bg-background px-8 py-2.5"
+        className="flex w-full max-w-lg items-center justify-center gap-2 rounded-md border bg-background px-8 py-2.5"
         onClick={() => signIn('google')}
       >
         <svg

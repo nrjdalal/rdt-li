@@ -83,3 +83,5 @@ Created by [@nrjdalal](https://twitter.com/nrjdalal_com) in 2023, released under
 ## Credits
 
 This project is inspired by [@shadcn](https://twitter.com/shadcn)'s [Taxonomy](https://github.com/shadcn-ui/taxonomy).
+
+![Vercel](https://images.ctfassets.net/e5382hct74si/78Olo8EZRdUlcDUFQvnzG7/fa4cdb6dc04c40fceac194134788a0e2/1618983297-powered-by-vercel.svg)

@@ -1,6 +1,7 @@
 import { db } from '@/lib/db'
 import { shortUrls, users } from '@/lib/db/schema'
 import { Anchor, User } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 export const revalidate = 60
@@ -78,6 +79,13 @@ export default async function Page() {
             </Link>
             .
           </p>
+          <Image
+            className="mt-4"
+            src="/powered-by-vercel.svg"
+            alt="Powered by Vercel"
+            height={32}
+            width={128}
+          />
         </div>
       </section>
     </main>

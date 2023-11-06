@@ -15,6 +15,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Home, Star } from 'lucide-react'
 import { signOut } from 'next-auth/react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
@@ -110,6 +111,14 @@ export default function Page() {
       </Button>
 
       <ShowUrl />
+
+      <Image
+        className="mx-auto mt-4"
+        src="/powered-by-vercel.svg"
+        alt="Powered by Vercel"
+        height={32}
+        width={128}
+      />
     </div>
   )
 }
