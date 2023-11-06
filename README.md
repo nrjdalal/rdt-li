@@ -37,7 +37,7 @@ Made via Onset a Next.js starter that comes with step-by-step instructions to un
 - [Vercel](https://vercel.com/) – Easily preview & deploy changes with git
 - [Neon](https://neon.tech/) – The fully managed serverless Postgres with a generous free tier
 
-### Installation
+### Local Installation
 
 Clone & create this repo locally with the following command:
 
@@ -71,7 +71,7 @@ bun db:push
 bun dev
 ```
 
-## Deploy
+### Deploy on Vercel
 
 1. Get your Google OAuth credentials at https://console.cloud.google.com/ into your .env
 Make sure to add `https://your_url` to "Authorised JavaScript origins" and `https://your_url/api/auth/callback/google` to Authorised redirect URIs
