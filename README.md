@@ -51,7 +51,7 @@ Clone & create this repo locally with the following command:
 > Note: You can use `npx` or `pnpx` as well
 
 ```bash
-bunx create-next-app onset-starter --example "https://github.com/nrjdalal/onset"
+bunx create-next-app rdt-li --example "https://github.com/nrjdalal/rdt-li"
 ```
 
 1. Install dependencies using bun:
