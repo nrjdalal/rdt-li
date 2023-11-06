@@ -33,7 +33,9 @@
   <a href="#credits"><strong>Credits</strong></a>
 </p>
 
-[![](/public/demo.jpeg)](https://rdt.li/m5NksJ)
+<a align="center" href="https://rdt.li/m5NksJ" target="_black">
+  <img src="/public/demo.jpeg" alt="rdt.li dashboard example"/>
+</a>
 
 <!-- About: An open source Next.js bare starter with step-by-step instructions if required. Built with Next.js 14, Drizzle (Postgres), NextAuth/Auth.js. -->
 <!-- Keywords: drizzle neondb nextauthjs nextjs postgres shadcn tailwindcss typescript vercel -->
