@@ -1,4 +1,4 @@
-<quote align="center"> New: API Coming Soon </quote>
+<blockquote align="center"> New: API Coming Soon </blockquote>
 
 <a href="https://nextjs.org">
   <h1 align="center">
