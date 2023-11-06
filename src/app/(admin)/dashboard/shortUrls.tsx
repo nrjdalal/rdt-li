@@ -28,7 +28,7 @@ import { deleteShortUrl, getShortUrls } from './apis/shortUrls'
 const Page = () => {
   const queryClient = useQueryClient()
 
-  const { isError, isLoading, data } = useQuery({
+  const { isPending, isError, data } = useQuery({
     queryKey: ['shortUrls'],
     queryFn: async () => {
       return (await getShortUrls()).sort(
@@ -51,7 +51,7 @@ const Page = () => {
     },
   })
 
-  if (isLoading) {
+  if (isPending) {
     return (
       <div className="flex h-40 items-center justify-center">
         <Loader2 className="animate-spin" />

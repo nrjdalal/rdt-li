@@ -43,7 +43,7 @@ export default async function Page() {
           </p>
           <div className="mt-4 space-x-4">
             <Link
-              href="/access"
+              href="/dashboard"
               className="rounded-md bg-slate-900 px-8 py-2.5 text-white"
             >
               Login
@@ -52,7 +52,7 @@ export default async function Page() {
               href="https://rdt.li/WdWIbR"
               target="_blank"
               rel="noreferrer"
-              className="rounded-md bg-background border px-8 py-2.5"
+              className="rounded-md border bg-background px-8 py-2.5"
             >
               GitHub
             </Link>

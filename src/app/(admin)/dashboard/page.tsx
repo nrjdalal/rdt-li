@@ -13,7 +13,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { Home, Star, StarIcon } from 'lucide-react'
+import { Home, Star } from 'lucide-react'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
@@ -40,8 +40,9 @@ export default function Page() {
       return await createShortUrl(values)
     },
     onSuccess: () => {
-      // @ts-ignore
-      queryClient.invalidateQueries('shortUrls')
+      queryClient.invalidateQueries({
+        queryKey: ['shortUrls'],
+      })
       form.reset()
     },
   })
