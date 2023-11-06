@@ -107,13 +107,13 @@ const Page = () => {
                   href={`/${shortUrl.id}`}
                   target="_blank"
                 >
-                  rdt.li/{shortUrl.id}
+                  {process.env.NEXT_PUBLIC_APP_URL}/{shortUrl.id}
                 </Link>
                 <div className="h-1 w-1 rounded-full bg-slate-500/10" />
                 <Copy
                   onClick={() => {
                     navigator.clipboard.writeText(
-                      `https://rdt.li/${shortUrl.id}`,
+                      `${process.env.NEXT_PUBLIC_APP_URL}/${shortUrl.id}`,
                     )
                     toast.success('Copied to clipboard')
                   }}
