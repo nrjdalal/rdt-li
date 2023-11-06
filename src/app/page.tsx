@@ -70,7 +70,7 @@ export default async function Page() {
         </div>
       </section>
 
-      <h2 className="flex items-center text-xl font-medium">
+      <h2 className="flex cursor-default items-center text-xl font-medium">
         <ArrowDown className="text-blue-200" />
         <span className="ml-1 text-blue-500">Image Demo</span>
         <ArrowDown className="text-blue-300" />
@@ -101,13 +101,16 @@ export default async function Page() {
             </Link>
             .
           </p>
-          <Image
-            className="mt-4"
-            src="/powered-by-vercel.svg"
-            alt="Powered by Vercel"
-            height={32}
-            width={128}
-          />
+
+          <Link href="https://vercel.com" target="_blank">
+            <Image
+              className="mt-4"
+              src="/powered-by-vercel.svg"
+              alt="Powered by Vercel"
+              height={32}
+              width={128}
+            />
+          </Link>
         </div>
       </section>
     </main>
