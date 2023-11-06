@@ -125,7 +125,7 @@ export default function Page() {
       <ShowUrl />
 
       <Image
-        className="mx-auto mt-4"
+        className="mx-auto mt-8"
         src="/powered-by-vercel.svg"
         alt="Powered by Vercel"
         height={32}
