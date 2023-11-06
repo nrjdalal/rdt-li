@@ -71,6 +71,57 @@ bun db:push
 bun dev
 ```
 
+## Deploy
+
+1. Get your Google OAuth credentials at https://console.cloud.google.com/ into your .env
+Make sure to add `https://your_url` to "Authorised JavaScript origins" and `https://your_url/api/auth/callback/google` to Authorised redirect URIs
+3. Set up Neon account and copy postgres url including `?sslmode=require` into your .env
+4. Set up your tables using the SQL Editor on Neon:
+```sql
+CREATE TABLE "user" (
+  id TEXT NOT NULL PRIMARY KEY,
+  name TEXT,
+  email TEXT NOT NULL,
+  "emailVerified" TIMESTAMP,
+  image TEXT
+);
+CREATE TABLE account (
+  "userId" TEXT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+  type TEXT NOT NULL,
+  provider TEXT NOT NULL,
+  "providerAccountId" TEXT NOT NULL,
+  "refresh_token" TEXT,
+  "access_token" TEXT,
+  "expires_at" INTEGER,
+  "token_type" TEXT,
+  scope TEXT,
+  "id_token" TEXT,
+  "session_state" TEXT,
+  PRIMARY KEY (provider, "providerAccountId")
+);
+CREATE TABLE session (
+  "sessionToken" TEXT NOT NULL PRIMARY KEY,
+  "userId" TEXT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+  expires TIMESTAMP NOT NULL
+);
+CREATE TABLE "verificationToken" (
+  identifier TEXT NOT NULL,
+  token TEXT NOT NULL,
+  expires TIMESTAMP NOT NULL,
+  PRIMARY KEY (identifier, token)
+);
+CREATE TABLE "shortUrls" (
+  "userId" TEXT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+  id TEXT NOT NULL PRIMARY KEY,
+  url TEXT NOT NULL,
+  visits JSON,
+  "createdAt" TIMESTAMP NOT NULL,
+  "updatedAt" TIMESTAMP NOT NULL
+);
+
+```
+4. Deploy on Vercel
+
 ## Roadmap
 
 - [ ] Light and dark mode
