@@ -1,6 +1,6 @@
 import { db } from '@/lib/db'
 import { shortUrls, users } from '@/lib/db/schema'
-import { Anchor, User } from 'lucide-react'
+import { Anchor, ArrowDown, User } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -11,18 +11,21 @@ export default async function Page() {
   const getShortUrls = await db.select().from(shortUrls)
 
   return (
-    <main className="flex flex-col items-center p-5">
+    <main className="container flex max-w-screen-md flex-col items-center p-5">
       <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
             href="https://rdt.li/lNB90I"
-            className="rounded-2xl border bg-muted bg-slate-100 px-4 py-1.5 text-xs font-medium"
+            className="rounded-2xl border bg-background px-4 py-1.5 text-xs font-medium"
             target="_blank"
           >
             Follow creator on Twitter
           </Link>
           <h1 className="font-heading text-3xl sm:text-5xl">
-            An open source URL shortener.
+            <span className="font-mono font-semibold">rdt.li</span> an open
+            source
+            <br />
+            URL shortener
           </h1>
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col items-center space-y-1 rounded-md border-2 border-violet-400 bg-violet-100 px-8 py-6">
@@ -60,6 +63,19 @@ export default async function Page() {
           </div>
         </div>
       </section>
+
+      <h2 className="flex items-center text-2xl font-medium">
+        <ArrowDown className="text-blue-300" />
+        <span className="ml-1 text-blue-500">Image Demo</span>
+        <ArrowDown className="text-blue-300" />
+      </h2>
+
+      <Image
+        src={'/demo.jpeg'}
+        alt="rdt.li screenshot"
+        width={1080}
+        height={1080}
+      />
 
       <section id="open-source" className="container py-8 md:py-12 lg:py-24">
         <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
