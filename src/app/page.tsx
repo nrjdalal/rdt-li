@@ -23,7 +23,7 @@ export default async function Page() {
           </Link>
           <h1 className="font-heading text-3xl sm:text-5xl">
             <span className="font-mono font-semibold">
-              {process.env.NEXT_PUBLIC_APP_URL}
+              {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}
             </span>{' '}
             an open source
             <br />
