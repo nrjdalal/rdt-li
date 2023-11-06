@@ -93,7 +93,7 @@ export default function Page() {
                         </Avatar>
                       </PopoverTrigger>
                       <PopoverContent
-                        className="mr-5 mt-1.5 w-24 cursor-pointer py-2 text-center font-mono text-xs lg:mr-0"
+                        className="item-center mr-5 mt-1 flex h-10 w-24 cursor-pointer justify-center py-2.5 font-mono text-xs shadow-none lg:mr-0"
                         onClick={() => signOut()}
                       >
                         Sign Out
