@@ -32,7 +32,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   }
 
   return (
-    <p className="w-full border-b-2 p-5 text-center">No such URL exists. Create new <Link href="/">{process.env.NEXT_PUBLIC_APP_URL}</Link></p>
+    <p className="w-full border-b-2 p-5 text-center">No such URL exists. Create new at <Link className="underline" href="/">{process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}</Link></p>
   )
 }
 
