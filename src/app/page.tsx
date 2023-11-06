@@ -22,7 +22,7 @@ export default async function Page() {
             className="rounded-2xl border bg-background px-4 py-1.5 text-xs font-medium"
             target="_blank"
           >
-            Follow creator on Twitter
+            @nrjdalal_com Twitter
           </Link>
 
           <h1 className="font-heading text-3xl sm:text-5xl">
