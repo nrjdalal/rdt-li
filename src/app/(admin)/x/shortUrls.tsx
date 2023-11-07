@@ -197,7 +197,13 @@ const Page = () => {
                   data={{
                     labels: getGraphData(shortUrl.visits_v2)
                       .reverse()
-                      .map((item: any) => item[0]),
+                      .map(
+                        (item: any) =>
+                          `${item[0].slice(4, 6)}-${item[0].slice(
+                            2,
+                            4,
+                          )}-${item[0].slice(0, 2)}`,
+                      ),
                     datasets: [
                       {
                         label: 'Visits',
