@@ -65,6 +65,7 @@ export const shortUrls = pgTable('shortUrls', {
   id: text('id').notNull().primaryKey(),
   url: text('url').notNull(),
   visits: json('visits').$type<string[]>(),
+  visits_v2: json('visits_v2').$type<string[]>(),
   createdAt: timestamp('createdAt', { mode: 'date' }).notNull(),
   updatedAt: timestamp('updatedAt', { mode: 'date' }).notNull(),
 })
