@@ -80,6 +80,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         await db
           .update(shortUrls)
           .set({
+            visits: null,
             visits_v2: newVisitData,
             updatedAt: new Date(),
           })
@@ -101,6 +102,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         await db
           .update(shortUrls)
           .set({
+            visits: null,
             visits_v2: newVisitData,
             updatedAt: new Date(),
           })

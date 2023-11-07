@@ -80,14 +80,10 @@ const Page = () => {
     if (!visits) return []
 
     let data: any = []
-    data = visits.map((item: any) => new Date(item).toLocaleDateString())
-    data = data.reduce((acc: any, curr: any) => {
-      acc[curr] = (acc[curr] || 0) + 1
-      return acc
-    }, {})
-    data = Object.entries(data)
-      .map(([key, value]) => [key, value])
-      .slice(0, 7)
+    data = visits.map((item: any) => [
+      item.split('x')[0],
+      Number(item.split('x')[1]),
+    ])
 
     data =
       data.length !== 7
@@ -99,7 +95,7 @@ const Page = () => {
 
   return (
     <div className="mt-5 flex flex-col space-y-5">
-      {data?.map((shortUrl: { id: string; url: string; visits: any }) => (
+      {data?.map((shortUrl: { id: string; url: string; visits_v2: any }) => (
         <div
           className="flex flex-col space-y-1.5 rounded-md border bg-background p-3 text-sm"
           key={shortUrl.id}
@@ -107,23 +103,23 @@ const Page = () => {
           <div className="flex flex-col gap-1.5 font-mono text-xs">
             <div className="flex items-center justify-end">
               <div className="flex items-center gap-1 px-2">
-                {shortUrl?.visits?.length ? (
+                {shortUrl?.visits_v2?.length ? (
                   <>
-                    <ArrowUp className="h-3 w-3 text-green-500" />
-                    <p className="flex text-green-500">
-                      {getGraphData(shortUrl.visits)[0][0] ===
-                      new Date().toLocaleDateString()
-                        ? getGraphData(shortUrl.visits)[0][1]
-                        : 0}
-                    </p>
+                    {/* <ArrowUp className="h-3 w-3 text-green-500" /> */}
+                    {/* <p className="flex text-green-500">
+                        {getGraphData(shortUrl.visits)[0][0] ===
+                        new Date().toLocaleDateString()
+                          ? getGraphData(shortUrl.visits)[0][1]
+                          : 0}
+                      </p> */}
                   </>
                 ) : (
                   ''
                 )}
-                <Eye className="h-3 w-3 text-slate-500" />
+                {/* <Eye className="h-3 w-3 text-slate-500" />
                 <p className="pt-px">
-                  {shortUrl?.visits?.length ? shortUrl.visits.length : 0}
-                </p>
+                  {shortUrl?.visits_v2?.length ? shortUrl.visits_v2.length : 0}
+                </p> */}
               </div>
 
               <div className="flex items-center gap-1.5 rounded-lg bg-blue-50 p-1 px-2 text-[0.6rem]">
@@ -182,7 +178,7 @@ const Page = () => {
           </div>
 
           <Accordion
-            className={cn(shortUrl?.visits?.length ? 'block' : 'hidden')}
+            className={cn(shortUrl?.visits_v2?.length ? 'block' : 'hidden')}
             type="single"
             collapsible
           >
@@ -190,23 +186,23 @@ const Page = () => {
               <AccordionTrigger>
                 <p className="flex items-center gap-2 font-sans text-[0.6rem] font-light text-slate-500">
                   <BarChart className="h-3 w-3" />{' '}
-                  {shortUrl?.visits?.length
-                    ? `Last visited at ${new Date(
-                        shortUrl.visits[0],
-                      ).toLocaleString()}, expand for more`
-                    : ''}
+                  {/* {shortUrl?.visits?.length
+                      ? `Last visited at ${new Date(
+                          shortUrl.visits[0],
+                        ).toLocaleString()}, expand for more`
+                      : ''} */}
                 </p>
               </AccordionTrigger>
               <AccordionContent>
                 <Bar
                   data={{
-                    labels: getGraphData(shortUrl.visits)
+                    labels: getGraphData(shortUrl.visits_v2)
                       .reverse()
                       .map((item: any) => item[0]),
                     datasets: [
                       {
                         label: 'Visits',
-                        data: getGraphData(shortUrl.visits)
+                        data: getGraphData(shortUrl.visits_v2)
                           .reverse()
                           .map((item: any) => item[1]),
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
