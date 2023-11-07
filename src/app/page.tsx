@@ -133,6 +133,7 @@ export default async function Page() {
                 Umami
               </Link>{' '}
               Analytics Enabled
+              <Link href={`${process.env.NEXT_PUBLIC_UMAMI_URL}`}>!</Link>
             </p>
           )}
         </div>
