@@ -83,7 +83,12 @@ const Page = () => {
       .map(([key, value]) => [key, value])
       .slice(0, 7)
 
-    return data.reverse()
+    data =
+      data.length !== 7
+        ? [...data, ...Array(7 - data.length).fill(['', 0])]
+        : data
+
+    return data
   }
 
   return (
@@ -186,15 +191,15 @@ const Page = () => {
               <AccordionContent>
                 <Bar
                   data={{
-                    labels: getGraphData(shortUrl.visits)
-                      .reverse()
-                      .map((item: any) => item[0]),
+                    labels: getGraphData(shortUrl.visits).map(
+                      (item: any) => item[0],
+                    ),
                     datasets: [
                       {
                         label: 'Visits',
-                        data: getGraphData(shortUrl.visits)
-                          .reverse()
-                          .map((item: any) => item[1]),
+                        data: getGraphData(shortUrl.visits).map(
+                          (item: any) => item[1],
+                        ),
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
                       },
                     ],
