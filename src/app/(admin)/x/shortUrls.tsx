@@ -116,10 +116,15 @@ const Page = () => {
                 ) : (
                   ''
                 )}
-                {/* <Eye className="h-3 w-3 text-slate-500" />
+                <Eye className="h-3 w-3 text-slate-500" />
                 <p className="pt-px">
-                  {shortUrl?.visits_v2?.length ? shortUrl.visits_v2.length : 0}
-                </p> */}
+                  {shortUrl?.visits_v2?.length
+                    ? getGraphData(shortUrl.visits_v2).reduce(
+                        (a: any, b: any) => a + b[1],
+                        0,
+                      )
+                    : 0}
+                </p>
               </div>
 
               <div className="flex items-center gap-1.5 rounded-lg bg-blue-50 p-1 px-2 text-[0.6rem]">
