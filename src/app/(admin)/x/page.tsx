@@ -61,7 +61,7 @@ export default function Page() {
 
   return (
     <div className="container flex min-h-[100dvh] max-w-3xl flex-col p-5 font-mono">
-      <Alert className="mb-5" variant="destructive">
+      {/* <Alert className="mb-5" variant="destructive">
         <AlertTitle className="text-xs font-semibold">iOS Users</AlertTitle>
         <AlertDescription className="text-[0.7rem]">
           If you&apos;re facing any issues on iOS, please confirm at{' '}
@@ -70,7 +70,7 @@ export default function Page() {
           </Link>
           .
         </AlertDescription>
-      </Alert>
+      </Alert> */}
 
       <Form {...form}>
         <form
