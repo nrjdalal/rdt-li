@@ -12,3 +12,7 @@ export function nanoid(length = 8) {
     length,
   )()
 }
+
+export const smallDate = () => {
+  return new Date().toISOString().split('T')[0].slice(2).replace(/-/g, '')
+}
