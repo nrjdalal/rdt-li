@@ -170,7 +170,7 @@ const Page = () => {
                 </AlertDialog>
               </div>
             </div>
-            <p className="line-clamp-2 break-all text-[0.65rem] text-slate-600">
+            <p className="mt-0.5 line-clamp-2 break-all text-[0.65rem] text-slate-600">
               {shortUrl.url}
             </p>
           </div>
@@ -206,6 +206,20 @@ const Page = () => {
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
                       },
                     ],
+                  }}
+                  options={{
+                    responsive: true,
+                    scales: {
+                      y: {
+                        beginAtZero: true,
+                        position: 'right',
+                      },
+                    },
+                    plugins: {
+                      legend: {
+                        display: false,
+                      },
+                    },
                   }}
                 />
               </AccordionContent>
