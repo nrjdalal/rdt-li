@@ -79,16 +79,15 @@ const Page = () => {
   const getGraphData = (visits: any) => {
     if (!visits) return []
 
-    let data: any = []
-    data = visits.map((item: any) => [
+    let data = visits.map((item: any) => [
       item.split('x')[0],
       Number(item.split('x')[1]),
     ])
 
     data =
-      data.length !== 7
+      data.length < 7
         ? [...data, ...Array(7 - data.length).fill(['', 0])]
-        : data
+        : data.slice(0, 7)
 
     return data
   }
@@ -105,13 +104,10 @@ const Page = () => {
               <div className="flex items-center gap-1 px-2">
                 {shortUrl?.visits_v2?.length ? (
                   <>
-                    {/* <ArrowUp className="h-3 w-3 text-green-500" /> */}
-                    {/* <p className="flex text-green-500">
-                        {getGraphData(shortUrl.visits)[0][0] ===
-                        new Date().toLocaleDateString()
-                          ? getGraphData(shortUrl.visits)[0][1]
-                          : 0}
-                      </p> */}
+                    <ArrowUp className="h-3 w-3 text-green-500" />
+                    <p className="flex text-green-500">
+                      {shortUrl.visits_v2[0].split('x')[1]}
+                    </p>
                   </>
                 ) : (
                   ''
@@ -191,11 +187,9 @@ const Page = () => {
               <AccordionTrigger>
                 <p className="flex items-center gap-2 font-sans text-[0.6rem] font-light text-slate-500">
                   <BarChart className="h-3 w-3" />{' '}
-                  {/* {shortUrl?.visits?.length
-                      ? `Last visited at ${new Date(
-                          shortUrl.visits[0],
-                        ).toLocaleString()}, expand for more`
-                      : ''} */}
+                  {/*
+                    // ~ add last visit time here
+                  */}
                 </p>
               </AccordionTrigger>
               <AccordionContent>
@@ -210,7 +204,7 @@ const Page = () => {
                         data: getGraphData(shortUrl.visits_v2)
                           .reverse()
                           .map((item: any) => item[1]),
-                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        backgroundColor: '#f43f5e',
                       },
                     ],
                   }}

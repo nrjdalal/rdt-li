@@ -19,17 +19,19 @@ export const getShortUrls = async () => {
   return shortUrlsData
 }
 
-export const getShortUrl = async ({ id }: { id: string }) => {
-  const session = await getServerSession(authOptions)
-  if (!session) throw new Error('Session not found')
+// ~ unused for now
 
-  const shortUrlData = await db
-    .select()
-    .from(shortUrls)
-    .where(eq(shortUrls.id, id))
+// export const getShortUrl = async ({ id }: { id: string }) => {
+//   const session = await getServerSession(authOptions)
+//   if (!session) throw new Error('Session not found')
 
-  return shortUrlData
-}
+//   const shortUrlData = await db
+//     .select()
+//     .from(shortUrls)
+//     .where(eq(shortUrls.id, id))
+
+//   return shortUrlData
+// }
 
 export const createShortUrl = async ({ url }: { url: string }) => {
   const session = await getServerSession(authOptions)
