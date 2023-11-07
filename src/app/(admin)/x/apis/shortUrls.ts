@@ -16,7 +16,7 @@ export const getShortUrls = async () => {
     .where(eq(shortUrls.userId, session.user.id))
 
   console.log(
-    '\n\x1b[35m========== src/app/(admin)/dashboard/apis/shortUrls.ts:18 ==========\x1b[0m\n\n',
+    '\n\x1b[35m=== src/app/(admin)/dashboard/apis/shortUrls.ts:18 ===\x1b[0m\n\n',
     shortUrlsData.length,
   )
 

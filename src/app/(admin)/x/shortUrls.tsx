@@ -105,7 +105,10 @@ const Page = () => {
                   <>
                     <ArrowUp className="h-3 w-3 text-green-500" />
                     <p className="flex text-green-500">
-                      {getGraphData(shortUrl.visits).reverse()[0][1]}
+                      {getGraphData(shortUrl.visits)[0][0] ===
+                      new Date().toLocaleDateString()
+                        ? getGraphData(shortUrl.visits)[0][1]
+                        : 0}
                     </p>
                   </>
                 ) : (
