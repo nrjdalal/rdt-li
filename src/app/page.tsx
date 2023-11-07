@@ -126,6 +126,15 @@ export default async function Page() {
               width={128}
             />
           </Link>
+
+          {!process.env.NEXT_PUBLIC_UMAMI_URL && (
+            <p className="-mt-3 text-[0.5rem]">
+              <Link className="underline" href="https://umami.is">
+                Umami
+              </Link>{' '}
+              Analytics Enabled
+            </p>
+          )}
         </div>
       </section>
     </main>
