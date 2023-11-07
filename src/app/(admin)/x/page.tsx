@@ -1,5 +1,6 @@
 'use client'
 
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
@@ -60,6 +61,17 @@ export default function Page() {
 
   return (
     <div className="container flex min-h-[100dvh] max-w-3xl flex-col p-5 font-mono">
+      <Alert className="mb-5" variant="destructive">
+        <AlertTitle className="text-xs font-semibold">iOS Users</AlertTitle>
+        <AlertDescription className="text-[0.7rem]">
+          If you&apos;re facing any issues on iOS, please confirm at{' '}
+          <Link className="underline" href="https://rdt.li/LlgRAe">
+            Github
+          </Link>
+          .
+        </AlertDescription>
+      </Alert>
+
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -71,8 +83,8 @@ export default function Page() {
             name="url"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-md flex items-center justify-between font-semibold">
-                  <p>URL to shorten</p>
+                <FormLabel className="text-md mb-3 flex items-center justify-between font-semibold">
+                  <p className="pt-0.5">URL to shorten</p>
                   <div className="flex items-center gap-4">
                     <Link href="/">
                       <Home className="h-4 w-4" />
