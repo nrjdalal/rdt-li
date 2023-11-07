@@ -102,7 +102,7 @@ export default async function Page() {
           <div className="mt-4 flex space-x-4">
             <Link
               href="/x"
-              className="rounded-md bg-slate-900 px-8 py-2.5 text-white"
+              className="flex h-10 items-center rounded-md bg-slate-900 px-8 text-sm text-white"
             >
               Login
             </Link>
@@ -110,10 +110,10 @@ export default async function Page() {
               href="https://rdt.li/WdWIbR"
               target="_blank"
               rel="noreferrer"
-              className="relative flex gap-2 rounded-md border bg-background px-8 py-2.5"
+              className="relative flex h-10 items-center gap-2 rounded-md border bg-background px-8 text-sm"
             >
               <p>Github</p>
-              <div className="absolute -top-3.5 right-2.5 flex items-center gap-1 rounded-md bg-foreground p-0.5 px-2 text-background">
+              <div className="absolute -top-4 right-2.5 flex items-center gap-1 rounded-md bg-foreground px-2 text-background">
                 <Star className="h-2.5 w-2.5" />
                 <p className="pt-0.5 font-mono text-[0.6rem] font-bold">
                   {githubInfo?.stargazers_count || 0}
