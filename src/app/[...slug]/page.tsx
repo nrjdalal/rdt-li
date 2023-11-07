@@ -22,7 +22,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           title: 'Umami',
           url: `/${slug}`,
           website: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
-          name: slug,
+          name: `${process.env.NEXT_PUBLIC_APP_URL}/${slug}}`,
         },
         type: 'event',
       }
