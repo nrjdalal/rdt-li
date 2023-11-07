@@ -34,7 +34,7 @@ import { Bar } from 'react-chartjs-2'
 import { toast } from 'sonner'
 import { deleteShortUrl, getShortUrls } from './apis/shortUrls'
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
+// ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const Page = () => {
   const queryClient = useQueryClient()
@@ -192,7 +192,8 @@ const Page = () => {
                 </p>
               </AccordionTrigger>
               <AccordionContent>
-                <Bar
+                Graphs are disabled temporarily
+                {/* <Bar
                   data={{
                     labels: getGraphData(shortUrl.visits)
                       .reverse()
@@ -221,7 +222,7 @@ const Page = () => {
                       },
                     },
                   }}
-                />
+                /> */}
               </AccordionContent>
             </AccordionItem>
           </Accordion>
