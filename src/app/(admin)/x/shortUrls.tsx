@@ -23,9 +23,7 @@ import {
   BarElement,
   CategoryScale,
   Chart as ChartJS,
-  Legend,
   LinearScale,
-  Title,
   Tooltip,
 } from 'chart.js'
 import { ArrowUp, BarChart, Copy, Eye, Loader2, Trash } from 'lucide-react'
@@ -34,7 +32,7 @@ import { Bar } from 'react-chartjs-2'
 import { toast } from 'sonner'
 import { deleteShortUrl, getShortUrls } from './apis/shortUrls'
 
-// ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip)
 
 const Page = () => {
   const queryClient = useQueryClient()
@@ -61,6 +59,14 @@ const Page = () => {
       })
     },
   })
+
+  if (isError) {
+    return (
+      <div className="flex h-40 items-center justify-center">
+        <p className="text-slate-500">Something went wrong</p>
+      </div>
+    )
+  }
 
   if (isPending) {
     return (
@@ -192,8 +198,7 @@ const Page = () => {
                 </p>
               </AccordionTrigger>
               <AccordionContent>
-                Graphs are disabled temporarily
-                {/* <Bar
+                <Bar
                   data={{
                     labels: getGraphData(shortUrl.visits)
                       .reverse()
@@ -222,7 +227,7 @@ const Page = () => {
                       },
                     },
                   }}
-                /> */}
+                />
               </AccordionContent>
             </AccordionItem>
           </Accordion>
