@@ -117,25 +117,50 @@ export default async function Page() {
             .
           </p>
 
-          <Link href="https://vercel.com" target="_blank">
-            <Image
-              className="mt-4"
-              src="/powered-by-vercel.svg"
-              alt="Powered by Vercel"
-              height={32}
-              width={128}
-            />
-          </Link>
+          <div className="mt-4 flex gap-2">
+            <Link href="https://vercel.com" target="_blank">
+              <Image
+                src="/powered-by-vercel.svg"
+                alt="Powered by Vercel"
+                height={32}
+                width={128}
+              />
+            </Link>
 
-          {process.env.NEXT_PUBLIC_UMAMI_URL && (
-            <p className="-mt-3 text-[0.5rem]">
-              <Link className="underline" href="https://umami.is">
-                Umami
-              </Link>{' '}
-              Analytics Enabled
-              <Link href={`${process.env.NEXT_PUBLIC_UMAMI_URL}`}>!</Link>
-            </p>
-          )}
+            {process.env.NEXT_PUBLIC_UMAMI_URL && (
+              <Link
+                className="flex h-[26.56px] items-center gap-2 rounded-sm bg-black px-2 text-[0.6rem] text-background"
+                href="https://umami.is"
+                target="_blank"
+              >
+                <svg
+                  className="rounded-full border"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 428 389.11"
+                >
+                  <g data-name="Layer 2">
+                    <g data-name="Layer 4">
+                      <circle
+                        cx="214.15"
+                        cy="181"
+                        r="171"
+                        fill="#fff"
+                        stroke="#000"
+                        stroke-miterlimit="10"
+                        stroke-width="20"
+                      ></circle>
+                      <path d="M413 134.11H15.29a15 15 0 0 0-15 15v15.3C.12 168 0 171.52 0 175.11c0 118.19 95.81 214 214 214 116.4 0 211.1-92.94 213.93-208.67 0-.44.07-.88.07-1.33v-30a15 15 0 0 0-15-15z"></path>
+                    </g>
+                  </g>
+                </svg>
+                <p>
+                  Analytics by <span className="font-medium">Umami</span>
+                </p>
+              </Link>
+            )}
+          </div>
         </div>
       </section>
     </main>
