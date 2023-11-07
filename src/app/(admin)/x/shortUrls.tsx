@@ -19,11 +19,22 @@ import {
 } from '@/components/ui/alert-dialog'
 import { cn } from '@/lib/utils'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import {
+  BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  Title,
+  Tooltip,
+} from 'chart.js'
 import { ArrowUp, BarChart, Copy, Eye, Loader2, Trash } from 'lucide-react'
 import Link from 'next/link'
-import { Chart } from 'react-google-charts'
+import { Bar } from 'react-chartjs-2'
 import { toast } from 'sonner'
 import { deleteShortUrl, getShortUrls } from './apis/shortUrls'
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const Page = () => {
   const queryClient = useQueryClient()
@@ -173,12 +184,21 @@ const Page = () => {
                 </p>
               </AccordionTrigger>
               <AccordionContent>
-                <Chart
-                  className={cn(shortUrl?.visits?.length ? 'block' : 'hidden')}
-                  chartType="Bar"
-                  width="100%"
-                  height={shortUrl?.visits?.length ? '100px' : '0px'}
-                  data={[['', 'Visits'], ...getGraphData(shortUrl.visits)]}
+                <Bar
+                  data={{
+                    labels: getGraphData(shortUrl.visits)
+                      .reverse()
+                      .map((item: any) => item[0]),
+                    datasets: [
+                      {
+                        label: 'Visits',
+                        data: getGraphData(shortUrl.visits)
+                          .reverse()
+                          .map((item: any) => item[1]),
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                      },
+                    ],
+                  }}
                 />
               </AccordionContent>
             </AccordionItem>
