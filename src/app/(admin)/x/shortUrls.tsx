@@ -79,16 +79,15 @@ const Page = () => {
   const getGraphData = (visits: any) => {
     if (!visits) return []
 
-    let data: any = []
-    data = visits.map((item: any) => [
+    let data = visits.map((item: any) => [
       item.split('x')[0],
       Number(item.split('x')[1]),
     ])
 
     data =
-      data.length !== 7
+      data.length < 7
         ? [...data, ...Array(7 - data.length).fill(['', 0])]
-        : data
+        : data.slice(0, 7)
 
     return data
   }
