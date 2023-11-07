@@ -29,9 +29,7 @@ export default async function Page() {
             <span className="font-mono font-semibold">
               {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}
             </span>{' '}
-            self hostable open source
-            <br />
-            URL shortener
+            self hostable open source URL shortener
           </h1>
 
           <div className="grid grid-cols-2 gap-4">
