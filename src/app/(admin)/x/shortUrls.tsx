@@ -88,7 +88,7 @@ const Page = () => {
         ? [...data, ...Array(7 - data.length).fill(['', 0])]
         : data
 
-    return data
+    return data.reverse()
   }
 
   return (
