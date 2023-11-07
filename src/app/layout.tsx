@@ -2,7 +2,6 @@ import './globals.css'
 import { fontMono, fontSans } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
-import Head from 'next/head'
 import Script from 'next/script'
 import { Toaster } from 'sonner'
 import Provider from './provider'
@@ -32,12 +31,13 @@ export default function RootLayout({
         </Provider>
       </body>
 
-      {process.env.NEXT_PUBLIC_APP_URL === 'https://rdt.li' && (
+      {/* optional: umami analytics */}
+      {process.env.NEXT_PUBLIC_UMAMI_URL && (
         <Script
           async
           defer
-          src="https://umami-rdt-li.vercel.app/script.js"
-          data-website-id="27fe7c5f-3f22-4efa-8d44-aff3d5dadc51"
+          src={`${process.env.NEXT_PUBLIC_UMAMI_URL}/script.js`}
+          data-website-id={`${process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}`}
         />
       )}
     </html>
