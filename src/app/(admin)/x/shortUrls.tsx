@@ -42,7 +42,7 @@ const Page = () => {
     queryFn: async () => {
       return (await getShortUrls()).sort(
         (a: any, b: any) =>
-          new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
       )
     },
   })
