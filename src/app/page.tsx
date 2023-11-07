@@ -130,7 +130,10 @@ export default async function Page() {
             {process.env.NEXT_PUBLIC_UMAMI_URL && (
               <Link
                 className="flex h-[26.56px] items-center gap-2 rounded-sm bg-black px-2 text-[0.6rem] text-background"
-                href="https://umami.is"
+                href={
+                  `${process.env.NEXT_PUBLIC_UMAMI_SHARE_URL}` ||
+                  'https://umami.is'
+                }
                 target="_blank"
               >
                 <svg
