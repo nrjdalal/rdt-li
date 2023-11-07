@@ -1,5 +1,6 @@
 import { db } from '@/lib/db'
 import { shortUrls } from '@/lib/db/schema'
+import { smallDate } from '@/lib/utils'
 import { eq } from 'drizzle-orm'
 import { headers } from 'next/headers'
 import Link from 'next/link'
@@ -40,77 +41,33 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     console.log('Umami error!')
   }
 
-  const redirectUrl: any = await db
+  const shortUrlData: any = await db
     .select({
       url: shortUrls.url,
-      visits: shortUrls.visits,
-      visits_v2: shortUrls.visits_v2,
+      visits: shortUrls.visits_v2,
     })
     .from(shortUrls)
     .where(eq(shortUrls.id, slug))
 
-  if (redirectUrl.length) {
-    const redirectUrlVisits_v2 = redirectUrl[0].visits_v2 || null
+  if (shortUrlData.length) {
+    const date = smallDate()
+    const visits = shortUrlData[0].visits || []
 
-    const date = new Date()
-      .toISOString()
-      .split('T')[0]
-      .slice(2)
-      .replace(/-/g, '')
+    const newVisitData = visits[0]?.startsWith(date)
+      ? [date + 'x' + (Number(visits[0].split('x')[1]) + 1), ...visits.slice(1)]
+      : [date + 'x' + '1', ...visits]
 
-    if (!redirectUrlVisits_v2) {
-      let redirectUrlVisits = redirectUrl[0].visits || []
+    await db.transaction(async () => {
+      await db
+        .update(shortUrls)
+        .set({
+          visits_v2: newVisitData,
+          updatedAt: new Date(),
+        })
+        .where(eq(shortUrls.id, slug))
+    })
 
-      let newVisitData: any = []
-
-      if (!redirectUrlVisits.length) {
-        newVisitData = [date + 'x' + '1']
-      } else {
-        newVisitData = visitsV2(redirectUrlVisits)[0].startsWith(date)
-          ? [
-              date +
-                'x' +
-                (Number(visitsV2(redirectUrlVisits)[0].split('x')[1]) + 1),
-              ...visitsV2(redirectUrlVisits).slice(1),
-            ]
-          : [date + 'x' + '1', ...visitsV2(redirectUrlVisits)]
-      }
-
-      await db.transaction(async () => {
-        await db
-          .update(shortUrls)
-          .set({
-            visits: null,
-            visits_v2: newVisitData,
-            updatedAt: new Date(),
-          })
-          .where(eq(shortUrls.id, slug))
-      })
-    }
-
-    if (redirectUrlVisits_v2) {
-      let newVisitData: any = []
-
-      newVisitData = redirectUrlVisits_v2[0].startsWith(date)
-        ? [
-            date + 'x' + (Number(redirectUrlVisits_v2[0].split('x')[1]) + 1),
-            ...redirectUrlVisits_v2.slice(1),
-          ]
-        : [date + 'x' + '1', ...redirectUrlVisits_v2]
-
-      await db.transaction(async () => {
-        await db
-          .update(shortUrls)
-          .set({
-            visits: null,
-            visits_v2: newVisitData,
-            updatedAt: new Date(),
-          })
-          .where(eq(shortUrls.id, slug))
-      })
-    }
-
-    permanentRedirect(redirectUrl[0].url)
+    permanentRedirect(shortUrlData[0].url)
   }
 
   return (
@@ -124,21 +81,3 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 }
 
 export default Page
-
-const visitsV2 = (array: any) => {
-  return Object.entries(
-    array
-      .map((date: any) =>
-        new Date(date).toISOString().split('T')[0].slice(2).replace(/-/g, ''),
-      )
-      .reduce((acc: any, cur: any) => {
-        acc[cur] = (acc[cur] || 0) + 1
-        return acc
-      }, {}),
-  )
-    .map(([key, value]) => {
-      return key + 'x' + value
-    })
-    .sort()
-    .reverse()
-}
