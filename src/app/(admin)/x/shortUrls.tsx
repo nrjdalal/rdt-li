@@ -80,16 +80,16 @@ const Page = () => {
 
   if (isError) {
     return (
-      <div className="flex h-40 items-center justify-center">
-        <p className="text-slate-500">Something went wrong</p>
+      <div className="mt-[92px] flex items-center justify-center">
+        <p className="mb-[388px] text-slate-500">Something went wrong</p>
       </div>
     )
   }
 
   if (isPending) {
     return (
-      <div className="mt-48 flex items-center justify-center">
-        <Loader2 className="mb-40 animate-spin" />
+      <div className="mt-[92px] flex items-center justify-center">
+        <Loader2 className="mb-[388px] animate-spin" />
       </div>
     )
   }
@@ -119,11 +119,12 @@ const Page = () => {
       <div
         className={cn(
           'flex flex-col space-y-3',
-          !data.length && 'mt-64',
-          data.length === 1 && 'mb-[182px]',
-          data.length === 2 && 'mb-[96px]',
-          data.length === 3 && 'mb-[10px]',
-          data.length > 3 && ' mb-[420px]',
+          !data.length && 'mt-96',
+          data.length === 1 && 'mb-[310px]',
+          data.length === 2 && 'mb-[224px]',
+          data.length === 3 && 'mb-[138px]',
+          data.length === 4 && 'mb-[52px]',
+          data.length > 4 && 'mb-20',
         )}
       >
         {data?.map((shortUrl: { id: string; url: string; visits_v2: any }) => (
