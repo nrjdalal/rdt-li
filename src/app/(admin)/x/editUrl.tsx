@@ -108,7 +108,7 @@ export default function Page({
                           placeholder="nrjdalal"
                           style={{
                             paddingLeft: `${
-                              0.75 +
+                              1 +
                               domain?.length * 0.45 +
                               (domain?.length - 1) * 0.01
                             }rem`,
