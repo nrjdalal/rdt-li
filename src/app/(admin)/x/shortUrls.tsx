@@ -166,20 +166,23 @@ const Page = () => {
                     <MenubarTrigger className="bg-blue-50 p-0 focus:bg-blue-50 data-[state=open]:bg-blue-50">
                       <Settings className="h-3 w-3 cursor-pointer text-blue-600" />
                     </MenubarTrigger>
-                    <MenubarContent className="absolute -right-5 min-w-[8rem] bg-foreground">
+                    <MenubarContent className="absolute -right-5">
                       {/* <MenubarSeparator className="bg-background/10" /> */}
                       <AlertDialog>
-                        <AlertDialogTrigger className="flex h-full w-full items-center justify-between rounded-sm p-1 text-[0.675rem] hover:bg-background/5">
-                          <p className="text-background/60">Delete</p>
-                          <Trash className="h-3 w-3 text-background/60" />
+                        <AlertDialogTrigger className="flex h-full w-full items-center justify-between rounded-sm p-1 px-2 text-[0.675rem] hover:bg-foreground/10">
+                          <p className="text-foreground/80">Delete</p>
+                          <Trash className="h-3 w-3 text-foreground/80" />
                         </AlertDialogTrigger>
                         <AlertDialogContent className="w-11/12 rounded-md font-mono">
                           <AlertDialogHeader>
                             <AlertDialogTitle className="text-sm">
-                              Do you want to delete this short URL?
+                              Do you want to delete
+                              <br />
+                              {process.env.NEXT_PUBLIC_APP_URL?.split('//')[1]}/
+                              {shortUrl.id}?
                             </AlertDialogTitle>
-                            <AlertDialogDescription className="text-xs">
-                              {shortUrl.id} for {shortUrl.url}
+                            <AlertDialogDescription className="line-clamp-2 break-all text-xs">
+                              URL: {shortUrl.url}
                             </AlertDialogDescription>
                           </AlertDialogHeader>
                           <AlertDialogFooter className="flex gap-2">
