@@ -169,7 +169,7 @@ const Page = () => {
                     </MenubarTrigger>
                     <MenubarContent className="absolute -right-5 top-0.5">
                       <AlertDialog>
-                        <AlertDialogTrigger className="flex h-full w-full items-center justify-between rounded-sm p-1 px-2 text-[0.675rem] hover:bg-foreground/10">
+                        <AlertDialogTrigger className="flex h-full w-full items-center justify-between rounded-sm p-1 px-2 text-[0.675rem]">
                           <p className="text-foreground/80">Delete</p>
                           <Trash className="h-3 w-3 text-foreground/80" />
                         </AlertDialogTrigger>
