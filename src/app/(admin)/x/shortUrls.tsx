@@ -199,24 +199,11 @@ const Page = () => {
                           <Settings className="h-3.5 w-3.5 cursor-pointer text-blue-600" />
                         </MenubarTrigger>
                         <MenubarContent className="absolute -right-[35px] top-0.5">
-                          <Sheet>
-                            <SheetTrigger className="flex h-full w-full items-center justify-between rounded-sm p-1 px-2 text-[0.675rem]">
-                              <p className="text-foreground/80">Edit</p>
-                              <Pencil className="h-3 w-3 text-foreground/80" />
-                            </SheetTrigger>
-                            <SheetContent>
-                              <SheetHeader>
-                                <SheetTitle className="text-sm">
-                                  Let&apos;s edit the URL
-                                </SheetTitle>
-                                <EditForm
-                                  id={shortUrl.id}
-                                  title={shortUrl.title}
-                                  url={shortUrl.url}
-                                />
-                              </SheetHeader>
-                            </SheetContent>
-                          </Sheet>
+                          <EditForm
+                            id={shortUrl.id}
+                            title={shortUrl.title}
+                            url={shortUrl.url}
+                          />
 
                           <MenubarSeparator />
 
