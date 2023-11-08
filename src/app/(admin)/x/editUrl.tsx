@@ -82,7 +82,7 @@ export default function Page({
         <p className="text-foreground/80">Edit</p>
         <Pencil className="h-3 w-3 text-foreground/80" />
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="w-11/12 sm:max-w-lg">
         <SheetHeader>
           <SheetTitle className="text-sm">Let&apos;s edit the URL</SheetTitle>
           <Form {...form}>
