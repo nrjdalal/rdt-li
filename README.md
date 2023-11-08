@@ -1,8 +1,3 @@
-<blockquote align="center"><h4> New Features (Coming Soon) </h4></blockquote>
-<blockquote align="center"> • API v1 for programmatic use </blockquote>
-<blockquote align="center"> • Ability to add name for links identification </blockquote>
-<blockquote align="center"> • Ability to change short or redirect links </blockquote>
-
 <a href="https://nextjs.org">
   <h1 align="center">
    <a href="https://rdt.li/m5NksJ" tardet="_blank">
@@ -11,6 +6,11 @@
    URL Shortener
   </h1>
 </a>
+
+<blockquote align="center"><h4> New Features (Coming Soon) </h4></blockquote>
+<blockquote align="center"> • API v1 for programmatic use </blockquote>
+<blockquote align="center"> • Ability to add name for links identification </blockquote>
+<blockquote align="center"> • Ability to change short or redirect links </blockquote>
 
 <p align="center">
   <a href="https://rdt.li/m5NksJ" tardet="_blank">Redirect.link</a> self hostable, feature rich, minimalistic and open source URL shortener. Built with Next.js, Drizzle, NextAuth and Postgres.
