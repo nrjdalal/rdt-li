@@ -103,7 +103,7 @@ export default function Page() {
                       <Home className="h-4 w-4" />
                     </Link>
                     <Link
-                      href="https://rdt.li/Ri4uZw"
+                      href="https://rdt.li/github"
                       target="_blank"
                       className="flex items-center gap-1.5 rounded-md bg-blue-500 px-3 py-0.5 text-[0.6rem] text-white"
                     >
