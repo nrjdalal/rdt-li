@@ -11,6 +11,12 @@ export const metadata: Metadata = {
   description: 'An open source URL shortener.',
 }
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+}
+
 export default function RootLayout({
   children,
 }: {
