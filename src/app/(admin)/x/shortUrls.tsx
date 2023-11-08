@@ -88,8 +88,8 @@ const Page = () => {
 
   if (isPending) {
     return (
-      <div className="mt-24 flex items-center justify-center">
-        <Loader2 className="animate-spin" />
+      <div className="mt-48 flex items-center justify-center">
+        <Loader2 className="mb-40 animate-spin" />
       </div>
     )
   }
@@ -113,10 +113,18 @@ const Page = () => {
   return (
     <>
       <div className="mb-2 mt-24 text-xs">
-        <p className="ml-1 text-[0.7rem]">Shortened URLs: {data.length}</p>
+        <p className="ml-1 text-center text-[0.7rem]">URLs: {data.length}</p>
       </div>
 
-      <div className="flex flex-col space-y-3">
+      <div
+        className={cn(
+          'flex flex-col space-y-3',
+          !data.length && 'mt-64',
+          data.length === 1 && 'mb-[182px]',
+          data.length === 2 && 'mb-[96px]',
+          data.length === 3 && 'mb-[10px]',
+        )}
+      >
         {data?.map((shortUrl: { id: string; url: string; visits_v2: any }) => (
           <div
             className="flex flex-col space-y-1.5 rounded-md border bg-background p-3 text-sm"
