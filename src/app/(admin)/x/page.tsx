@@ -80,8 +80,8 @@ export default function Page() {
           Upcoming features...
         </AlertTitle>
         <AlertDescription className="text-[0.7rem]">
-          * Custom URLs and changeable destionations
-          <br />* Name for tracking and tags for grouping
+          * Custom URLs and changeable destinations
+          <br />* Names for tracking and tags for grouping
         </AlertDescription>
       </Alert>
 
