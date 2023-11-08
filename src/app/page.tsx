@@ -57,10 +57,8 @@ export default async function Page() {
                 <p className="flex gap-1 text-xs">
                   Optional Analytics by{' '}
                   <svg
-                    className="rounded-full border border-white"
+                    className="h-5 w-5 rounded-full"
                     xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
                     viewBox="0 0 428 389.11"
                   >
                     <g data-name="Layer 2">
@@ -79,7 +77,7 @@ export default async function Page() {
                     </g>
                   </svg>{' '}
                   Umami
-                  <ExternalLink className="h-4 w-4 text-white" />
+                  <ExternalLink className="h-4 w-4 text-red-400" />
                 </p>
               </Link>
             )}
@@ -164,7 +162,8 @@ export default async function Page() {
               />
             </Link>
 
-            {process.env.NEXT_PUBLIC_UMAMI_URL && (
+            {(process.env.NEXT_PUBLIC_UMAMI_URL ||
+              process.env.NODE_ENV === 'development') && (
               <Link
                 className="flex h-[26.56px] items-center gap-2 rounded-sm bg-black px-2 text-[0.6rem] text-background"
                 href={
