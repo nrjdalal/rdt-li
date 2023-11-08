@@ -4,6 +4,14 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import {
   Form,
   FormControl,
   FormDescription,
@@ -14,14 +22,19 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover'
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from '@/components/ui/menubar'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { Home, Star } from 'lucide-react'
+import { Home, Laptop, Moon, Star, Sun } from 'lucide-react'
 import { signOut } from 'next-auth/react'
+import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
@@ -34,6 +47,7 @@ const formSchema = z.object({
 })
 
 export default function Page() {
+  const { setTheme, theme } = useTheme()
   const queryClient = useQueryClient()
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -96,20 +110,53 @@ export default function Page() {
                       <p className="mt-0.5">Github</p>
                       <Star className="h-3.5 w-3.5" />
                     </Link>
-                    <Popover>
-                      <PopoverTrigger>
-                        <Avatar className="h-6 w-6">
-                          <AvatarImage src="https://github.com/shadcn.png" />
-                          <AvatarFallback>CN</AvatarFallback>
-                        </Avatar>
-                      </PopoverTrigger>
-                      <PopoverContent
-                        className="item-center mr-5 mt-1 flex h-10 w-24 cursor-pointer justify-center py-2.5 font-mono text-xs shadow-none lg:mr-0"
-                        onClick={() => signOut()}
-                      >
-                        Sign Out
-                      </PopoverContent>
-                    </Popover>
+                    <Menubar className="h-min rounded-full p-0">
+                      <MenubarMenu>
+                        <MenubarTrigger className="p-0">
+                          <Avatar className="h-6 w-6">
+                            <AvatarImage src="https://github.com/shadcn.png" />
+                            <AvatarFallback>CN</AvatarFallback>
+                          </Avatar>
+                        </MenubarTrigger>
+                        <MenubarContent className="absolute -right-6">
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <MenubarItem className="flex w-full justify-end text-xs capitalize">
+                                Mode: {theme}
+                              </MenubarItem>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                              <DropdownMenuItem
+                                onClick={() => setTheme('light')}
+                              >
+                                <Sun className="mr-2 h-4 w-4" />
+                                <span className="text-xs">Light</span>
+                              </DropdownMenuItem>
+                              <DropdownMenuItem
+                                onClick={() => setTheme('dark')}
+                              >
+                                <Moon className="mr-2 h-4 w-4" />
+                                <span className="text-xs">Dark</span>
+                              </DropdownMenuItem>
+                              <DropdownMenuItem
+                                onClick={() => setTheme('system')}
+                              >
+                                <Laptop className="mr-2 h-4 w-4" />
+                                <span className="text-xs">System</span>
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+
+                          <MenubarSeparator />
+                          <MenubarItem
+                            className="flex w-full justify-end text-xs"
+                            onClick={() => signOut()}
+                          >
+                            Sign Out
+                          </MenubarItem>
+                        </MenubarContent>
+                      </MenubarMenu>
+                    </Menubar>
                   </div>
                 </FormLabel>
                 <FormControl>
