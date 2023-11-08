@@ -19,5 +19,5 @@ export const smallDate = () => {
 }
 
 export function sanitize(text: string) {
-  return slugify(text, { separator: '-' })
+  return slugify(text, { lowercase: false, separator: '-' })
 }
