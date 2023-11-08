@@ -57,7 +57,7 @@ export default async function Page() {
                 <p className="flex gap-1 text-xs">
                   Optional Analytics by{' '}
                   <svg
-                    className="rounded-full border"
+                    className="rounded-full border border-white"
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"
@@ -79,7 +79,7 @@ export default async function Page() {
                     </g>
                   </svg>{' '}
                   Umami
-                  <ExternalLink className="h-4 w-4 text-foreground/50" />
+                  <ExternalLink className="h-4 w-4 text-white" />
                 </p>
               </Link>
             )}
@@ -174,7 +174,7 @@ export default async function Page() {
                 target="_blank"
               >
                 <svg
-                  className="rounded-full border"
+                  className="rounded-full border border-white"
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
                   height="16"
@@ -195,7 +195,7 @@ export default async function Page() {
                     </g>
                   </g>
                 </svg>
-                <p>
+                <p className="text-white">
                   Analytics by <span className="font-medium">Umami</span>
                 </p>
               </Link>
