@@ -3,7 +3,7 @@
 import { authOptions } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { shortUrls } from '@/lib/db/schema'
-import { nanoid } from '@/lib/utils'
+import { nanoid, sanitize } from '@/lib/utils'
 import { eq } from 'drizzle-orm'
 import { getServerSession } from 'next-auth'
 
@@ -64,7 +64,12 @@ export const updateShortUrl = async ({
 
   const shortUrlData = await db
     .update(shortUrls)
-    .set({ id: newId || id, title: title || null, url, updatedAt: new Date() })
+    .set({
+      id: sanitize(newId) || id,
+      title: title || null,
+      url,
+      updatedAt: new Date(),
+    })
     .where(eq(shortUrls.userId, session.user.id))
     .where(eq(shortUrls.id, id))
 
