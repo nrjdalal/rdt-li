@@ -262,6 +262,11 @@ const Page = () => {
                     </Menubar>
                   </div>
                 </div>
+                {shortUrl.title && (
+                  <p className="-mb-1 mt-0.5 text-[0.65rem] font-semibold">
+                    {shortUrl.title}
+                  </p>
+                )}
                 <p className="mt-0.5 line-clamp-2 break-all text-[0.65rem] text-foreground/70">
                   {shortUrl.url}
                 </p>
