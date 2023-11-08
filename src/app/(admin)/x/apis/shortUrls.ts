@@ -64,7 +64,7 @@ export const updateShortUrl = async ({
 
   const shortUrlData = await db
     .update(shortUrls)
-    .set({ id: newId, title: title || null, url, updatedAt: new Date() })
+    .set({ id: newId || id, title: title || null, url, updatedAt: new Date() })
     .where(eq(shortUrls.userId, session.user.id))
     .where(eq(shortUrls.id, id))
 
