@@ -22,7 +22,7 @@ export default async function Page() {
             className="rounded-2xl border bg-background px-4 py-1.5 text-xs font-medium"
             target="_blank"
           >
-            @nrjdalal_com&apos;s twitter
+            @nrjdalal&apos;s twitter
           </Link>
 
           <h1 className="font-heading text-3xl sm:text-4xl">
@@ -85,7 +85,9 @@ export default async function Page() {
           </div>
 
           <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-            {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]} self hostable, feature rich, minimalistic and open source URL shortener. Built with Next.js, Drizzle, NextAuth and Postgres.
+            {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]} self hostable,
+            feature rich, minimalistic and open source URL shortener. Built with
+            Next.js, Drizzle, NextAuth and Postgres.
           </p>
 
           <p className="text-xs">
