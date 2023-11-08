@@ -48,6 +48,29 @@ export const createShortUrl = async ({ url }: { url: string }) => {
   return shortUrlData // []
 }
 
+export const updateShortUrl = async ({
+  id,
+  newId,
+  title,
+  url,
+}: {
+  id: string
+  newId: string
+  title?: string | undefined
+  url: string
+}) => {
+  const session = await getServerSession(authOptions)
+  if (!session) throw new Error('Session not found')
+
+  const shortUrlData = await db
+    .update(shortUrls)
+    .set({ id: newId, title: title || null, url, updatedAt: new Date() })
+    .where(eq(shortUrls.userId, session.user.id))
+    .where(eq(shortUrls.id, id))
+
+  return shortUrlData // []
+}
+
 export const deleteShortUrl = async ({ id }: { id: string }) => {
   const session = await getServerSession(authOptions)
   if (!session) throw new Error('Session not found')
