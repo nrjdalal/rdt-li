@@ -24,6 +24,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Pencil } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import * as z from 'zod'
 import { updateShortUrl } from './apis/shortUrls'
 
@@ -67,6 +68,14 @@ export default function Page({
       queryClient.invalidateQueries({
         queryKey: ['shortUrls'],
       })
+    },
+    onError: (error) => {
+      if (
+        error?.message ===
+        'duplicate key value violates unique constraint "shortUrls_pkey"'
+      )
+        return toast.error('This short URL already exists')
+      return toast.error('Something went wrong!')
     },
   })
 
