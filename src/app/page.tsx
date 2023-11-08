@@ -32,7 +32,7 @@ export default async function Page() {
             self hostable open source URL shortener
           </h1>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4 text-black">
             <div className="flex flex-col items-center space-y-1 rounded-md border-2 border-green-400 bg-green-100 px-8 py-3">
               <User className="h-8 w-8 text-green-600" />
               <p className="text-xs">Users</p>
@@ -122,7 +122,7 @@ export default async function Page() {
         </div>
       </section>
 
-      <h2 className="flex cursor-default items-center text-xl font-medium">
+      <h2 className="mb-2 flex cursor-default items-center text-xl font-medium">
         <ArrowDown className="text-blue-200" />
         <span className="ml-1 text-blue-500">Image Demo</span>
         <ArrowDown className="text-blue-300" />

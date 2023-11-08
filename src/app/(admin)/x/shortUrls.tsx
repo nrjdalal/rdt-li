@@ -112,7 +112,7 @@ const Page = () => {
                 ) : (
                   ''
                 )}
-                <Eye className="h-3 w-3 text-slate-500" />
+                <Eye className="h-3 w-3 text-foreground" />
                 <p className="pt-px">
                   {shortUrl?.visits_v2?.length
                     ? getGraphData(shortUrl.visits_v2).reduce(
@@ -125,7 +125,7 @@ const Page = () => {
 
               <div className="flex items-center gap-1.5 rounded-lg bg-blue-50 p-1 px-2 text-[0.6rem]">
                 <Link
-                  className="text-blue-500"
+                  className="text-blue-600"
                   href={`/${shortUrl.id}`}
                   target="_blank"
                 >
@@ -133,18 +133,18 @@ const Page = () => {
                 </Link>
                 <div className="h-1 w-1 rounded-full bg-slate-500/10" />
                 <Copy
+                  className="h-3 w-3 cursor-pointer text-slate-600"
                   onClick={() => {
                     navigator.clipboard.writeText(
                       `${process.env.NEXT_PUBLIC_APP_URL}/${shortUrl.id}`,
                     )
                     toast.success('Copied to clipboard')
                   }}
-                  className="h-3 w-3 cursor-pointer text-slate-500"
                 />
                 <div className="h-1 w-1 rounded-full bg-slate-500/10" />
                 <AlertDialog>
                   <AlertDialogTrigger>
-                    <Trash className="h-3 w-3 cursor-pointer text-red-500" />
+                    <Trash className="h-3 w-3 cursor-pointer text-red-600" />
                   </AlertDialogTrigger>
                   <AlertDialogContent className="font-mono">
                     <AlertDialogHeader>
@@ -173,7 +173,7 @@ const Page = () => {
                 </AlertDialog>
               </div>
             </div>
-            <p className="mt-0.5 line-clamp-2 break-all text-[0.65rem] text-slate-600">
+            <p className="mt-0.5 line-clamp-2 break-all text-[0.65rem] text-foreground/70">
               {shortUrl.url}
             </p>
           </div>
@@ -184,8 +184,8 @@ const Page = () => {
             collapsible
           >
             <AccordionItem className="-my-4 !border-b-0" value="item-1">
-              <AccordionTrigger>
-                <p className="flex items-center gap-2 font-sans text-[0.6rem] font-light text-slate-500">
+              <AccordionTrigger className="text-foreground/70">
+                <p className="flex items-center gap-2 font-sans text-[0.6rem] font-light text-foreground/70">
                   <BarChart className="h-3 w-3" />{' '}
                   {/*
                     // ~ add last visit time here
@@ -197,13 +197,14 @@ const Page = () => {
                   data={{
                     labels: getGraphData(shortUrl.visits_v2)
                       .reverse()
-                      .map(
-                        (item: any) =>
-                          `${item[0].slice(4, 6)}-${item[0].slice(
-                            2,
-                            4,
-                          )}-${item[0].slice(0, 2)}`,
-                      ),
+                      .map((item: any) => {
+                        return item[0]
+                          ? `${item[0].slice(4, 6)}-${item[0].slice(
+                              2,
+                              4,
+                            )}-${item[0].slice(0, 2)}`
+                          : ''
+                      }),
                     datasets: [
                       {
                         label: 'Visits',
