@@ -107,7 +107,7 @@ export default function Page({
                           className="text-xs"
                           placeholder="nrjdalal"
                           style={{
-                            paddingLeft: domain?.length * 8.75,
+                            paddingLeft: domain?.length * 9,
                           }}
                           {...field}
                         />
