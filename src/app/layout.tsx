@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import { Toaster } from 'sonner'
 import Provider from './provider'
+import { ThemeSwitcher } from './ThemeSwitcher'
 
 export const metadata: Metadata = {
   title: 'Redirect.link',
@@ -26,7 +27,7 @@ export default function RootLayout({
         )}
       >
         <Provider>
-          {children}
+        {children}
           <Toaster expand={true} richColors />
         </Provider>
       </body>

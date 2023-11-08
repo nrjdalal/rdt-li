@@ -3,6 +3,8 @@ import { shortUrls, users } from '@/lib/db/schema'
 import { Anchor, ArrowDown, ExternalLink, Star, User } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { ThemeSwitcher } from './ThemeSwitcher'
+
 
 export const revalidate = 60
 
@@ -15,16 +17,23 @@ export default async function Page() {
 
   return (
     <main className="container flex max-w-screen-md flex-col items-center p-5">
+      
       <section className="space-y-6 pb-32 pt-6 md:pt-10 lg:py-32">
+     
         <div className="container flex w-full max-w-[64rem] flex-col items-center gap-4 text-center">
+        <div className="flex items-center"style={{marginLeft:'200px'}} >
           <Link
             href="https://rdt.li/lNB90I"
             className="rounded-2xl border bg-background px-4 py-1.5 text-xs font-medium"
-            target="_blank"
-          >
+             target="_blank"
+            >
             @nrjdalal_com&apos;s twitter
-          </Link>
-
+           </Link>
+           <div style={{marginLeft:'200px'}}>
+           <ThemeSwitcher/>
+           </div>
+          </div>
+         
           <h1 className="font-heading text-3xl sm:text-5xl">
             <span className="font-mono font-semibold">
               {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}
@@ -37,14 +46,14 @@ export default async function Page() {
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col items-center space-y-1 rounded-md border-2 border-green-400 bg-green-100 px-8 py-3">
               <User className="h-8 w-8 text-green-600" />
-              <p className="text-xs">Users</p>
-              <p>{getUsers?.length}</p>
+              <p className="text-xs" style={{ color: 'black' }}>Uses</p>
+              <p style={{ color: 'black' }}>{getUsers?.length}</p>
             </div>
 
             <div className="flex flex-col items-center space-y-1 rounded-md border-2 border-blue-400 bg-blue-100 px-8 py-3">
               <Anchor className="h-8 w-8 text-blue-600" />
-              <p className="text-xs">Short Links</p>
-              <p>{getShortUrls?.length}</p>
+              <p className="text-xs"style={{ color: 'black' }}>Short Links</p>
+              <p style={{ color: 'black' }}>{getShortUrls?.length}</p>
             </div>
 
             {process.env.NEXT_PUBLIC_UMAMI_URL && (
