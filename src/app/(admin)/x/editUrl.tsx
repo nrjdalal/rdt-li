@@ -74,7 +74,7 @@ export default function Page({
     await mutation.mutateAsync(values)
   }
 
-  const domain: any = process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]
+  const domain: any = process.env.NEXT_PUBLIC_APP_URL?.split('://')[1] + '/'
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -101,13 +101,17 @@ export default function Page({
                           Short URL
                         </FormLabel>
                         <p className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground/40">
-                          {domain}/
+                          {domain}
                         </p>
                         <Input
                           className="text-xs"
                           placeholder="nrjdalal"
                           style={{
-                            paddingLeft: `${domain?.length * 0.55}rem`,
+                            paddingLeft: `${
+                              0.75 +
+                              domain?.length * 0.45 +
+                              (domain?.length - 1) * 0.01
+                            }rem`,
                           }}
                           {...field}
                         />
