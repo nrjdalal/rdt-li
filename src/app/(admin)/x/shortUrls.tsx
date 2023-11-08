@@ -123,6 +123,7 @@ const Page = () => {
           data.length === 1 && 'mb-[182px]',
           data.length === 2 && 'mb-[96px]',
           data.length === 3 && 'mb-[10px]',
+          data.length > 3 && ' mb-[420px]',
         )}
       >
         {data?.map((shortUrl: { id: string; url: string; visits_v2: any }) => (
