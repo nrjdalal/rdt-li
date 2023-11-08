@@ -147,11 +147,12 @@ const Page = () => {
                   href={`/${shortUrl.id}`}
                   target="_blank"
                 >
-                  {process.env.NEXT_PUBLIC_APP_URL}/{shortUrl.id}
+                  {process.env.NEXT_PUBLIC_APP_URL?.split('//')[1]}/
+                  {shortUrl.id}
                 </Link>
-                <div className="h-1 w-1 rounded-full bg-slate-500/10" />
+                <div className="h-1 w-1 rounded-full bg-slate-500/30" />
                 <Copy
-                  className="h-3 w-3 cursor-pointer text-slate-600"
+                  className="h-3.5 w-3.5 cursor-pointer text-slate-500"
                   onClick={() => {
                     navigator.clipboard.writeText(
                       `${process.env.NEXT_PUBLIC_APP_URL}/${shortUrl.id}`,
@@ -159,15 +160,14 @@ const Page = () => {
                     toast.success('Copied to clipboard')
                   }}
                 />
-                <div className="h-1 w-1 rounded-full bg-slate-500/10" />
+                <div className="h-1 w-1 rounded-full bg-slate-500/30" />
                 {/* work zone */}
                 <Menubar className="h-min rounded-full border-none p-0">
                   <MenubarMenu>
                     <MenubarTrigger className="bg-blue-50 p-0 focus:bg-blue-50 data-[state=open]:bg-blue-50">
-                      <Settings className="h-3 w-3 cursor-pointer text-blue-600" />
+                      <Settings className="h-3.5 w-3.5 cursor-pointer text-blue-600" />
                     </MenubarTrigger>
-                    <MenubarContent className="absolute -right-5">
-                      {/* <MenubarSeparator className="bg-background/10" /> */}
+                    <MenubarContent className="absolute -right-5 top-0.5">
                       <AlertDialog>
                         <AlertDialogTrigger className="flex h-full w-full items-center justify-between rounded-sm p-1 px-2 text-[0.675rem] hover:bg-foreground/10">
                           <p className="text-foreground/80">Delete</p>
