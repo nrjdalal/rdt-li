@@ -45,7 +45,8 @@ export default async function Page() {
               <p>{getShortUrls?.length}</p>
             </div>
 
-            {process.env.NEXT_PUBLIC_UMAMI_URL && (
+            {(process.env.NEXT_PUBLIC_UMAMI_URL ||
+              process.env.NODE_ENV === 'development') && (
               <Link
                 className="col-span-2 flex flex-col items-center space-y-1 rounded-md border-2 border-red-400 bg-red-100 px-8 py-2"
                 href={
