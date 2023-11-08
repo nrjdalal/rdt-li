@@ -18,7 +18,7 @@ export default async function Page() {
       <section className="space-y-6 pb-32 pt-6 md:pt-10 lg:py-32">
         <div className="container flex w-full max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
-            href="https://rdt.li/lNB90I"
+            href="https://rdt.li/x-nrjdalal"
             className="rounded-2xl border bg-background px-4 py-1.5 text-xs font-medium"
             target="_blank"
           >
@@ -103,7 +103,7 @@ export default async function Page() {
               Login
             </Link>
             <Link
-              href="https://rdt.li/WdWIbR"
+              href="https://rdt.li/github"
               target="_blank"
               rel="noreferrer"
               className="relative flex h-10 items-center gap-2 rounded-md border bg-background px-8 text-sm"
@@ -142,7 +142,7 @@ export default async function Page() {
             Redirect.link is open source and powered by open source software.
             The source code is available on{' '}
             <Link
-              href="https://rdt.li/WdWIbR"
+              href="https://rdt.li/github"
               target="_blank"
               rel="noreferrer"
               className="underline underline-offset-4"
