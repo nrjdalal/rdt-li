@@ -61,16 +61,15 @@ export default function Page() {
 
   return (
     <div className="container flex min-h-[100dvh] max-w-3xl flex-col p-5 font-mono">
-      {/* <Alert className="mb-5" variant="destructive">
-        <AlertTitle className="text-xs font-semibold">iOS Users</AlertTitle>
+      <Alert className="mb-5" variant="default">
+        <AlertTitle className="text-xs font-semibold">
+          Upcoming features...
+        </AlertTitle>
         <AlertDescription className="text-[0.7rem]">
-          If you&apos;re facing any issues on iOS, please confirm at{' '}
-          <Link className="underline" href="https://rdt.li/LlgRAe">
-            Github
-          </Link>
-          .
+          * Custom URLs and changeable destionations
+          <br />* Name for tracking and tags for grouping
         </AlertDescription>
-      </Alert> */}
+      </Alert>
 
       <Form {...form}>
         <form
