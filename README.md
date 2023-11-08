@@ -1,6 +1,6 @@
 <a href="https://nextjs.org">
   <h1 align="center">
-   <a href="https://rdt.li/m5NksJ" tardet="_blank">
+   <a href="https://rdt.li/site" tardet="_blank">
     Redirect.link
    </a>
    URL Shortener
@@ -13,13 +13,13 @@
 <blockquote align="center"> • Ability to change short or redirect links </blockquote>
 
 <p align="center">
-  <a href="https://rdt.li/m5NksJ" tardet="_blank">Redirect.link</a> self hostable, feature rich, minimalistic and open source URL shortener. Built with Next.js, Drizzle, NextAuth and Postgres.
+  <a href="https://rdt.li/site" tardet="_blank">Redirect.link</a> self hostable, feature rich, minimalistic and open source URL shortener. Built with Next.js, Drizzle, NextAuth and Postgres.
 </p>
 
-<p align="center"><a href="https://rdt.li/m5NksJ" tardet="_blank">Try now</a> or <a href="#one-click-deploy">self host</a> it.</p>
+<p align="center"><a href="https://rdt.li/site" tardet="_blank">Try now</a> or <a href="#one-click-deploy">self host</a> it.</p>
 
 <p align="center">
-  <a href="https://rdt.li/lNB90I">
+  <a href="https://rdt.li/x-nrjdalal">
     <img src="https://img.shields.io/twitter/follow/nrjdalal_com?style=flat&label=nrjdalal_com&logo=twitter&color=0bf&logoColor=fff" alt="Follow Neeraj on Twitter" />
   </a>
 </p>
@@ -36,7 +36,7 @@
 <br/>
 
 <p align="center">
-  <a href="https://rdt.li/m5NksJ" target="_black">
+  <a href="https://rdt.li/site" target="_black">
     <img src="/public/demo.jpeg" alt="rdt.li dashboard example" width="500" />
   </a>
 </p>
