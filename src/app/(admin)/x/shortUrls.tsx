@@ -92,7 +92,7 @@ const Page = () => {
     },
   })
 
-  const [sortBy, setSortBy] = useState('default')
+  const [sortBy, setSortBy] = useState('createdAt')
   const [filterBy, setFilterBy] = useState('default')
 
   if (isError) {
@@ -137,12 +137,15 @@ const Page = () => {
         getGraphData(a.visits_v2).reduce((a: any, b: any) => a + b[1], 0)
       )
     }
+    if (sortBy === 'recentlyVisited') {
+      return new Date(b.lastVisit).getTime() - new Date(a.lastVisit).getTime()
+    }
     return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   })
 
   return (
     <>
-      <div className="mb-2 mt-24 flex items-center justify-between text-xs">
+      <div className="mb-4 mt-24 flex items-center justify-between text-xs">
         <p className="ml-1 text-center text-xs">URLs: {xData.length}</p>
 
         <Select
@@ -150,18 +153,21 @@ const Page = () => {
             setSortBy(value)
           }}
         >
-          <SelectTrigger className="h-8 w-48 text-xs">
-            <SelectValue defaultValue={sortBy} placeholder="Created At" />
+          <SelectTrigger className="h-8 w-40 text-[0.65rem]">
+            <SelectValue defaultValue={sortBy} placeholder="Sort By" />
           </SelectTrigger>
-          <SelectContent>
-            <SelectItem className="h-8 w-48 text-xs" value="createdAt">
+          <SelectContent className="absolute -right-40 h-min w-max">
+            <SelectItem className="text-[0.65rem]" value="createdAt">
               Created At
             </SelectItem>
-            <SelectItem className="h-8 w-48 text-xs" value="updatedAt">
+            <SelectItem className="text-[0.65rem]" value="updatedAt">
               Updated At
             </SelectItem>
-            <SelectItem className="h-8 w-48 text-xs" value="views">
+            <SelectItem className="text-[0.65rem]" value="views">
               Views
+            </SelectItem>
+            <SelectItem className="text-[0.65rem]" value="recentlyVisited">
+              Recently Visited
             </SelectItem>
           </SelectContent>
         </Select>
