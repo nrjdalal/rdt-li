@@ -142,6 +142,7 @@ const Page = () => {
             url: string
             title: any
             visits_v2: any
+            lastVisit: any
           }) => (
             <div
               className="flex flex-col space-y-1.5 rounded-md border bg-background p-3 text-sm"
@@ -270,9 +271,12 @@ const Page = () => {
                   <AccordionTrigger className="text-foreground/70">
                     <p className="flex items-center gap-2 font-sans text-[0.6rem] font-light text-foreground/70">
                       <BarChart className="h-3 w-3" />{' '}
-                      {/*
-                  // ~ add last visit time here
-                */}
+                      {shortUrl?.lastVisit && (
+                        <span>
+                          Last visited:{' '}
+                          {new Date(shortUrl?.lastVisit).toLocaleString()}
+                        </span>
+                      )}
                     </p>
                   </AccordionTrigger>
                   <AccordionContent>
