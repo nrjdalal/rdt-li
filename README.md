@@ -34,6 +34,12 @@
 
 <p align="center">
   <a href="https://rdt.li/site" target="_black">
+    <img src="/public/0EA159B0-B054-4037-AF22-00F4C9FD9B7E.jpeg" alt="rdt.li dashboard example" width="500" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://rdt.li/site" target="_black">
     <img src="/public/demo.jpeg" alt="rdt.li dashboard example" width="500" />
   </a>
 </p>
