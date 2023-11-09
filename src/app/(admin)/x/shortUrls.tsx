@@ -274,7 +274,7 @@ const Page = () => {
                       {shortUrl?.lastVisit && (
                         <span>
                           Last visited:{' '}
-                          {new Date(shortUrl?.lastVisit).toLocaleString()}{' '}
+                          {new Date(shortUrl?.lastVisit).toLocaleString()}
                         </span>
                       )}
                     </p>
