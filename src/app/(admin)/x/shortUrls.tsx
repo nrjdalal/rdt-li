@@ -27,6 +27,13 @@ import {
   MenubarTrigger,
 } from '@/components/ui/menubar'
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import {
   Sheet,
   SheetContent,
   SheetDescription,
@@ -54,6 +61,7 @@ import {
   Trash,
 } from 'lucide-react'
 import Link from 'next/link'
+import { useState } from 'react'
 import { Bar } from 'react-chartjs-2'
 import { toast } from 'sonner'
 import { deleteShortUrl, getShortUrls } from './apis/shortUrls'
@@ -67,10 +75,7 @@ const Page = () => {
   const { isPending, isError, data } = useQuery({
     queryKey: ['shortUrls'],
     queryFn: async () => {
-      return (await getShortUrls()).sort(
-        (a: any, b: any) =>
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-      )
+      return await getShortUrls()
     },
   })
 
@@ -86,6 +91,9 @@ const Page = () => {
       })
     },
   })
+
+  const [sortBy, setSortBy] = useState('default')
+  const [filterBy, setFilterBy] = useState('default')
 
   if (isError) {
     return (
@@ -119,25 +127,59 @@ const Page = () => {
     return data
   }
 
+  const xData = data?.sort((a: any, b: any) => {
+    if (sortBy === 'updatedAt') {
+      return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+    }
+    if (sortBy === 'views') {
+      return (
+        getGraphData(b.visits_v2).reduce((a: any, b: any) => a + b[1], 0) -
+        getGraphData(a.visits_v2).reduce((a: any, b: any) => a + b[1], 0)
+      )
+    }
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  })
+
   return (
     <>
-      <div className="mb-2 mt-24 text-xs">
-        <p className="ml-1 text-center text-[0.7rem]">URLs: {data.length}</p>
+      <div className="mb-2 mt-24 flex items-center justify-between text-xs">
+        <p className="ml-1 text-center text-xs">URLs: {xData.length}</p>
+
+        <Select
+          onValueChange={(value: any) => {
+            setSortBy(value)
+          }}
+        >
+          <SelectTrigger className="h-8 w-48 text-xs">
+            <SelectValue defaultValue={sortBy} placeholder="Created At" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem className="h-8 w-48 text-xs" value="createdAt">
+              Created At
+            </SelectItem>
+            <SelectItem className="h-8 w-48 text-xs" value="updatedAt">
+              Updated At
+            </SelectItem>
+            <SelectItem className="h-8 w-48 text-xs" value="views">
+              Views
+            </SelectItem>
+          </SelectContent>
+        </Select>
       </div>
 
       <div
         className={cn(
           'flex flex-col space-y-3',
-          !data.length && 'mt-[470px]',
-          data.length === 1 && 'mb-[396px]',
-          data.length === 2 && 'mb-[310px]',
-          data.length === 3 && 'mb-[224px]',
-          data.length === 4 && 'mb-[138px]',
-          data.length === 5 && 'mb-[52px]',
-          data.length > 5 && 'mb-20',
+          !xData.length && 'mt-[470px]',
+          xData.length === 1 && 'mb-[396px]',
+          xData.length === 2 && 'mb-[310px]',
+          xData.length === 3 && 'mb-[224px]',
+          xData.length === 4 && 'mb-[138px]',
+          xData.length === 5 && 'mb-[52px]',
+          xData.length > 5 && 'mb-20',
         )}
       >
-        {data?.map(
+        {xData.map(
           (shortUrl: {
             id: string
             url: string
