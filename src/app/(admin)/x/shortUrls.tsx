@@ -152,14 +152,16 @@ const Page = () => {
       (match: any) => `<span class="bg-yellow-200">${match}</span>`,
     )
 
-    let url_html = item.url.replace(
-      new RegExp(filterBy, 'gi'),
-      (match: any) => `<span class="bg-yellow-200">${match}</span>`,
-    )
-
     let title_html = item.title?.replace(
       new RegExp(filterBy, 'gi'),
-      (match: any) => `<span class="bg-yellow-200">${match}</span>`,
+      (match: any) =>
+        `<span class="bg-yellow-200 dark:text-black">${match}</span>`,
+    )
+
+    let url_html = item.url.replace(
+      new RegExp(filterBy, 'gi'),
+      (match: any) =>
+        `<span class="bg-yellow-200 dark:text-black">${match}</span>`,
     )
 
     return {
