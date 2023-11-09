@@ -1,3 +1,5 @@
+![](https://rdt.li/gh-repo-visits-rdt-li)
+
 <a href="https://nextjs.org">
   <h1 align="center">
    <a href="https://rdt.li/site" tardet="_blank">
@@ -93,7 +95,6 @@ bun dev
 
 ## Roadmap
 
-- [ ] Light and dark mode
 - [ ] More features and points to be added
 
 ## Author
