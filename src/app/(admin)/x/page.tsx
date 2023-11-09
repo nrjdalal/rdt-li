@@ -75,7 +75,7 @@ export default function Page() {
 
   return (
     <div className="container flex min-h-[100dvh] max-w-3xl flex-col p-5 font-mono">
-      <Alert className="mb-5" variant="default">
+      {/* <Alert className="mb-5" variant="default">
         <AlertTitle className="text-xs font-semibold">
           Upcoming features...
         </AlertTitle>
@@ -83,7 +83,7 @@ export default function Page() {
           * Custom URLs and changeable destinations
           <br />* Names for tracking and tags for grouping
         </AlertDescription>
-      </Alert>
+      </Alert> */}
 
       <Form {...form}>
         <form
