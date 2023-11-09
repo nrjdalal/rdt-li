@@ -156,7 +156,7 @@ const Page = () => {
           <SelectTrigger className="h-8 w-40 text-[0.65rem]">
             <SelectValue defaultValue={sortBy} placeholder="Sort By" />
           </SelectTrigger>
-          <SelectContent className="absolute -right-40 h-min w-max">
+          <SelectContent className="absolute -right-40 w-max">
             <SelectItem className="text-[0.65rem]" value="createdAt">
               Created At
             </SelectItem>
