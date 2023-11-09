@@ -43,7 +43,7 @@ import { createShortUrl } from './apis/shortUrls'
 import ShowUrl from './shortUrls'
 
 const formSchema = z.object({
-  url: z.string().url(),
+  url: z.string().max(2048).url(),
 })
 
 export default function Page() {
