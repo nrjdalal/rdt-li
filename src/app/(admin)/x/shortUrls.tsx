@@ -34,7 +34,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
-import { cn } from '@/lib/utils'
+import { cn, smallDate } from '@/lib/utils'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import {
   BarElement,
@@ -154,7 +154,9 @@ const Page = () => {
                       <>
                         <ArrowUp className="h-3 w-3 text-green-500" />
                         <p className="flex text-green-500">
-                          {shortUrl.visits_v2[0].split('x')[1]}
+                          {smallDate() === shortUrl.visits_v2[0].split('x')[0]
+                            ? shortUrl.visits_v2[0].split('x')[1]
+                            : 0}
                         </p>
                       </>
                     ) : (
