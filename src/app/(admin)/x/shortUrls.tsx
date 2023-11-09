@@ -34,14 +34,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet'
 import { cn, smallDate } from '@/lib/utils'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import {
@@ -136,7 +128,7 @@ const Page = () => {
     )
   })
 
-  const xData = filtered?.sort((a: any, b: any) => {
+  const sortedData = filtered?.sort((a: any, b: any) => {
     if (sortBy === 'updatedAt') {
       return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
     }
@@ -150,6 +142,32 @@ const Page = () => {
       return new Date(b.lastVisit).getTime() - new Date(a.lastVisit).getTime()
     }
     return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  })
+
+  const xData = sortedData.map((item: any) => {
+    let id_html = `${process.env.NEXT_PUBLIC_APP_URL?.split('//')[1]}/${
+      item.id
+    }`.replace(
+      new RegExp(filterBy, 'gi'),
+      (match: any) => `<span class="bg-yellow-200">${match}</span>`,
+    )
+
+    let url_html = item.url.replace(
+      new RegExp(filterBy, 'gi'),
+      (match: any) => `<span class="bg-yellow-200">${match}</span>`,
+    )
+
+    let title_html = item.title?.replace(
+      new RegExp(filterBy, 'gi'),
+      (match: any) => `<span class="bg-yellow-200">${match}</span>`,
+    )
+
+    return {
+      ...item,
+      id_html,
+      url_html,
+      title_html,
+    }
   })
 
   return (
@@ -212,6 +230,9 @@ const Page = () => {
             title: any
             visits_v2: any
             lastVisit: any
+            id_html: string
+            url_html: string
+            title_html: string
           }) => (
             <div
               className="flex flex-col space-y-1.5 rounded-md border bg-background p-3 text-sm"
@@ -248,10 +269,10 @@ const Page = () => {
                       className="text-black"
                       href={`/${shortUrl.id}`}
                       target="_blank"
-                    >
-                      {process.env.NEXT_PUBLIC_APP_URL?.split('//')[1]}/
-                      {shortUrl.id}
-                    </Link>
+                      dangerouslySetInnerHTML={{
+                        __html: shortUrl.id_html,
+                      }}
+                    />
                     <div className="h-1 w-1 rounded-full bg-slate-500/30" />
                     <Copy
                       className="h-3.5 w-3.5 cursor-pointer text-slate-500"
@@ -322,13 +343,19 @@ const Page = () => {
                   </div>
                 </div>
                 {shortUrl.title && (
-                  <p className="-mb-1 mt-0.5 text-[0.65rem] font-semibold">
-                    {shortUrl.title}
-                  </p>
+                  <p
+                    className="-mb-1 mt-0.5 text-[0.65rem] font-semibold"
+                    dangerouslySetInnerHTML={{
+                      __html: shortUrl.title_html,
+                    }}
+                  />
                 )}
-                <p className="mt-0.5 line-clamp-2 break-all text-[0.65rem] text-foreground/70">
-                  {shortUrl.url}
-                </p>
+                <p
+                  className="mt-0.5 line-clamp-2 break-all text-[0.65rem] text-foreground/70"
+                  dangerouslySetInnerHTML={{
+                    __html: shortUrl.url_html,
+                  }}
+                />
               </div>
 
               <Accordion
