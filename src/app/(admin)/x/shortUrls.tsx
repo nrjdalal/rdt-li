@@ -17,6 +17,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
+import { Input } from '@/components/ui/input'
 import {
   Menubar,
   MenubarContent,
@@ -93,7 +94,7 @@ const Page = () => {
   })
 
   const [sortBy, setSortBy] = useState('createdAt')
-  const [filterBy, setFilterBy] = useState('default')
+  const [filterBy, setFilterBy] = useState('')
 
   if (isError) {
     return (
@@ -127,7 +128,15 @@ const Page = () => {
     return data
   }
 
-  const xData = data?.sort((a: any, b: any) => {
+  const filtered = data?.filter((item: any) => {
+    return (
+      item.id.toLowerCase().includes(filterBy.toLowerCase()) ||
+      item.url.toLowerCase().includes(filterBy.toLowerCase()) ||
+      item.title?.toLowerCase().includes(filterBy.toLowerCase())
+    )
+  })
+
+  const xData = filtered?.sort((a: any, b: any) => {
     if (sortBy === 'updatedAt') {
       return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
     }
@@ -145,32 +154,43 @@ const Page = () => {
 
   return (
     <>
-      <div className="mb-4 mt-24 flex items-center justify-between text-xs">
-        <p className="ml-1 text-center text-xs">URLs: {xData.length}</p>
-
-        <Select
-          onValueChange={(value: any) => {
-            setSortBy(value)
-          }}
-        >
-          <SelectTrigger className="h-8 w-40 text-[0.65rem]">
-            <SelectValue defaultValue={sortBy} placeholder="Sort By" />
-          </SelectTrigger>
-          <SelectContent className="absolute -right-40 w-max">
-            <SelectItem className="text-[0.65rem]" value="createdAt">
-              Created At
-            </SelectItem>
-            <SelectItem className="text-[0.65rem]" value="updatedAt">
-              Updated At
-            </SelectItem>
-            <SelectItem className="text-[0.65rem]" value="views">
-              Views
-            </SelectItem>
-            <SelectItem className="text-[0.65rem]" value="recentlyVisited">
-              Recently Visited
-            </SelectItem>
-          </SelectContent>
-        </Select>
+      <div className="mb-4 mt-24 flex h-8 items-center justify-between text-xs">
+        {data.length ? (
+          <>
+            <Input
+              className="h-8 w-40 text-xs"
+              placeholder="Search"
+              value={filterBy}
+              onChange={(e) => setFilterBy(e.target.value)}
+            />
+            <p className="text-center text-xs">URLs: {xData.length}</p>
+            <Select
+              onValueChange={(value: any) => {
+                setSortBy(value)
+              }}
+            >
+              <SelectTrigger className="h-8 w-40 text-[0.65rem]">
+                <SelectValue defaultValue={sortBy} placeholder="Sort By" />
+              </SelectTrigger>
+              <SelectContent className="absolute -right-40 w-max">
+                <SelectItem className="text-[0.7rem]" value="createdAt">
+                  Created At
+                </SelectItem>
+                <SelectItem className="text-[0.7rem]" value="updatedAt">
+                  Updated At
+                </SelectItem>
+                <SelectItem className="text-[0.7rem]" value="views">
+                  Views
+                </SelectItem>
+                <SelectItem className="text-[0.7rem]" value="recentlyVisited">
+                  Recently Visited
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </>
+        ) : (
+          <p className="w-full text-center text-xs">No Links Shortened</p>
+        )}
       </div>
 
       <div
