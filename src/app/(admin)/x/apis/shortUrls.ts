@@ -62,18 +62,36 @@ export const updateShortUrl = async ({
   const session = await getServerSession(authOptions)
   if (!session) throw new Error('Session not found')
 
-  const shortUrlData = await db
-    .update(shortUrls)
-    .set({
-      id: sanitize(newId) || id,
-      title: title || null,
-      url,
-      updatedAt: new Date(),
-    })
-    .where(eq(shortUrls.userId, session.user.id))
-    .where(eq(shortUrls.id, id))
+  try {
+    const shortUrlData = await db
+      .update(shortUrls)
+      .set({
+        id: sanitize(newId) || id,
+        title: title || null,
+        url,
+        updatedAt: new Date(),
+      })
+      .where(eq(shortUrls.userId, session.user.id))
+      .where(eq(shortUrls.id, id))
 
-  return shortUrlData // []
+    return shortUrlData // []
+  } catch (error: any) {
+    if (error?.code === '23505') {
+      return {
+        error: {
+          code: '23505',
+          message: 'Short URL already exists',
+        },
+      }
+    } else {
+      return {
+        error: {
+          code: '500',
+          message: error.message,
+        },
+      }
+    }
+  }
 }
 
 export const deleteShortUrl = async ({ id }: { id: string }) => {

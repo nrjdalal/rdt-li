@@ -58,10 +58,16 @@ export default function Page({
 
   const mutation = useMutation({
     mutationFn: async (values: z.infer<typeof formSchema>) => {
-      return await updateShortUrl({
+      const res: any = await updateShortUrl({
         id,
         ...values,
       })
+
+      if (res?.error) {
+        throw new Error(JSON.stringify(res?.error))
+      }
+
+      return res
     },
     onSuccess: () => {
       setOpen(false)
@@ -70,12 +76,7 @@ export default function Page({
       })
     },
     onError: (error) => {
-      if (
-        error?.message ===
-        'duplicate key value violates unique constraint "shortUrls_pkey"'
-      )
-        return toast.error('This short URL already exists')
-      return toast.error('Something went wrong!')
+      return toast.error(JSON.parse(error.message).message)
     },
   })
 
