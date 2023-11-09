@@ -128,12 +128,13 @@ const Page = () => {
       <div
         className={cn(
           'flex flex-col space-y-3',
-          !data.length && 'mt-96',
-          data.length === 1 && 'mb-[310px]',
-          data.length === 2 && 'mb-[224px]',
-          data.length === 3 && 'mb-[138px]',
-          data.length === 4 && 'mb-[52px]',
-          data.length > 4 && 'mb-20',
+          !data.length && 'mt-[470px]',
+          data.length === 1 && 'mb-[396px]',
+          data.length === 2 && 'mb-[310px]',
+          data.length === 3 && 'mb-[224px]',
+          data.length === 4 && 'mb-[138px]',
+          data.length === 5 && 'mb-[52px]',
+          data.length > 5 && 'mb-20',
         )}
       >
         {data?.map(
