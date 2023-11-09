@@ -17,6 +17,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
+import { Input } from '@/components/ui/input'
 import {
   Menubar,
   MenubarContent,
@@ -93,7 +94,7 @@ const Page = () => {
   })
 
   const [sortBy, setSortBy] = useState('createdAt')
-  const [filterBy, setFilterBy] = useState('default')
+  const [filterBy, setFilterBy] = useState('')
 
   if (isError) {
     return (
@@ -127,7 +128,15 @@ const Page = () => {
     return data
   }
 
-  const xData = data?.sort((a: any, b: any) => {
+  const filtered = data?.filter((item: any) => {
+    return (
+      item.id.toLowerCase().includes(filterBy.toLowerCase()) ||
+      item.url.toLowerCase().includes(filterBy.toLowerCase()) ||
+      item.title?.toLowerCase().includes(filterBy.toLowerCase())
+    )
+  })
+
+  const xData = filtered?.sort((a: any, b: any) => {
     if (sortBy === 'updatedAt') {
       return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
     }
@@ -146,6 +155,13 @@ const Page = () => {
   return (
     <>
       <div className="mb-4 mt-24 flex items-center justify-between text-xs">
+        <Input
+          className="h-8 w-1/3 text-xs"
+          placeholder="Search"
+          value={filterBy}
+          onChange={(e) => setFilterBy(e.target.value)}
+        />
+
         <p className="ml-1 text-center text-xs">URLs: {xData.length}</p>
 
         <Select
