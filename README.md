@@ -40,9 +40,15 @@
 
 <p align="center">
   <a href="https://rdt.li/site" target="_black">
-    <img src="/public/demo.jpeg" alt="rdt.li dashboard example" width="500" />
+    <img src="public/ABA1DFD8-2816-4509-8691-DF95F7D82EB6.jpeg" alt="rdt.li dashboard example" width="500" />
   </a>
 </p>
+
+<!-- <p align="center">
+  <a href="https://rdt.li/site" target="_black">
+    <img src="/public/demo.jpeg" alt="rdt.li dashboard example" width="500" />
+  </a>
+</p> -->
 
 <!-- About: An open source Next.js bare starter with step-by-step instructions if required. Built with Next.js 14, Drizzle (Postgres), NextAuth/Auth.js. -->
 <!-- Keywords: drizzle neondb nextauthjs nextjs postgres shadcn tailwindcss typescript vercel -->
