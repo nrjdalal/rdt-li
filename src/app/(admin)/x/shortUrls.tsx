@@ -158,7 +158,7 @@ const Page = () => {
         {data.length ? (
           <>
             <Input
-              className="h-8 w-40 text-xs"
+              className="h-8 w-40 text-xs sm:w-80"
               placeholder="Search"
               value={filterBy}
               onChange={(e) => setFilterBy(e.target.value)}
