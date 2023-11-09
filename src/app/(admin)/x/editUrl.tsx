@@ -29,9 +29,9 @@ import * as z from 'zod'
 import { updateShortUrl } from './apis/shortUrls'
 
 const formSchema = z.object({
-  newId: z.string(),
-  title: z.string().optional(),
-  url: z.string().url(),
+  newId: z.string().min(4).max(64),
+  title: z.string().max(64).optional(),
+  url: z.string().max(2048).url(),
 })
 
 export default function Page({
