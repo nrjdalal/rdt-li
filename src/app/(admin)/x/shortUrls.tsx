@@ -173,16 +173,16 @@ const Page = () => {
             <SelectValue defaultValue={sortBy} placeholder="Sort By" />
           </SelectTrigger>
           <SelectContent className="absolute -right-40 w-max">
-            <SelectItem className="text-[0.65rem]" value="createdAt">
+            <SelectItem className="text-[0.7rem]" value="createdAt">
               Created At
             </SelectItem>
-            <SelectItem className="text-[0.65rem]" value="updatedAt">
+            <SelectItem className="text-[0.7rem]" value="updatedAt">
               Updated At
             </SelectItem>
-            <SelectItem className="text-[0.65rem]" value="views">
+            <SelectItem className="text-[0.7rem]" value="views">
               Views
             </SelectItem>
-            <SelectItem className="text-[0.65rem]" value="recentlyVisited">
+            <SelectItem className="text-[0.7rem]" value="recentlyVisited">
               Recently Visited
             </SelectItem>
           </SelectContent>
