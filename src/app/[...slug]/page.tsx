@@ -9,6 +9,13 @@ import { permanentRedirect } from 'next/navigation'
 const Page = async ({ params }: { params: { slug: string } }) => {
   const slug = params.slug[0]
 
+  const Headers = headers()
+
+  console.log(
+    'Headers',
+    Headers.forEach((value, key) => console.log(key, value)),
+  )
+
   // optional: umami analytics
   try {
     if (process.env.NEXT_PUBLIC_UMAMI_URL) {
