@@ -25,16 +25,17 @@ const Page = () => {
 
   return (
     <>
-      <div className="w-full border-b-2 p-5 text-center text-xs">
+      <div className="w-full border-b-2 p-5 text-center">
         {headers.map((header: any, key: number) => {
           return (
-            <div className="mt-1 border-t border-foreground/5 pt-0.5" key={key}>
-              <span className="font-semibold">{key + 1}</span>
-              <br />
-              <span className="font-bold">{header[0]}</span>
-              <br />
-              <span className="font-light">{header[1]}</span>
-            </div>
+            header[1] && (
+              <div className="mb-1.5 flex flex-col gap-1" key={key}>
+                <div className="rounded-md bg-foreground p-1 px-2 text-[0.65rem] font-light text-background">
+                  <p className="font-bold">{header[0]}</p>
+                  {header[1]}
+                </div>
+              </div>
+            )
           )
         })}
       </div>
