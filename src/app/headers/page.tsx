@@ -30,7 +30,7 @@ const Page = () => {
           return (
             header[1] && (
               <div className="mb-1.5 flex flex-col gap-1" key={key}>
-                <div className="rounded-md bg-foreground p-1 px-2 text-[0.65rem] font-light text-background">
+                <div className="rounded-md bg-foreground p-[0.2rem] px-2 text-[0.65rem] font-light text-background">
                   <p className="font-bold">{header[0]}</p>
                   {header[1]}
                 </div>
