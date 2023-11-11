@@ -28,7 +28,7 @@ const Page = () => {
       <div className="w-full border-b-2 p-5 text-center text-xs">
         {headers.map((header: any, key: number) => {
           return (
-            <div className="mt-4" key={key}>
+            <div className="mt-1 border-t border-foreground/5 pt-0.5" key={key}>
               <span className="font-semibold">{key + 1}</span>
               <br />
               <span className="font-bold">{header[0]}</span>
