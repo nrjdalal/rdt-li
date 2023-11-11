@@ -25,7 +25,7 @@ const Page = () => {
 
   return (
     <>
-      <div className="w-full border-b-2 p-5 text-center">
+      <div className="container w-full border-b-2 p-5 text-center">
         {headers.map((header: any, key: number) => {
           return (
             header[1] && (

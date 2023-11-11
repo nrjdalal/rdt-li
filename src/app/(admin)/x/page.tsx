@@ -96,7 +96,7 @@ export default function Page() {
             name="url"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-md mb-3 flex items-center justify-between font-semibold">
+                <div className="mb-3 flex items-center justify-between text-sm font-semibold">
                   <p className="pt-0.5">URL to shorten</p>
                   <div className="flex items-center gap-4">
                     <Link href="/">
@@ -158,7 +158,7 @@ export default function Page() {
                       </MenubarMenu>
                     </Menubar>
                   </div>
-                </FormLabel>
+                </div>
                 <FormControl>
                   <Input
                     className="font-mono placeholder:text-slate-400"

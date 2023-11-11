@@ -61,7 +61,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           ]
         : [date + 'x' + '1', ...visits]
 
-      await db.transaction(async () => {
+      db.transaction(async () => {
         await db
           .update(shortUrls)
           .set({
@@ -79,12 +79,22 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   }
 
   return (
-    <p className="w-full border-b-2 p-5 text-center">
-      No such URL exists. Create new at{' '}
-      <Link className="underline" href="/">
-        {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}
-      </Link>
-    </p>
+    <div className="flex h-[100dvh] flex-col items-center justify-center gap-4">
+      <p className="text-sm text-foreground/50">
+        {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}/{slug} doesn&apos;t
+        exists
+      </p>
+
+      <p className="text-sm">
+        Create short URLs at{' '}
+        <Link
+          className="animate-pulse text-sm font-bold text-orange-500 underline"
+          href="/"
+        >
+          {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}
+        </Link>
+      </p>
+    </div>
   )
 }
 
