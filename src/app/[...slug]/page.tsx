@@ -50,23 +50,30 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     .where(eq(shortUrls.id, slug))
 
   if (shortUrlData.length) {
-    const date = smallDate()
-    const visits = shortUrlData[0].visits || []
+    try {
+      const date = smallDate()
+      const visits = shortUrlData[0].visits || []
 
-    const newVisitData = visits[0]?.startsWith(date)
-      ? [date + 'x' + (Number(visits[0].split('x')[1]) + 1), ...visits.slice(1)]
-      : [date + 'x' + '1', ...visits]
+      const newVisitData = visits[0]?.startsWith(date)
+        ? [
+            date + 'x' + (Number(visits[0].split('x')[1]) + 1),
+            ...visits.slice(1),
+          ]
+        : [date + 'x' + '1', ...visits]
 
-    await db.transaction(async () => {
-      await db
-        .update(shortUrls)
-        .set({
-          visits_v2: newVisitData,
-          lastVisit: new Date(),
-          updatedAt: new Date(),
-        })
-        .where(eq(shortUrls.id, slug))
-    })
+      await db.transaction(async () => {
+        await db
+          .update(shortUrls)
+          .set({
+            visits_v2: newVisitData,
+            lastVisit: new Date(),
+            updatedAt: new Date(),
+          })
+          .where(eq(shortUrls.id, slug))
+      })
+    } catch {
+      console.log('Error updating visits')
+    }
 
     permanentRedirect(shortUrlData[0].url)
   }
