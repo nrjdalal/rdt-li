@@ -70,3 +70,9 @@ export const shortUrls = pgTable('shortUrls', {
   createdAt: timestamp('createdAt', { mode: 'date' }).notNull(),
   updatedAt: timestamp('updatedAt', { mode: 'date' }).notNull(),
 })
+
+export const publicShortUrls = pgTable('publicShortUrls', {
+  id: text('id').notNull().primaryKey(),
+  url: text('url').notNull(),
+  createdAt: timestamp('createdAt', { mode: 'date' }).notNull(),
+})

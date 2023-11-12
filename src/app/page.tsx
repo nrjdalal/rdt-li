@@ -1,3 +1,4 @@
+import CreateShortUrls from '@/app/createPublic'
 import { db } from '@/lib/db'
 import { shortUrls, users } from '@/lib/db/schema'
 import { Anchor, ArrowDown, ExternalLink, Star, User } from 'lucide-react'
@@ -14,9 +15,9 @@ export default async function Page() {
   ).then((res) => res.json())
 
   return (
-    <main className="container flex max-w-screen-md flex-col items-center p-5">
-      <section className="space-y-6 pb-32 pt-6 md:pt-10 lg:py-32">
-        <div className="container flex w-full max-w-[64rem] flex-col items-center gap-4 text-center">
+    <main className="container flex max-w-screen-md flex-col items-center px-5">
+      <section className="space-y-6 pb-48 pt-10 lg:py-32">
+        <div className="flex w-full max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
             href="https://rdt.li/x-nrjdalal"
             className="rounded-2xl border bg-background px-4 py-1.5 text-xs font-medium"
@@ -25,64 +26,14 @@ export default async function Page() {
             @nrjdalal&apos;s twitter
           </Link>
 
-          <h1 className="font-heading text-3xl sm:text-4xl">
+          <h1 className="font-heading max-w-md text-3xl sm:text-4xl">
             <span className="font-mono font-semibold">
               {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}
             </span>{' '}
             self hostable open source URL shortener
           </h1>
 
-          <div className="grid grid-cols-2 gap-4 text-black">
-            <div className="flex flex-col items-center space-y-1 rounded-md border-2 border-green-400 bg-green-100 px-8 py-3">
-              <User className="h-8 w-8 text-green-600" />
-              <p className="text-xs">Users</p>
-              <p>{getUsers?.length}</p>
-            </div>
-
-            <div className="flex flex-col items-center space-y-1 rounded-md border-2 border-blue-400 bg-blue-100 px-8 py-3">
-              <Anchor className="h-8 w-8 text-blue-600" />
-              <p className="text-xs">Short Links</p>
-              <p>{getShortUrls?.length}</p>
-            </div>
-
-            {(process.env.NEXT_PUBLIC_UMAMI_URL ||
-              process.env.NODE_ENV === 'development') && (
-              <Link
-                className="col-span-2 flex flex-col items-center space-y-1 rounded-md border-2 border-red-400 bg-red-100 px-8 py-2"
-                href={
-                  `${process.env.NEXT_PUBLIC_UMAMI_SHARE_URL}` ||
-                  'https://umami.is'
-                }
-                target="_blank"
-              >
-                <p className="flex gap-1 text-xs">
-                  Optional Analytics by{' '}
-                  <svg
-                    className="h-5 w-5 rounded-full"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 428 389.11"
-                  >
-                    <g data-name="Layer 2">
-                      <g data-name="Layer 4">
-                        <circle
-                          cx="214.15"
-                          cy="181"
-                          r="171"
-                          fill="#fff"
-                          stroke="#000"
-                          strokeMiterlimit="10"
-                          strokeWidth="20"
-                        ></circle>
-                        <path d="M413 134.11H15.29a15 15 0 0 0-15 15v15.3C.12 168 0 171.52 0 175.11c0 118.19 95.81 214 214 214 116.4 0 211.1-92.94 213.93-208.67 0-.44.07-.88.07-1.33v-30a15 15 0 0 0-15-15z"></path>
-                      </g>
-                    </g>
-                  </svg>{' '}
-                  Umami
-                  <ExternalLink className="h-4 w-4 text-red-400" />
-                </p>
-              </Link>
-            )}
-          </div>
+          <CreateShortUrls />
 
           <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
             {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]} self hostable,
@@ -95,10 +46,10 @@ export default async function Page() {
             GitHub for more information)
           </p>
 
-          <div className="mt-4 flex space-x-4">
+          <div className="mt-3 flex space-x-4">
             <Link
               href="/x"
-              className="flex h-10 items-center rounded-md bg-slate-900 px-8 text-sm text-white"
+              className="flex h-10 items-center rounded-md bg-blue-500 px-8 text-sm text-white"
             >
               Login
             </Link>
@@ -119,6 +70,64 @@ export default async function Page() {
           </div>
         </div>
       </section>
+
+      {/* 
+        // ~ Some stats
+      */}
+      <div className="mb-20 grid grid-cols-2 gap-4 text-black">
+        <h3 className="col-span-2 flex items-center justify-center text-xl font-medium text-blue-500">
+          <ArrowDown className="text-blue-200" />
+          <span className="ml-1 text-blue-500">Some Stats</span>
+          <ArrowDown className="text-blue-300" />
+        </h3>
+
+        <div className="flex flex-col items-center space-y-1 rounded-md border-2 border-green-400 bg-green-100 px-8 py-3">
+          <User className="h-8 w-8 text-green-600" />
+          <p className="text-xs">Users</p>
+          <p>{getUsers?.length}</p>
+        </div>
+        <div className="flex flex-col items-center space-y-1 rounded-md border-2 border-blue-400 bg-blue-100 px-8 py-3">
+          <Anchor className="h-8 w-8 text-blue-600" />
+          <p className="text-xs">Short Links</p>
+          <p>{getShortUrls?.length}</p>
+        </div>
+        {(process.env.NEXT_PUBLIC_UMAMI_URL ||
+          process.env.NODE_ENV === 'development') && (
+          <Link
+            className="col-span-2 flex flex-col items-center space-y-1 rounded-md border-2 border-red-400 bg-red-100 px-8 py-2"
+            href={
+              `${process.env.NEXT_PUBLIC_UMAMI_SHARE_URL}` || 'https://umami.is'
+            }
+            target="_blank"
+          >
+            <p className="flex gap-1 text-xs">
+              Optional Analytics by{' '}
+              <svg
+                className="h-5 w-5 rounded-full"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 428 389.11"
+              >
+                <g data-name="Layer 2">
+                  <g data-name="Layer 4">
+                    <circle
+                      cx="214.15"
+                      cy="181"
+                      r="171"
+                      fill="#fff"
+                      stroke="#000"
+                      strokeMiterlimit="10"
+                      strokeWidth="20"
+                    ></circle>
+                    <path d="M413 134.11H15.29a15 15 0 0 0-15 15v15.3C.12 168 0 171.52 0 175.11c0 118.19 95.81 214 214 214 116.4 0 211.1-92.94 213.93-208.67 0-.44.07-.88.07-1.33v-30a15 15 0 0 0-15-15z"></path>
+                  </g>
+                </g>
+              </svg>{' '}
+              Umami
+              <ExternalLink className="h-4 w-4 text-red-400" />
+            </p>
+          </Link>
+        )}
+      </div>
 
       <h2 className="mb-2 flex cursor-default items-center text-xl font-medium">
         <ArrowDown className="text-blue-200" />

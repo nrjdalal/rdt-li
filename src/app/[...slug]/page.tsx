@@ -1,5 +1,5 @@
 import { db } from '@/lib/db'
-import { shortUrls } from '@/lib/db/schema'
+import { publicShortUrls, shortUrls } from '@/lib/db/schema'
 import { smallDate } from '@/lib/utils'
 import { eq } from 'drizzle-orm'
 import { headers } from 'next/headers'
@@ -41,6 +41,17 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     console.log('Umami error!')
   }
 
+  if (slug.startsWith('_')) {
+    const redirectLink: any = await db
+      .select({
+        url: publicShortUrls.url,
+      })
+      .from(publicShortUrls)
+      .where(eq(publicShortUrls.id, slug))
+
+    redirectLink.length && permanentRedirect(redirectLink[0].url)
+  }
+
   const shortUrlData: any = await db
     .select({
       url: shortUrls.url,
@@ -59,7 +70,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             date + 'x' + (Number(visits[0].split('x')[1]) + 1),
             ...visits.slice(1),
           ]
-        : [date + 'x' + '1', ...visits]
+        : [date + 'x1', ...visits]
 
       db.transaction(async () => {
         await db
@@ -67,7 +78,6 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           .set({
             visits_v2: newVisitData,
             lastVisit: new Date(),
-            updatedAt: new Date(),
           })
           .where(eq(shortUrls.id, slug))
       })
