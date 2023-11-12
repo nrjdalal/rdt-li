@@ -59,7 +59,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             date + 'x' + (Number(visits[0].split('x')[1]) + 1),
             ...visits.slice(1),
           ]
-        : [date + 'x' + '1', ...visits]
+        : [date + 'x1', ...visits]
 
       db.transaction(async () => {
         await db
@@ -67,7 +67,6 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           .set({
             visits_v2: newVisitData,
             lastVisit: new Date(),
-            updatedAt: new Date(),
           })
           .where(eq(shortUrls.id, slug))
       })
