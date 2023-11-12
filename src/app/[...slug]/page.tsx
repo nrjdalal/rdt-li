@@ -1,5 +1,5 @@
 import { db } from '@/lib/db'
-import { shortUrls } from '@/lib/db/schema'
+import { publicShortUrls, shortUrls } from '@/lib/db/schema'
 import { smallDate } from '@/lib/utils'
 import { eq } from 'drizzle-orm'
 import { headers } from 'next/headers'
@@ -39,6 +39,17 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     }
   } catch {
     console.log('Umami error!')
+  }
+
+  if (slug.startsWith('_')) {
+    const redirectLink: any = await db
+      .select({
+        url: publicShortUrls.url,
+      })
+      .from(publicShortUrls)
+      .where(eq(publicShortUrls.id, slug))
+
+    redirectLink.length && permanentRedirect(redirectLink[0].url)
   }
 
   const shortUrlData: any = await db

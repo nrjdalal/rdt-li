@@ -62,11 +62,22 @@ export const updateShortUrl = async ({
   const session = await getServerSession(authOptions)
   if (!session) throw new Error('Session not found')
 
+  const xid = newId || id
+
+  if (xid.startsWith('_')) {
+    return {
+      error: {
+        code: '400',
+        message: 'Short URL cannot start with an underscore',
+      },
+    }
+  }
+
   try {
     const shortUrlData = await db
       .update(shortUrls)
       .set({
-        id: sanitize(newId) || id,
+        id: sanitize(xid),
         title: title || null,
         url,
         updatedAt: new Date(),
