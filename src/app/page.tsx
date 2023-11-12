@@ -16,7 +16,7 @@ export default async function Page() {
 
   return (
     <main className="container flex max-w-screen-md flex-col items-center px-5">
-      <section className="space-y-6 pb-48 pt-6 md:pt-10 lg:py-32">
+      <section className="space-y-6 pb-48 pt-10 lg:py-32">
         <div className="flex w-full max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
             href="https://rdt.li/x-nrjdalal"

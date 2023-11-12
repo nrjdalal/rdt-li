@@ -84,10 +84,10 @@ export default function Page() {
               </Link>
             </div>
 
-            <p className="text-center text-[0.7rem] font-semibold text-red-500">
+            <p className="text-center text-[0.65rem] font-bold text-red-500">
               This link will be deleted in 24h.
               <br />
-              To use awesome features use an{' '}
+              To keep it and avail many features, create an{' '}
               <Link
                 className="border-b border-foreground border-red-500 font-semibold"
                 href={'/dashboard'}
@@ -97,12 +97,19 @@ export default function Page() {
               .
             </p>
 
-            <pre className="text-center font-sans text-[0.65rem]">
-              • Analytics: All time, daily and unique views <br />• Bar Charts:
-              Last 7 days views charted <br />• Editable: Edit titles, URLs and
-              destinations easily <br />• Filters: Filter by create, views and
-              more <br />• Search: Search for URLs with syntax highlighting{' '}
-              <br />• Theme: Light (default) and dark mode
+            <pre className="text-center font-sans text-[0.7rem]">
+              • <span className="font-bold">Analytics</span>: All time, daily
+              and unique views
+              <br />• <span className="font-bold">Bar Charts</span>: Last 7 days
+              views charted
+              <br />• <span className="font-bold">Editable</span>: Edit titles,
+              URLs and destinations easily
+              <br />• <span className="font-bold">Filters</span>: Filter by
+              create, views and more
+              <br />• <span className="font-bold">Search</span>: Search for URLs
+              with syntax highlighting
+              <br />• <span className="font-bold">Theme</span>: Light (default)
+              and dark mode
             </pre>
 
             <Link
