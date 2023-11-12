@@ -136,7 +136,7 @@ export default async function Page() {
       </h2>
 
       <Image
-        src={'/demo.jpeg'}
+        src={'/ABA1DFD8-2816-4509-8691-DF95F7D82EB6.jpeg'}
         alt="rdt.li screenshot"
         width={1080}
         height={1080}
