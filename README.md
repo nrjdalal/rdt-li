@@ -31,6 +31,7 @@
 
 <p align="center">
   <a href="#features"><strong>Features</strong></a> ·
+  <a href="#self-host"><strong>Self Host</strong></a> ·
   <a href="#one-click-deploy"><strong>Deploy</strong></a> ·
   <a href="#local-development"><strong>Development</strong></a> ·
   <a href="#roadmap"><strong>Roadmap</strong></a> ·
@@ -76,11 +77,16 @@ Built on top of [Onset](https://onset.vercel.app) a Next.js starter that comes w
 - [Vercel](https://vercel.com/) – Easily preview & deploy changes with git
 - [Neon](https://neon.tech/) – The fully managed serverless Postgres with a generous free tier
 
-## One Click Deploy
+## Self Host
+
+Below are the steps to self host this project or run it locally.
+If you need any help, feel free to reach out to me on [Twitter](https://twitter.com/x-nrjdalal) or [Email](mailto:rdt.li@nrjdalal.com).
+
+### One Click Deploy
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnrjdalal%2Frdt-li&env=NEXT_PUBLIC_APP_URL,POSTGRES_URL,NEXTAUTH_SECRET,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET&project-name=rdt-li-by-nrjdalal&repository-name=rdt-li-by-nrjdalal)
 
-## Local Development
+### Local Development
 
 Clone & create this repo locally with the following command:
 
