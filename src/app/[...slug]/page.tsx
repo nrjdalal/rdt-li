@@ -41,15 +41,19 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     console.log('Umami error!')
   }
 
-  if (slug.startsWith('_')) {
-    const redirectLink: any = await db
-      .select({
-        url: publicShortUrls.url,
-      })
-      .from(publicShortUrls)
-      .where(eq(publicShortUrls.id, slug))
+  try {
+    if (slug.startsWith('_')) {
+      const redirectLink: any = await db
+        .select({
+          url: publicShortUrls.url,
+        })
+        .from(publicShortUrls)
+        .where(eq(publicShortUrls.id, slug))
 
-    redirectLink.length && permanentRedirect(redirectLink[0].url)
+      redirectLink.length && permanentRedirect(redirectLink[0].url)
+    }
+  } catch {
+    console.log('Error redirecting public short url')
   }
 
   const shortUrlData: any = await db
