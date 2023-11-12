@@ -87,7 +87,7 @@ export default function Page() {
             <p className="text-center text-[0.65rem] font-bold text-red-500">
               This link will be deleted in 24h.
               <br />
-              To keep it and avail many features, create an{' '}
+              To keep links and avail many other features, create an{' '}
               <Link
                 className="border-b border-foreground border-red-500 font-semibold"
                 href={'/dashboard'}
