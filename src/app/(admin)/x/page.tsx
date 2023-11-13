@@ -44,11 +44,13 @@ import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import * as z from 'zod'
 import { createShortUrl } from './apis/shortUrls'
 import ShowUrl from './shortUrls'
 
 const formSchema = z.object({
+  id: z.string().max(128),
   url: z.string().max(2048).url(),
   title: z.string().max(128),
 })
@@ -60,6 +62,7 @@ export default function Page() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      id: '',
       url: '',
       title: '',
     },
@@ -67,7 +70,13 @@ export default function Page() {
 
   const mutation = useMutation({
     mutationFn: async (values: z.infer<typeof formSchema>) => {
-      return await createShortUrl(values)
+      const res: any = await createShortUrl(values)
+
+      if (res?.error) {
+        throw new Error(JSON.stringify(res?.error))
+      }
+
+      return res
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -75,13 +84,16 @@ export default function Page() {
       })
       form.reset()
     },
+    onError: (error) => {
+      return toast.error(JSON.parse(error.message).message)
+    },
   })
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     await mutation.mutateAsync(values)
   }
 
-  // const domain: any = process.env.NEXT_PUBLIC_APP_URL?.split('://')[1] + '/'
+  const domain: any = process.env.NEXT_PUBLIC_APP_URL?.split('://')[1] + '/'
 
   return (
     <div className="container flex min-h-[100dvh] max-w-3xl flex-col p-5 font-mono">
@@ -193,27 +205,66 @@ export default function Page() {
                 <span className="w-1" />
               </AccordionTrigger>
               <AccordionContent className="overflow-visible pb-1 data-[state=closed]:invisible">
-                <FormField
-                  control={form.control}
-                  name="title"
-                  render={({ field }) => (
-                    <FormItem>
-                      <div className="relative">
-                        <FormLabel className="absolute -top-3 left-5 rounded-md bg-background px-3 pt-[3px] text-xs text-foreground/50">
-                          Title
-                        </FormLabel>
-                      </div>
-                      <FormControl>
-                        <Input
-                          className="placeholder:text-foreground/30"
-                          placeholder="e.g. My Github Profile"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage className="h-4 text-[0.7rem]" />
-                    </FormItem>
-                  )}
-                />
+                <div className="space-y-6">
+                  {/* 
+                  // ~ Title
+                */}
+                  <FormField
+                    control={form.control}
+                    name="title"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <div className="relative">
+                            <FormLabel className="absolute -top-3 left-5 rounded-md bg-background px-3 pt-[3px] text-xs text-foreground/50">
+                              Title
+                            </FormLabel>
+                            <Input
+                              className="text-xs placeholder:text-foreground/30"
+                              placeholder="e.g. My Github Profile"
+                              {...field}
+                            />
+                          </div>
+                        </FormControl>
+                        <FormMessage className="h-4 text-[0.7rem]" />
+                      </FormItem>
+                    )}
+                  />
+                  {/* 
+                  // ~ Short ID
+                */}
+                  <FormField
+                    control={form.control}
+                    name="id"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <div className="relative">
+                            <FormLabel className="absolute -top-3 left-5 rounded-md bg-background px-3 pt-[3px] text-xs text-foreground/50">
+                              Short URL
+                            </FormLabel>
+                            <p className="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-foreground/40">
+                              {domain}
+                            </p>
+                            <Input
+                              className="text-xs placeholder:text-foreground/30"
+                              placeholder="nrjdalal"
+                              style={{
+                                paddingLeft: `${
+                                  1 +
+                                  domain?.length * 0.45 +
+                                  (domain?.length - 1) * 0.01
+                                }rem`,
+                              }}
+                              {...field}
+                            />
+                            <FormMessage className="h-4 text-[0.7rem]" />
+                          </div>
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                </div>
               </AccordionContent>
             </AccordionItem>
           </Accordion>
