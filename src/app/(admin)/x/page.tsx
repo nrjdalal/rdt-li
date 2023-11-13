@@ -188,7 +188,7 @@ export default function Page() {
           */}
           <Accordion type="single" collapsible>
             <AccordionItem className="relative border-none" value="advance">
-              <AccordionTrigger className="right-0 -mt-4 mb-5 flex w-full justify-end p-0 font-sans text-xs text-blue-600">
+              <AccordionTrigger className="right-0 -mt-4 mb-5 flex w-full justify-end p-0 font-sans text-xs text-blue-600 transition-none">
                 Advance Settings
                 <span className="w-1" />
               </AccordionTrigger>
