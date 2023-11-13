@@ -367,8 +367,8 @@ const Page = () => {
                 type="single"
                 collapsible
               >
-                <AccordionItem className="-my-4 !border-b-0" value="item-1">
-                  <AccordionTrigger className="text-foreground/70">
+                <AccordionItem className="!border-b-0" value="item-1">
+                  <AccordionTrigger className="py-0 text-foreground/70">
                     <p className="flex items-center gap-2 font-sans text-[0.6rem] font-light text-foreground/70">
                       <BarChart className="h-3 w-3" />{' '}
                       {shortUrl?.lastVisit && (
@@ -379,7 +379,7 @@ const Page = () => {
                       )}
                     </p>
                   </AccordionTrigger>
-                  <AccordionContent>
+                  <AccordionContent className="pt-3">
                     <Bar
                       data={{
                         labels: getGraphData(shortUrl.visits)
