@@ -192,7 +192,7 @@ export default function Page() {
                 Advance Settings
                 <span className="w-1" />
               </AccordionTrigger>
-              <AccordionContent className="overflow-visible py-1 data-[state=closed]:invisible">
+              <AccordionContent className="overflow-visible pb-1 data-[state=closed]:invisible">
                 <FormField
                   control={form.control}
                   name="title"
