@@ -176,25 +176,26 @@ const Page = () => {
     <>
       <div className="mb-4 mt-24 flex h-8 items-center justify-between text-xs">
         {data.length ? (
-          <>
+          <div className="flex w-full items-center justify-between">
             <Input
-              className="h-8 w-40 text-xs sm:w-80"
+              className="h-8 w-2/5 max-w-sm text-xs"
               placeholder="Search"
               value={filterBy}
               onChange={(e) => setFilterBy(e.target.value)}
             />
-            <p className="text-center font-sans text-[0.7rem]">
+            <p className="p-2 text-center font-sans text-[0.7rem]">
               URLs:<span className="ml-1">{xData.length}</span>
             </p>
+
             <Select
               onValueChange={(value: any) => {
                 setSortBy(value)
               }}
             >
-              <SelectTrigger className="h-8 w-40 text-[0.65rem]">
+              <SelectTrigger className="h-8 w-36 text-[0.65rem]">
                 <SelectValue defaultValue={sortBy} placeholder="Sort By" />
               </SelectTrigger>
-              <SelectContent className="absolute -right-40 w-max">
+              <SelectContent className="w-36">
                 <SelectItem className="text-[0.7rem]" value="createdAt">
                   Created At
                 </SelectItem>
@@ -209,7 +210,7 @@ const Page = () => {
                 </SelectItem>
               </SelectContent>
             </Select>
-          </>
+          </div>
         ) : (
           <p className="w-full text-center text-xs">No Links Shortened</p>
         )}
