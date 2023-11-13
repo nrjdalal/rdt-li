@@ -134,8 +134,8 @@ const Page = () => {
     }
     if (sortBy === 'views') {
       return (
-        getGraphData(b.visits_v2).reduce((a: any, b: any) => a + b[1], 0) -
-        getGraphData(a.visits_v2).reduce((a: any, b: any) => a + b[1], 0)
+        getGraphData(b.visits).reduce((a: any, b: any) => a + b[1], 0) -
+        getGraphData(a.visits).reduce((a: any, b: any) => a + b[1], 0)
       )
     }
     if (sortBy === 'recentlyVisited') {
@@ -183,7 +183,9 @@ const Page = () => {
               value={filterBy}
               onChange={(e) => setFilterBy(e.target.value)}
             />
-            <p className="font-sans text-center text-[0.7rem]">URLs:<span className="ml-1">{xData.length}</span></p>
+            <p className="text-center font-sans text-[0.7rem]">
+              URLs:<span className="ml-1">{xData.length}</span>
+            </p>
             <Select
               onValueChange={(value: any) => {
                 setSortBy(value)
@@ -230,7 +232,7 @@ const Page = () => {
             id: string
             url: string
             title: any
-            visits_v2: any
+            visits: any
             lastVisit: any
             id_html: string
             url_html: string
@@ -243,12 +245,12 @@ const Page = () => {
               <div className="flex flex-col gap-1.5 font-mono text-xs">
                 <div className="flex items-center justify-end">
                   <div className="flex items-center gap-1 px-2">
-                    {shortUrl?.visits_v2?.length ? (
+                    {shortUrl?.visits?.length ? (
                       <>
                         <ArrowUp className="h-3 w-3 text-green-500" />
                         <p className="flex text-green-500">
-                          {smallDate() === shortUrl.visits_v2[0].split('x')[0]
-                            ? shortUrl.visits_v2[0].split('x')[1]
+                          {smallDate() === shortUrl.visits[0].split('x')[0]
+                            ? shortUrl.visits[0].split('x')[1]
                             : 0}
                         </p>
                       </>
@@ -257,8 +259,8 @@ const Page = () => {
                     )}
                     <Eye className="h-3 w-3 text-foreground" />
                     <p className="pt-px">
-                      {shortUrl?.visits_v2?.length
-                        ? getGraphData(shortUrl.visits_v2).reduce(
+                      {shortUrl?.visits?.length
+                        ? getGraphData(shortUrl.visits).reduce(
                             (a: any, b: any) => a + b[1],
                             0,
                           )
@@ -361,7 +363,7 @@ const Page = () => {
               </div>
 
               <Accordion
-                className={cn(shortUrl?.visits_v2?.length ? 'block' : 'hidden')}
+                className={cn(shortUrl?.visits?.length ? 'block' : 'hidden')}
                 type="single"
                 collapsible
               >
@@ -380,7 +382,7 @@ const Page = () => {
                   <AccordionContent>
                     <Bar
                       data={{
-                        labels: getGraphData(shortUrl.visits_v2)
+                        labels: getGraphData(shortUrl.visits)
                           .reverse()
                           .map((item: any) => {
                             return item[0]
@@ -393,7 +395,7 @@ const Page = () => {
                         datasets: [
                           {
                             label: 'Visits',
-                            data: getGraphData(shortUrl.visits_v2)
+                            data: getGraphData(shortUrl.visits)
                               .reverse()
                               .map((item: any) => item[1]),
                             backgroundColor: '#f43f5e',

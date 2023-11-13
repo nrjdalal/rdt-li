@@ -55,7 +55,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   const shortUrlData: any = await db
     .select({
       url: shortUrls.url,
-      visits: shortUrls.visits_v2,
+      visits: shortUrls.visits,
     })
     .from(shortUrls)
     .where(eq(shortUrls.id, slug))
@@ -76,7 +76,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         await db
           .update(shortUrls)
           .set({
-            visits_v2: newVisitData,
+            visits: newVisitData,
             lastVisit: new Date(),
           })
           .where(eq(shortUrls.id, slug))
