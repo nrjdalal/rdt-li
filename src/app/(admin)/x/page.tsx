@@ -210,7 +210,7 @@ export default function Page() {
                           {...field}
                         />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="h-4 text-[0.7rem]" />
                     </FormItem>
                   )}
                 />
