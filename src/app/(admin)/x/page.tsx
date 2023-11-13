@@ -195,11 +195,11 @@ export default function Page() {
               className="relative -mt-5 border-none"
               value="advance"
             >
-              <AccordionTrigger className="absolute -top-8 right-0 w-max font-sans text-xs text-blue-500">
+              <AccordionTrigger className="absolute -top-8 right-0 w-max font-sans text-xs text-blue-600">
                 Advance Settings
                 <span className="w-1" />
               </AccordionTrigger>
-              <AccordionContent className="-mb-4 mt-8 overflow-visible">
+              <AccordionContent className="-mb-4 overflow-visible data-[state=closed]:invisible data-[state=open]:mt-8">
                 <FormField
                   control={form.control}
                   name="title"
