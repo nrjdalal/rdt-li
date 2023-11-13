@@ -183,10 +183,9 @@ const Page = () => {
               value={filterBy}
               onChange={(e) => setFilterBy(e.target.value)}
             />
-            <p className="p-2 text-center font-sans text-[0.7rem]">
+            <p className="px-1 text-center font-sans text-[0.7rem]">
               URLs:<span className="ml-1">{xData.length}</span>
             </p>
-
             <Select
               onValueChange={(value: any) => {
                 setSortBy(value)
