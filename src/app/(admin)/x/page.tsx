@@ -96,11 +96,7 @@ export default function Page() {
       </Alert> */}
 
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-5"
-          autoComplete="off"
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} autoComplete="off">
           {/* 
             // ~ URL to shorten
           */}
@@ -191,15 +187,12 @@ export default function Page() {
             // ~ Advanced options
           */}
           <Accordion type="single" collapsible>
-            <AccordionItem
-              className="relative -mt-5 border-none"
-              value="advance"
-            >
-              <AccordionTrigger className="absolute -top-8 right-0 w-max font-sans text-xs text-blue-600">
+            <AccordionItem className="relative border-none" value="advance">
+              <AccordionTrigger className="right-0 -mt-8 flex w-full justify-end font-sans text-xs text-blue-600">
                 Advance Settings
                 <span className="w-1" />
               </AccordionTrigger>
-              <AccordionContent className="-mb-4 overflow-visible data-[state=closed]:invisible data-[state=open]:mt-8">
+              <AccordionContent className="overflow-visible pb-1 pt-4 data-[state=closed]:invisible">
                 <FormField
                   control={form.control}
                   name="title"
