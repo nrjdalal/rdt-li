@@ -197,7 +197,7 @@ export default function Page() {
                 </div>
                 <FormControl>
                   <Input
-                    className="font-mono placeholder:text-slate-400"
+                    className="font-mono text-xs placeholder:text-slate-400"
                     placeholder="https://github.com/nrjdalal"
                     {...field}
                   />
@@ -231,7 +231,7 @@ export default function Page() {
                       <FormItem>
                         <FormControl>
                           <div className="relative">
-                            <FormLabel className="absolute -top-3 left-5 rounded-md bg-background px-3 pt-[3px] text-xs text-foreground/50">
+                            <FormLabel className="absolute -top-3 left-5 rounded-md bg-background px-2.5 text-[0.7rem] text-foreground/50">
                               Title
                             </FormLabel>
                             <Input
@@ -255,7 +255,7 @@ export default function Page() {
                       <FormItem>
                         <FormControl>
                           <div className="relative">
-                            <FormLabel className="absolute -top-3 left-5 rounded-md bg-background px-3 pt-[3px] text-xs text-foreground/50">
+                            <FormLabel className="absolute -top-3 left-5 rounded-md bg-background px-2.5 text-[0.7rem] text-foreground/50">
                               Short URL
                             </FormLabel>
                             <p className="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-foreground/40">
@@ -290,17 +290,17 @@ export default function Page() {
                         <FormItem>
                           <FormControl>
                             <div className="relative">
-                              <FormLabel className="absolute -top-3 left-5 rounded-md bg-background px-3 pt-[3px] text-xs text-foreground/50">
-                                Enabled
+                              <FormLabel className="absolute -top-3 left-5 rounded-md bg-background px-2.5 text-[0.7rem] text-foreground/50">
+                                Active
                               </FormLabel>
                               <Select
                                 onValueChange={field.onChange}
                                 defaultValue={field.value}
                               >
-                                <SelectTrigger className="w-28 pl-4 text-xs">
+                                <SelectTrigger className="w-[5.75rem] text-xs">
                                   <SelectValue placeholder="Yes" />
                                 </SelectTrigger>
-                                <SelectContent>
+                                <SelectContent className="min-w-0">
                                   <SelectItem className="text-xs" value="true">
                                     Yes
                                   </SelectItem>
@@ -325,11 +325,11 @@ export default function Page() {
                         <FormItem>
                           <FormControl>
                             <div className="relative">
-                              <FormLabel className="absolute -top-3 left-5 rounded-md bg-background px-3 pt-[3px] text-xs text-foreground/50">
+                              <FormLabel className="absolute -top-3 left-5 rounded-md bg-background px-2.5 text-[0.7rem] text-foreground/50">
                                 Clicks
                               </FormLabel>
                               <Input
-                                className="w-[6.75rem] text-center text-xs placeholder:text-foreground/30"
+                                className="w-[5.75rem] text-center text-xs placeholder:text-foreground/30"
                                 placeholder="Unlimited"
                                 {...field}
                               />
@@ -349,7 +349,7 @@ export default function Page() {
                         <FormItem className="w-full">
                           <FormControl>
                             <div className="relative">
-                              <FormLabel className="absolute -top-3 left-5 rounded-md bg-background px-3 pt-[3px] text-xs text-foreground/50">
+                              <FormLabel className="absolute -top-3 left-5 rounded-md bg-background px-2.5 text-[0.7rem] text-foreground/50">
                                 Password
                               </FormLabel>
                               <Input
