@@ -34,25 +34,45 @@ export const getShortUrls = async () => {
 // }
 
 export const createShortUrl = async ({
+  id,
   url,
   title,
 }: {
+  id: string
   url: string
   title: string
 }) => {
   const session = await getServerSession(authOptions)
   if (!session) throw new Error('Session not found')
 
-  const shortUrlData = await db.insert(shortUrls).values({
-    userId: session.user.id,
-    id: nanoid(6),
-    url,
-    title: title || null,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  })
+  try {
+    const shortUrlData = await db.insert(shortUrls).values({
+      userId: session.user.id,
+      id: sanitize(id) || nanoid(6),
+      url,
+      title: title || null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    })
 
-  return shortUrlData // []
+    return shortUrlData // []
+  } catch (error: any) {
+    if (error?.code === '23505') {
+      return {
+        error: {
+          code: '23505',
+          message: 'Short URL already exists',
+        },
+      }
+    } else {
+      return {
+        error: {
+          code: '500',
+          message: error.message,
+        },
+      }
+    }
+  }
 }
 
 export const updateShortUrl = async ({
