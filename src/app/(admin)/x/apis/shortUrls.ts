@@ -33,7 +33,13 @@ export const getShortUrls = async () => {
 //   return shortUrlData
 // }
 
-export const createShortUrl = async ({ url }: { url: string }) => {
+export const createShortUrl = async ({
+  url,
+  title,
+}: {
+  url: string
+  title: string
+}) => {
   const session = await getServerSession(authOptions)
   if (!session) throw new Error('Session not found')
 
@@ -41,6 +47,7 @@ export const createShortUrl = async ({ url }: { url: string }) => {
     userId: session.user.id,
     id: nanoid(6),
     url,
+    title: title || null,
     createdAt: new Date(),
     updatedAt: new Date(),
   })

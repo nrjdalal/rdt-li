@@ -1,5 +1,11 @@
 'use client'
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
@@ -44,6 +50,7 @@ import ShowUrl from './shortUrls'
 
 const formSchema = z.object({
   url: z.string().max(2048).url(),
+  title: z.string().max(128),
 })
 
 export default function Page() {
@@ -54,6 +61,7 @@ export default function Page() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       url: '',
+      title: '',
     },
   })
 
@@ -73,6 +81,8 @@ export default function Page() {
     await mutation.mutateAsync(values)
   }
 
+  // const domain: any = process.env.NEXT_PUBLIC_APP_URL?.split('://')[1] + '/'
+
   return (
     <div className="container flex min-h-[100dvh] max-w-3xl flex-col p-5 font-mono">
       {/* <Alert className="mb-5" variant="default">
@@ -91,6 +101,9 @@ export default function Page() {
           className="space-y-5"
           autoComplete="off"
         >
+          {/* 
+            // ~ URL to shorten
+          */}
           <FormField
             control={form.control}
             name="url"
@@ -166,13 +179,51 @@ export default function Page() {
                     {...field}
                   />
                 </FormControl>
+                <FormMessage />
                 <FormDescription className="text-xs">
                   Enter a valid https URL
                 </FormDescription>
-                <FormMessage />
               </FormItem>
             )}
           />
+
+          {/* 
+            // ~ Advanced options
+          */}
+          <Accordion type="single" collapsible>
+            <AccordionItem
+              className="relative -mt-5 border-none"
+              value="advance"
+            >
+              <AccordionTrigger className="absolute -top-8 right-0 w-max font-sans text-xs text-blue-500">
+                Advance Settings
+                <span className="w-1" />
+              </AccordionTrigger>
+              <AccordionContent className="-mb-4 mt-8 overflow-visible">
+                <FormField
+                  control={form.control}
+                  name="title"
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className="relative">
+                        <FormLabel className="absolute -top-3 left-5 rounded-md bg-background px-3 pt-[3px] text-xs text-foreground/50">
+                          Title
+                        </FormLabel>
+                      </div>
+                      <FormControl>
+                        <Input
+                          className="placeholder:text-foreground/30"
+                          placeholder="e.g. My Github Profile"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
 
           <Button className="w-full font-medium" type="submit">
             Shorten

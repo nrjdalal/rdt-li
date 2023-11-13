@@ -1,5 +1,6 @@
 import type { AdapterAccount } from '@auth/core/adapters'
 import {
+  boolean,
   integer,
   json,
   pgTable,
@@ -63,10 +64,18 @@ export const shortUrls = pgTable('shortUrls', {
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
   id: text('id').notNull().primaryKey(),
-  title: text('title'),
   url: text('url').notNull(),
+  title: text('title'),
+
+  enabled: boolean('enabled').default(true),
+  password: text('password'),
+  clickLimit: integer('clickLimit'),
   visits: json('visits').$type<string[]>(),
+
   lastVisit: timestamp('lastVisit', { mode: 'date' }),
+  validFrom: timestamp('validFrom', { mode: 'date' }),
+  expiresAt: timestamp('expiresAt', { mode: 'date' }),
+
   createdAt: timestamp('createdAt', { mode: 'date' }).notNull(),
   updatedAt: timestamp('updatedAt', { mode: 'date' }).notNull(),
 })
