@@ -326,10 +326,10 @@ export default function Page() {
                           <FormControl>
                             <div className="relative">
                               <FormLabel className="absolute -top-3 left-5 rounded-md bg-background px-3 pt-[3px] text-xs text-foreground/50">
-                                Click Limit
+                                Clicks
                               </FormLabel>
                               <Input
-                                className="w-36 text-center text-xs placeholder:text-foreground/30"
+                                className="w-[6.75rem] text-center text-xs placeholder:text-foreground/30"
                                 placeholder="Unlimited"
                                 {...field}
                               />
