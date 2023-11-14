@@ -308,30 +308,28 @@ export default function Page() {
                     {/* 
                       // ~ Password
                     */}
-                    {process.env.NODE_ENV === 'development' && (
-                      <FormField
-                        control={form.control}
-                        name="password"
-                        render={({ field }) => (
-                          <FormItem className="w-full">
-                            <FormControl>
-                              <div className="relative">
-                                <FormLabel className="absolute -top-3 left-3 rounded-md bg-background px-2.5 text-[0.7rem] text-foreground/50">
-                                  Password
-                                </FormLabel>
-                                <Input
-                                  className="text-center text-xs placeholder:text-foreground/30"
-                                  placeholder="No Password"
-                                  type="password"
-                                  {...field}
-                                />
-                                <FormMessage className="h-4 text-[0.7rem]" />
-                              </div>
-                            </FormControl>
-                          </FormItem>
-                        )}
-                      />
-                    )}
+                    <FormField
+                      control={form.control}
+                      name="password"
+                      render={({ field }) => (
+                        <FormItem className="w-full opacity-60">
+                          <FormControl>
+                            <div className="relative">
+                              <FormLabel className="absolute -top-3 left-3 rounded-md bg-background px-2.5 text-[0.7rem] text-foreground/50">
+                                Password
+                              </FormLabel>
+                              <Input
+                                className="cursor-not-allowed text-center text-xs placeholder:text-foreground/30 "
+                                placeholder="No Password"
+                                type="password"
+                                {...field}
+                              />
+                              <FormMessage className="h-4 text-[0.7rem]" />
+                            </div>
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    />
                   </div>
                   {/* 
                     // ~ Short ID
