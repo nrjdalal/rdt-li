@@ -5,6 +5,7 @@ import { eq } from 'drizzle-orm'
 import { headers } from 'next/headers'
 import Link from 'next/link'
 import { permanentRedirect } from 'next/navigation'
+import retry from 'p-retry'
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const slug = params.slug[0]
@@ -41,26 +42,46 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     console.log('Umami error!')
   }
 
+  // ~ public short urls
   if (slug.startsWith('_')) {
-    const redirectLink: any = await db
-      .select({
-        url: publicShortUrls.url,
-      })
-      .from(publicShortUrls)
-      .where(eq(publicShortUrls.id, slug))
+    const redirectLink: any = await retry(
+      async () =>
+        await db
+          .select({
+            url: publicShortUrls.url,
+          })
+          .from(publicShortUrls)
+          .where(eq(publicShortUrls.id, slug)),
+      {
+        retries: 3,
+        onFailedAttempt: (error) => {
+          console.log('Retrying redirectLink', error)
+        },
+      },
+    )
 
     redirectLink.length && permanentRedirect(redirectLink[0].url)
   }
 
-  const shortUrlData: any = await db
-    .select({
-      url: shortUrls.url,
-      visits: shortUrls.visits,
-      enabled: shortUrls.enabled,
-      clickLimit: shortUrls.clickLimit,
-    })
-    .from(shortUrls)
-    .where(eq(shortUrls.id, slug))
+  // ~ private short urls
+  const shortUrlData: any = await retry(
+    async () =>
+      await db
+        .select({
+          url: shortUrls.url,
+          visits: shortUrls.visits,
+          enabled: shortUrls.enabled,
+          clickLimit: shortUrls.clickLimit,
+        })
+        .from(shortUrls)
+        .where(eq(shortUrls.id, slug)),
+    {
+      retries: 3,
+      onFailedAttempt: (error) => {
+        console.log('Retrying shortUrlData', error)
+      },
+    },
+  )
 
   if (shortUrlData.length) {
     const data = {

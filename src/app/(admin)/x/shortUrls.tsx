@@ -192,8 +192,8 @@ const Page = () => {
                 setSortBy(value)
               }}
             >
-              <SelectTrigger className="h-8 w-36 text-[0.65rem]">
-                <SelectValue defaultValue={sortBy} placeholder="Sort By" />
+              <SelectTrigger className="h-8 w-36 text-[0.6rem]">
+                <SelectValue defaultValue={sortBy} placeholder="Created At" />
               </SelectTrigger>
               <SelectContent className="w-36">
                 <SelectItem className="text-[0.7rem]" value="createdAt">

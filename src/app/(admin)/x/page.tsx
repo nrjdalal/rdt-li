@@ -261,7 +261,7 @@ export default function Page() {
                               </FormLabel>
                               <Select
                                 onValueChange={field.onChange}
-                                defaultValue={field.value}
+                                value={field.value}
                               >
                                 <SelectTrigger className="w-[5.5rem] text-xs">
                                   <SelectValue placeholder="Yes" />
