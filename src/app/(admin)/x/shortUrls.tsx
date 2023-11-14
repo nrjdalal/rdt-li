@@ -47,6 +47,7 @@ import {
   ArrowUp,
   BarChart,
   Copy,
+  Droplet,
   Eye,
   Loader2,
   Pencil,
@@ -234,6 +235,9 @@ const Page = () => {
             title: any
             visits: any
             lastVisit: any
+            enabled: boolean
+            clickLimit: number
+            password: string
             id_html: string
             url_html: string
             title_html: string
@@ -344,6 +348,17 @@ const Page = () => {
                         </MenubarContent>
                       </MenubarMenu>
                     </Menubar>
+                  </div>
+
+                  <div>
+                    {shortUrl?.enabled ? (
+                      <div className="ml-2 flex gap-x-0.5 text-[0.65rem]">
+                        <p className="">{shortUrl?.clickLimit}</p>
+                        <Droplet className="h-4 w-4 text-green-600" />
+                      </div>
+                    ) : (
+                      <Droplet className="ml-2 h-4 w-4 text-red-600" />
+                    )}
                   </div>
                 </div>
                 {shortUrl.title && (

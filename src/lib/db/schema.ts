@@ -68,8 +68,8 @@ export const shortUrls = pgTable('shortUrls', {
   title: text('title'),
 
   enabled: boolean('enabled').default(true),
-  password: text('password'),
   clickLimit: integer('clickLimit'),
+  password: text('password'),
   visits: json('visits').$type<string[]>(),
 
   lastVisit: timestamp('lastVisit', { mode: 'date' }),
