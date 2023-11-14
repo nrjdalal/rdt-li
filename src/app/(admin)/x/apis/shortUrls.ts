@@ -63,6 +63,15 @@ export const createShortUrl = async ({
     updatedAt: new Date(),
   }
 
+  if (data.id.startsWith('_')) {
+    return {
+      error: {
+        code: '400',
+        message: 'Short URL cannot start with an underscore',
+      },
+    }
+  }
+
   try {
     const shortUrlData = await db.insert(shortUrls).values(data)
     return shortUrlData // []
