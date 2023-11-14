@@ -151,6 +151,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           ]
         : [date + 'x1', ...visits]
 
+      console.log('Reaching upto here!')
+
       db.transaction(async () => {
         await db
           .update(shortUrls)
