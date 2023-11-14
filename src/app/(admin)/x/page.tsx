@@ -245,40 +245,6 @@ export default function Page() {
                       </FormItem>
                     )}
                   />
-                  {/* 
-                    // ~ Short ID
-                  */}
-                  <FormField
-                    control={form.control}
-                    name="id"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <div className="relative">
-                            <FormLabel className="absolute -top-3 left-3 rounded-md bg-background px-2.5 text-[0.7rem] text-foreground/50">
-                              Short URL
-                            </FormLabel>
-                            <p className="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-foreground/40">
-                              {domain}
-                            </p>
-                            <Input
-                              className="text-xs placeholder:text-foreground/30"
-                              placeholder="nrjdalal"
-                              style={{
-                                paddingLeft: `${
-                                  1 +
-                                  domain?.length * 0.45 +
-                                  (domain?.length - 1) * 0.01
-                                }rem`,
-                              }}
-                              {...field}
-                            />
-                            <FormMessage className="h-4 text-[0.7rem]" />
-                          </div>
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
                   <div className="flex gap-x-2.5 sm:gap-x-3">
                     {/* 
                       // ~ Enabled
@@ -367,6 +333,40 @@ export default function Page() {
                       />
                     )}
                   </div>
+                  {/* 
+                    // ~ Short ID
+                  */}
+                  <FormField
+                    control={form.control}
+                    name="id"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <div className="relative">
+                            <FormLabel className="absolute -top-3 left-3 rounded-md bg-background px-2.5 text-[0.7rem] text-foreground/50">
+                              Short URL
+                            </FormLabel>
+                            <p className="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-foreground/40">
+                              {domain}
+                            </p>
+                            <Input
+                              className="text-xs placeholder:text-foreground/30"
+                              placeholder="nrjdalal"
+                              style={{
+                                paddingLeft: `${
+                                  1 +
+                                  domain?.length * 0.45 +
+                                  (domain?.length - 1) * 0.01
+                                }rem`,
+                              }}
+                              {...field}
+                            />
+                            <FormMessage className="h-4 text-[0.7rem]" />
+                          </div>
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
                 </div>
               </AccordionContent>
             </AccordionItem>

@@ -350,14 +350,12 @@ const Page = () => {
                     </Menubar>
                   </div>
 
-                  <div>
+                  <div className="ml-2 flex items-center gap-x-1 text-[0.65rem]">
+                    <p className="pt-[0.065rem]">{shortUrl?.clickLimit}</p>
                     {shortUrl?.enabled ? (
-                      <div className="ml-2 flex gap-x-0.5 text-[0.65rem]">
-                        <p className="">{shortUrl?.clickLimit}</p>
-                        <Droplet className="h-4 w-4 text-green-600" />
-                      </div>
+                      <div className="h-2 w-2 rounded-full bg-green-600" />
                     ) : (
-                      <Droplet className="ml-2 h-4 w-4 text-red-600" />
+                      <div className="h-2 w-2 rounded-full bg-red-600" />
                     )}
                   </div>
                 </div>
