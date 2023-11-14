@@ -37,24 +37,43 @@ export const createShortUrl = async ({
   id,
   url,
   title,
+  enabled,
+  clickLimit,
+  password,
 }: {
   id: string
   url: string
   title: string
+  enabled: string
+  clickLimit: string
+  password: string
 }) => {
   const session = await getServerSession(authOptions)
   if (!session) throw new Error('Session not found')
 
-  try {
-    const shortUrlData = await db.insert(shortUrls).values({
-      userId: session.user.id,
-      id: sanitize(id) || nanoid(6),
-      url,
-      title: title || null,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    })
+  const data = {
+    userId: session.user.id,
+    id: sanitize(id) || nanoid(6),
+    url,
+    title: title || null,
+    enabled: enabled === 'true' ? true : enabled === 'false' ? false : null,
+    clickLimit: Number(clickLimit) || null,
+    password: password || null,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  }
 
+  if (data.id.startsWith('_')) {
+    return {
+      error: {
+        code: '400',
+        message: 'Short URL cannot start with an underscore',
+      },
+    }
+  }
+
+  try {
+    const shortUrlData = await db.insert(shortUrls).values(data)
     return shortUrlData // []
   } catch (error: any) {
     if (error?.code === '23505') {

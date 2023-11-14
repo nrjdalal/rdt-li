@@ -56,14 +56,72 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     .select({
       url: shortUrls.url,
       visits: shortUrls.visits,
+      enabled: shortUrls.enabled,
+      clickLimit: shortUrls.clickLimit,
     })
     .from(shortUrls)
     .where(eq(shortUrls.id, slug))
 
   if (shortUrlData.length) {
+    const data = {
+      url: shortUrlData[0].url,
+      visits: shortUrlData[0].visits,
+      enabled: shortUrlData[0].enabled,
+      clickLimit: shortUrlData[0].clickLimit,
+    }
+
+    if (data.clickLimit === 0) {
+      return (
+        <div className="flex h-[100dvh] flex-col items-center justify-center gap-4">
+          <p className="text-sm text-foreground/50">
+            {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}/{slug} has
+            reached the click limit
+          </p>
+
+          <p className="text-sm">
+            Create short URLs at{' '}
+            <Link
+              className="animate-pulse text-sm font-bold text-orange-500 underline"
+              href="/"
+            >
+              {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}
+            </Link>
+          </p>
+        </div>
+      )
+    }
+
+    if (!data.enabled) {
+      return (
+        <div className="flex h-[100dvh] flex-col items-center justify-center gap-4">
+          <p className="text-sm text-foreground/50">
+            {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}/{slug} is not
+            active
+          </p>
+
+          <p className="text-sm">
+            Create short URLs at{' '}
+            <Link
+              className="animate-pulse text-sm font-bold text-orange-500 underline"
+              href="/"
+            >
+              {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}
+            </Link>
+          </p>
+        </div>
+      )
+    }
+
+    if (data.enabled && typeof data.clickLimit === 'number') {
+      data.clickLimit -= 1
+      if (data.clickLimit === 0) {
+        data.enabled = false
+      }
+    }
+
     try {
       const date = smallDate()
-      const visits = shortUrlData[0].visits || []
+      const visits = data.visits || []
 
       const newVisitData = visits[0]?.startsWith(date)
         ? [
@@ -78,6 +136,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           .set({
             visits: newVisitData,
             lastVisit: new Date(),
+            enabled: data.enabled,
+            clickLimit: data.clickLimit,
           })
           .where(eq(shortUrls.id, slug))
       })
@@ -85,7 +145,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       console.log('Error updating visits')
     }
 
-    permanentRedirect(shortUrlData[0].url)
+    permanentRedirect(data.url)
   }
 
   return (

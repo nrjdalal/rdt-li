@@ -36,6 +36,13 @@ import {
   MenubarShortcut,
   MenubarTrigger,
 } from '@/components/ui/menubar'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Home, Laptop, Moon, Star, Sun } from 'lucide-react'
@@ -53,6 +60,9 @@ const formSchema = z.object({
   id: z.string().max(128),
   url: z.string().max(2048).url(),
   title: z.string().max(128),
+  enabled: z.string(),
+  clickLimit: z.string(),
+  password: z.string().max(128),
 })
 
 export default function Page() {
@@ -65,6 +75,9 @@ export default function Page() {
       id: '',
       url: '',
       title: '',
+      enabled: 'true',
+      clickLimit: '',
+      password: '',
     },
   })
 
@@ -90,6 +103,8 @@ export default function Page() {
   })
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log(values)
+
     await mutation.mutateAsync(values)
   }
 
@@ -182,7 +197,7 @@ export default function Page() {
                 </div>
                 <FormControl>
                   <Input
-                    className="font-mono placeholder:text-slate-400"
+                    className="font-mono text-xs placeholder:text-slate-400"
                     placeholder="https://github.com/nrjdalal"
                     {...field}
                   />
@@ -216,7 +231,7 @@ export default function Page() {
                       <FormItem>
                         <FormControl>
                           <div className="relative">
-                            <FormLabel className="absolute -top-3 left-5 rounded-md bg-background px-3 pt-[3px] text-xs text-foreground/50">
+                            <FormLabel className="absolute -top-3 left-3 rounded-md bg-background px-2.5 text-[0.7rem] text-foreground/50">
                               Title
                             </FormLabel>
                             <Input
@@ -230,9 +245,97 @@ export default function Page() {
                       </FormItem>
                     )}
                   />
+                  <div className="flex gap-x-2.5 sm:gap-x-3">
+                    {/* 
+                      // ~ Enabled
+                    */}
+                    <FormField
+                      control={form.control}
+                      name="enabled"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <div className="relative">
+                              <FormLabel className="absolute -top-3 left-3 rounded-md bg-background px-2.5 text-[0.7rem] text-foreground/50">
+                                Active
+                              </FormLabel>
+                              <Select
+                                onValueChange={field.onChange}
+                                defaultValue={field.value}
+                              >
+                                <SelectTrigger className="w-[5.5rem] text-xs">
+                                  <SelectValue placeholder="Yes" />
+                                </SelectTrigger>
+                                <SelectContent className="min-w-0">
+                                  <SelectItem className="text-xs" value="true">
+                                    Yes
+                                  </SelectItem>
+                                  <SelectItem className="text-xs" value="false">
+                                    No
+                                  </SelectItem>
+                                </SelectContent>
+                              </Select>
+                              <FormMessage className="h-4 text-[0.7rem]" />
+                            </div>
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    />
+                    {/* 
+                      // ~ Click Limit
+                    */}
+                    <FormField
+                      control={form.control}
+                      name="clickLimit"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <div className="relative">
+                              <FormLabel className="absolute -top-3 left-3 rounded-md bg-background px-2.5 text-[0.7rem] text-foreground/50">
+                                Clicks
+                              </FormLabel>
+                              <Input
+                                className="w-[5.5rem] text-center text-xs placeholder:text-foreground/30"
+                                placeholder="Infinite"
+                                {...field}
+                              />
+                              <FormMessage className="h-4 text-[0.7rem]" />
+                            </div>
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    />
+                    {/* 
+                      // ~ Password
+                    */}
+                    {process.env.NODE_ENV === 'development' && (
+                      <FormField
+                        control={form.control}
+                        name="password"
+                        render={({ field }) => (
+                          <FormItem className="w-full">
+                            <FormControl>
+                              <div className="relative">
+                                <FormLabel className="absolute -top-3 left-3 rounded-md bg-background px-2.5 text-[0.7rem] text-foreground/50">
+                                  Password
+                                </FormLabel>
+                                <Input
+                                  className="text-center text-xs placeholder:text-foreground/30"
+                                  placeholder="No Password"
+                                  type="password"
+                                  {...field}
+                                />
+                                <FormMessage className="h-4 text-[0.7rem]" />
+                              </div>
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                    )}
+                  </div>
                   {/* 
-                  // ~ Short ID
-                */}
+                    // ~ Short ID
+                  */}
                   <FormField
                     control={form.control}
                     name="id"
@@ -240,7 +343,7 @@ export default function Page() {
                       <FormItem>
                         <FormControl>
                           <div className="relative">
-                            <FormLabel className="absolute -top-3 left-5 rounded-md bg-background px-3 pt-[3px] text-xs text-foreground/50">
+                            <FormLabel className="absolute -top-3 left-3 rounded-md bg-background px-2.5 text-[0.7rem] text-foreground/50">
                               Short URL
                             </FormLabel>
                             <p className="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-foreground/40">

@@ -47,6 +47,7 @@ import {
   ArrowUp,
   BarChart,
   Copy,
+  Droplet,
   Eye,
   Loader2,
   Pencil,
@@ -176,14 +177,14 @@ const Page = () => {
     <>
       <div className="mb-4 mt-24 flex h-8 items-center justify-between text-xs">
         {data.length ? (
-          <>
+          <div className="flex w-full items-center justify-between">
             <Input
-              className="h-8 w-40 text-xs sm:w-80"
+              className="h-8 w-2/5 max-w-sm text-xs"
               placeholder="Search"
               value={filterBy}
               onChange={(e) => setFilterBy(e.target.value)}
             />
-            <p className="text-center font-sans text-[0.7rem]">
+            <p className="px-1 text-center font-sans text-[0.7rem]">
               URLs:<span className="ml-1">{xData.length}</span>
             </p>
             <Select
@@ -191,10 +192,10 @@ const Page = () => {
                 setSortBy(value)
               }}
             >
-              <SelectTrigger className="h-8 w-40 text-[0.65rem]">
+              <SelectTrigger className="h-8 w-36 text-[0.65rem]">
                 <SelectValue defaultValue={sortBy} placeholder="Sort By" />
               </SelectTrigger>
-              <SelectContent className="absolute -right-40 w-max">
+              <SelectContent className="w-36">
                 <SelectItem className="text-[0.7rem]" value="createdAt">
                   Created At
                 </SelectItem>
@@ -209,7 +210,7 @@ const Page = () => {
                 </SelectItem>
               </SelectContent>
             </Select>
-          </>
+          </div>
         ) : (
           <p className="w-full text-center text-xs">No Links Shortened</p>
         )}
@@ -234,6 +235,9 @@ const Page = () => {
             title: any
             visits: any
             lastVisit: any
+            enabled: boolean
+            clickLimit: number
+            password: string
             id_html: string
             url_html: string
             title_html: string
@@ -344,6 +348,15 @@ const Page = () => {
                         </MenubarContent>
                       </MenubarMenu>
                     </Menubar>
+                  </div>
+
+                  <div className="ml-2 flex items-center gap-x-1 text-[0.65rem]">
+                    <p className="pt-[0.065rem]">{shortUrl?.clickLimit}</p>
+                    {shortUrl?.enabled ? (
+                      <div className="h-2 w-2 rounded-full bg-green-600" />
+                    ) : (
+                      <div className="h-2 w-2 rounded-full bg-red-600" />
+                    )}
                   </div>
                 </div>
                 {shortUrl.title && (
