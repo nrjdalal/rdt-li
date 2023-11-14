@@ -70,12 +70,12 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       clickLimit: shortUrlData[0].clickLimit,
     }
 
-    if (!data.enabled) {
+    if (data.clickLimit === 0) {
       return (
         <div className="flex h-[100dvh] flex-col items-center justify-center gap-4">
           <p className="text-sm text-foreground/50">
-            {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}/{slug} is not
-            active
+            {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}/{slug} has
+            reached the click limit
           </p>
 
           <p className="text-sm">
@@ -91,12 +91,12 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       )
     }
 
-    if (data.clickLimit === 0) {
+    if (!data.enabled) {
       return (
         <div className="flex h-[100dvh] flex-col items-center justify-center gap-4">
           <p className="text-sm text-foreground/50">
-            {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}/{slug} has
-            reached the click limit
+            {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}/{slug} is not
+            active
           </p>
 
           <p className="text-sm">
