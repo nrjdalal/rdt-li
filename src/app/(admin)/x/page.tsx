@@ -320,9 +320,10 @@ export default function Page() {
                               </FormLabel>
                               <Input
                                 className="cursor-not-allowed text-center text-xs placeholder:text-foreground/30 "
-                                placeholder="Upcoming"
+                                placeholder="No Password"
                                 type="password"
                                 {...field}
+                                disabled
                               />
                               <FormMessage className="h-4 text-[0.7rem]" />
                             </div>
