@@ -395,9 +395,10 @@ const Page = () => {
                           Last visited:{' '}
                           {shortUrl?.lastVisit
                             .toISOString()
-                            .replace('T', ' ')
+                            .replaceAll('-', '/')
+                            .replace('T', ', ')
                             .replace('Z', '')
-                            .slice(0, -7)}
+                            .slice(0, -4)}
                         </span>
                       )}
                     </p>
