@@ -393,7 +393,7 @@ const Page = () => {
                             .toISOString()
                             .replace('T', ' ')
                             .replace('Z', '')
-                            .slice(0, -6)}
+                            .slice(0, -7)}
                         </span>
                       )}
                     </p>
