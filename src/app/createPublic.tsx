@@ -20,7 +20,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ArrowDown, Clipboard, Copy } from 'lucide-react'
+import { Copy } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -45,6 +45,16 @@ export default function Page() {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const res: any = await createPublicShortUrl(values)
+
+    if (res?.error) {
+      if (res?.error.code === 406) {
+        toast.error(res?.error.message)
+      } else {
+        toast.error("Couldn't create short URL!")
+      }
+      return
+    }
+
     setLastShortUrl(res[0]?.id)
     setShowPublic(true)
     form.reset()
