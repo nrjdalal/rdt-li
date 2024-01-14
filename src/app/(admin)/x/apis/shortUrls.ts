@@ -5,7 +5,7 @@ import { db } from '@/lib/db'
 import { shortUrls } from '@/lib/db/schema'
 import { nanoid, sanitize } from '@/lib/utils'
 import { blocked } from '@/url-center/blocked'
-import { eq } from 'drizzle-orm'
+import { eq, like } from 'drizzle-orm'
 import { getServerSession } from 'next-auth'
 
 export const getShortUrls = async () => {
@@ -36,7 +36,13 @@ export const createShortUrl = async ({
   password: string
 }) => {
   for (const blockedUrl of blocked) {
-    if (url.includes(blockedUrl)) {
+    if (new URL(url).host.includes(blockedUrl)) {
+      try {
+        await db.delete(shortUrls).where(like(shortUrls.url, `%${blockedUrl}%`))
+      } catch {
+        console.log('Error deleting old publicShortUrls')
+      }
+
       return {
         error: {
           code: 406,

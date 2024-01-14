@@ -8,7 +8,7 @@ import { like, lt, sql } from 'drizzle-orm'
 
 export const createPublicShortUrl = async ({ url }: { url: string }) => {
   for (const blockedUrl of blocked) {
-    if (url.includes(blockedUrl)) {
+    if (new URL(url).host.includes(blockedUrl)) {
       try {
         await db
           .delete(publicShortUrls)
