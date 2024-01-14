@@ -29,7 +29,7 @@ export const createPublicShortUrl = async ({ url }: { url: string }) => {
   try {
     await db
       .delete(publicShortUrls)
-      .where(lt(publicShortUrls.createdAt, sql`NOW() - INTERVAL '2 days'`))
+      .where(lt(publicShortUrls.createdAt, sql`NOW() - INTERVAL '25 hours'`))
   } catch {
     console.log('Error deleting old publicShortUrls')
   }
