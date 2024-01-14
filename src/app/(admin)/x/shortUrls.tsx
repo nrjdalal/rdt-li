@@ -65,7 +65,6 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip)
 
 const Page = () => {
   const queryClient = useQueryClient()
-  const today = new Date().toLocaleString().split(',')[0].split('/')
 
   const { isPending, isError, data } = useQuery({
     queryKey: ['shortUrls'],
@@ -239,6 +238,7 @@ const Page = () => {
             enabled: boolean
             clickLimit: number
             password: string
+            timeOffset: number
             id_html: string
             url_html: string
             title_html: string
@@ -254,8 +254,12 @@ const Page = () => {
                       <>
                         <ArrowUp className="h-3 w-3 text-green-500" />
                         <p className="flex text-green-500">
-                          {today[2].slice(2) + today[1] + today[0] ===
-                          shortUrl.visits[0].split('x')[0]
+                          {smallDate(
+                            new Date(
+                              new Date(new Date().toISOString()).getTime() +
+                                shortUrl.timeOffset * -60 * 1000,
+                            ),
+                          ) === shortUrl.visits[0].split('x')[0]
                             ? shortUrl.visits[0].split('x')[1]
                             : 0}
                         </p>
