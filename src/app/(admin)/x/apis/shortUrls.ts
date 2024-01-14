@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { shortUrls } from '@/lib/db/schema'
 import { nanoid, sanitize } from '@/lib/utils'
+import { blocked } from '@/url-center/blocked'
 import { eq } from 'drizzle-orm'
 import { getServerSession } from 'next-auth'
 
@@ -18,20 +19,6 @@ export const getShortUrls = async () => {
 
   return shortUrlsData
 }
-
-// ~ unused for now
-
-// export const getShortUrl = async ({ id }: { id: string }) => {
-//   const session = await getServerSession(authOptions)
-//   if (!session) throw new Error('Session not found')
-
-//   const shortUrlData = await db
-//     .select()
-//     .from(shortUrls)
-//     .where(eq(shortUrls.id, id))
-
-//   return shortUrlData
-// }
 
 export const createShortUrl = async ({
   id,
@@ -48,6 +35,17 @@ export const createShortUrl = async ({
   clickLimit: string
   password: string
 }) => {
+  for (const blockedUrl of blocked) {
+    if (url.includes(blockedUrl)) {
+      return {
+        error: {
+          code: 406,
+          message: 'URL not acceptable or is blocked',
+        },
+      }
+    }
+  }
+
   const session = await getServerSession(authOptions)
   if (!session) throw new Error('Session not found')
 
