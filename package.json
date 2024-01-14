@@ -1,6 +1,6 @@
 {
-  "name": "onset",
-  "description": "The only Next.js template you'll ever need.",
+  "name": "rdt-li",
+  "description": "Redirect.Link",
   "version": "2.0.0",
   "private": true,
   "scripts": {
@@ -31,7 +31,7 @@
     "chart.js": "^4.4.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "drizzle-orm": "^0.28.6",
+    "drizzle-orm": "^0.29.3",
     "lucide-react": "^0.292.0",
     "nanoid": "^5.0.2",
     "next": "latest",
@@ -55,7 +55,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
-    "drizzle-kit": "^0.19.13",
+    "drizzle-kit": "^0.20.12",
     "eslint": "^8",
     "eslint-config-next": "14.0.1",
     "postcss": "^8",

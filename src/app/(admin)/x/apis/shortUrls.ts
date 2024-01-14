@@ -5,7 +5,7 @@ import { db } from '@/lib/db'
 import { shortUrls } from '@/lib/db/schema'
 import { nanoid, sanitize } from '@/lib/utils'
 import { blocked } from '@/url-center/blocked'
-import { eq, like } from 'drizzle-orm'
+import { and, eq, like } from 'drizzle-orm'
 import { getServerSession } from 'next-auth'
 
 export const getShortUrls = async () => {
@@ -40,7 +40,7 @@ export const createShortUrl = async ({
       try {
         await db.delete(shortUrls).where(like(shortUrls.url, `%${blockedUrl}%`))
       } catch {
-        console.log('Error deleting old publicShortUrls')
+        console.log('Error deleting old shortUrls')
       }
 
       return {
@@ -132,8 +132,7 @@ export const updateShortUrl = async ({
         url,
         updatedAt: new Date(),
       })
-      .where(eq(shortUrls.userId, session.user.id))
-      .where(eq(shortUrls.id, id))
+      .where(and(eq(shortUrls.userId, session.user.id), eq(shortUrls.id, id)))
 
     return shortUrlData // []
   } catch (error: any) {

@@ -4,11 +4,12 @@ import { DrizzleAdapter } from '@auth/drizzle-adapter'
 import { eq } from 'drizzle-orm'
 import { NextAuthOptions } from 'next-auth'
 import type { User } from 'next-auth'
+import { Adapter } from 'next-auth/adapters'
 import GoogleProvider from 'next-auth/providers/google'
 
 export const authOptions: NextAuthOptions = {
   // debug: process.env.NODE_ENV === 'development',
-  adapter: DrizzleAdapter(db),
+  adapter: DrizzleAdapter(db) as Adapter,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
