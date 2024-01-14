@@ -1,6 +1,7 @@
 import CreateShortUrls from '@/app/createPublic'
 import { db } from '@/lib/db'
-import { shortUrls, users } from '@/lib/db/schema'
+import { publicShortUrls, shortUrls, users } from '@/lib/db/schema'
+import { count } from 'drizzle-orm'
 import { Anchor, ArrowDown, ExternalLink, Star, User } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,8 +9,15 @@ import Link from 'next/link'
 export const revalidate = 60
 
 export default async function Page() {
-  const getUsers = await db.select().from(users)
-  const getShortUrls = await db.select().from(shortUrls)
+  const getUsersCount = (await db.select({ value: count() }).from(users))[0]
+    .value
+  const getShortUrlsCount = (
+    await db.select({ value: count() }).from(shortUrls)
+  )[0].value
+  const getPublicShortUrlsCount = (
+    await db.select({ value: count() }).from(publicShortUrls)
+  )[0].value
+
   const githubInfo = await fetch(
     'https://api.github.com/repos/nrjdalal/rdt-li',
   ).then((res) => res.json())
@@ -84,12 +92,12 @@ export default async function Page() {
         <div className="flex flex-col items-center space-y-1 rounded-md border-2 border-green-400 bg-green-100 px-8 py-3">
           <User className="h-8 w-8 text-green-600" />
           <p className="text-xs">Users</p>
-          <p>{getUsers?.length}</p>
+          <p>{getUsersCount}</p>
         </div>
         <div className="flex flex-col items-center space-y-1 rounded-md border-2 border-blue-400 bg-blue-100 px-8 py-3">
           <Anchor className="h-8 w-8 text-blue-600" />
           <p className="text-xs">Short Links</p>
-          <p>{getShortUrls?.length}</p>
+          <p>{getShortUrlsCount}</p>
         </div>
         {(process.env.NEXT_PUBLIC_UMAMI_URL ||
           process.env.NODE_ENV === 'development') && (
@@ -211,6 +219,8 @@ export default async function Page() {
           </div>
 
           <p className="text-xs">
+            {getPublicShortUrlsCount} public links today.
+            <br />
             Report abuse at this{' '}
             <Link
               className="border-b border-foreground/50"

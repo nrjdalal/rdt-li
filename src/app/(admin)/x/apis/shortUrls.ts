@@ -40,7 +40,7 @@ export const createShortUrl = async ({
       try {
         await db.delete(shortUrls).where(like(shortUrls.url, `%${blockedUrl}%`))
       } catch {
-        console.log('Error deleting old publicShortUrls')
+        console.log('Error deleting old shortUrls')
       }
 
       return {
