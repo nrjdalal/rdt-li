@@ -389,11 +389,11 @@ const Page = () => {
                       {shortUrl?.lastVisit && (
                         <span>
                           Last visited:{' '}
-                          {
-                            new Date(shortUrl?.lastVisit)
-                              .toUTCString()
-                              .split(' GMT')[0]
-                          }
+                          {shortUrl?.lastVisit
+                            .toISOString()
+                            .replace('T', ' ')
+                            .replace('Z', '')
+                            .slice(0, -6)}
                         </span>
                       )}
                     </p>
