@@ -4,10 +4,19 @@ import { db } from '@/lib/db'
 import { publicShortUrls } from '@/lib/db/schema'
 import { nanoid } from '@/lib/utils'
 import { blocked } from '@/url-center/blocked'
+import { like, lt, sql } from 'drizzle-orm'
 
 export const createPublicShortUrl = async ({ url }: { url: string }) => {
   for (const blockedUrl of blocked) {
     if (url.includes(blockedUrl)) {
+      try {
+        await db
+          .delete(publicShortUrls)
+          .where(like(publicShortUrls.url, `%${blockedUrl}%`))
+      } catch {
+        console.log('Error deleting old publicShortUrls')
+      }
+
       return {
         error: {
           code: 406,
@@ -15,6 +24,14 @@ export const createPublicShortUrl = async ({ url }: { url: string }) => {
         },
       }
     }
+  }
+
+  try {
+    await db
+      .delete(publicShortUrls)
+      .where(lt(publicShortUrls.createdAt, sql`NOW() - INTERVAL '2 days'`))
+  } catch {
+    console.log('Error deleting old publicShortUrls')
   }
 
   const shortUrlData = await db
