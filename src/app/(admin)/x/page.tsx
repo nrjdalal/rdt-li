@@ -63,6 +63,7 @@ const formSchema = z.object({
   enabled: z.string(),
   clickLimit: z.string(),
   password: z.string().max(128),
+  timeOffset: z.number(),
 })
 
 export default function Page() {
@@ -78,6 +79,7 @@ export default function Page() {
       enabled: 'true',
       clickLimit: '',
       password: '',
+      timeOffset: 0,
     },
   })
 
@@ -103,7 +105,7 @@ export default function Page() {
   })
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values)
+    values.timeOffset = new Date().getTimezoneOffset()
 
     await mutation.mutateAsync(values)
   }
@@ -149,9 +151,9 @@ export default function Page() {
                     <Menubar className="h-min rounded-full p-0">
                       <MenubarMenu>
                         <MenubarTrigger className="p-0">
-                          <Avatar className="h-6 w-6">
+                          <Avatar className="h-6 w-6 cursor-pointer">
                             <AvatarImage src="https://github.com/shadcn.png" />
-                            <AvatarFallback>CN</AvatarFallback>
+                            <AvatarFallback>ND</AvatarFallback>
                           </Avatar>
                         </MenubarTrigger>
                         <MenubarContent className="absolute -right-6">
@@ -312,14 +314,14 @@ export default function Page() {
                       control={form.control}
                       name="password"
                       render={({ field }) => (
-                        <FormItem className="w-full opacity-60">
+                        <FormItem className="invisible w-full opacity-60">
                           <FormControl>
                             <div className="relative">
                               <FormLabel className="absolute -top-3 left-3 rounded-md bg-background px-2.5 text-[0.7rem] text-foreground/50">
                                 Password
                               </FormLabel>
                               <Input
-                                className="cursor-not-allowed text-center text-xs placeholder:text-foreground/30 "
+                                className="cursor-not-allowed text-center text-xs placeholder:text-foreground/30"
                                 placeholder="No Password"
                                 type="password"
                                 {...field}

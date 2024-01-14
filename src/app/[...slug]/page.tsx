@@ -72,6 +72,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           visits: shortUrls.visits,
           enabled: shortUrls.enabled,
           clickLimit: shortUrls.clickLimit,
+          timeOffset: shortUrls.timeOffset,
         })
         .from(shortUrls)
         .where(eq(shortUrls.id, slug)),
@@ -89,6 +90,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       visits: shortUrlData[0].visits,
       enabled: shortUrlData[0].enabled,
       clickLimit: shortUrlData[0].clickLimit,
+      timeOffset: shortUrlData[0].timeOffset,
     }
 
     if (data.clickLimit === 0) {
@@ -141,24 +143,27 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     }
 
     try {
-      const date = smallDate()
+      const zeroTime = new Date().toISOString()
+      const localTime = new Date(
+        new Date(zeroTime).getTime() + data.timeOffset * -60 * 1000,
+      )
+      const onlyDate = smallDate(localTime)
+
       const visits = data.visits || []
 
-      const newVisitData = visits[0]?.startsWith(date)
+      const newVisitData = visits[0]?.startsWith(onlyDate)
         ? [
-            date + 'x' + (Number(visits[0].split('x')[1]) + 1),
+            onlyDate + 'x' + (Number(visits[0].split('x')[1]) + 1),
             ...visits.slice(1),
           ]
-        : [date + 'x1', ...visits]
-
-      console.log('Reaching upto here!')
+        : [onlyDate + 'x1', ...visits]
 
       db.transaction(async () => {
         await db
           .update(shortUrls)
           .set({
             visits: newVisitData,
-            lastVisit: new Date(),
+            lastVisit: localTime,
             enabled: data.enabled,
             clickLimit: data.clickLimit,
           })

@@ -27,6 +27,7 @@ export const createShortUrl = async ({
   enabled,
   clickLimit,
   password,
+  timeOffset,
 }: {
   id: string
   url: string
@@ -34,6 +35,7 @@ export const createShortUrl = async ({
   enabled: string
   clickLimit: string
   password: string
+  timeOffset: number
 }) => {
   for (const blockedUrl of blocked) {
     if (new URL(url).host.includes(blockedUrl)) {
@@ -63,6 +65,7 @@ export const createShortUrl = async ({
     enabled: enabled === 'true' ? true : enabled === 'false' ? false : null,
     clickLimit: Number(clickLimit) || null,
     password: password || null,
+    timeOffset: Number(timeOffset) || 0,
     createdAt: new Date(),
     updatedAt: new Date(),
   }

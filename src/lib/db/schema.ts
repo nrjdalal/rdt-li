@@ -76,6 +76,7 @@ export const shortUrls = pgTable('shortUrls', {
   validFrom: timestamp('validFrom', { mode: 'date' }),
   expiresAt: timestamp('expiresAt', { mode: 'date' }),
 
+  timeOffset: integer('timeOffset').default(0),
   createdAt: timestamp('createdAt', { mode: 'date' }).notNull(),
   updatedAt: timestamp('updatedAt', { mode: 'date' }).notNull(),
 })
