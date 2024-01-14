@@ -1,1 +1,1 @@
-export const blocked = ['captchabotverify.xyz']
+export const blocked = ['captchabotverify.xyz', 'verifycaptcha-bot.com']
