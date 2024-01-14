@@ -95,7 +95,9 @@ export default function Page() {
             </div>
 
             <p className="text-center text-[0.65rem] font-bold text-red-500">
-              This link will be deleted in 24h.
+              <span className="animate-pulse text-sm">
+                This link will be deleted in 24h.
+              </span>
               <br />
               To keep links and avail many other features, create an{' '}
               <Link
