@@ -14,8 +14,8 @@ export function nanoid(length = 8) {
   )()
 }
 
-export const smallDate = () => {
-  return new Date().toISOString().split('T')[0].slice(2).replace(/-/g, '')
+export const smallDate = (date: any) => {
+  return date.toISOString().split('T')[0].slice(2).replace(/-/g, '')
 }
 
 export function sanitize(text: string) {
