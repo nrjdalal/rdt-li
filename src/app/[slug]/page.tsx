@@ -1,16 +1,18 @@
-import axios from 'axios'
 import Link from 'next/link'
 import { permanentRedirect } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
 
 async function getData(slug: string) {
-  const res = await axios.post(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/redirect`,
-    { slug },
-  )
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/redirect`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ slug }),
+  })
 
-  return res.data
+  return res.json()
 }
 
 const Page = async ({ params }: { params: { slug: string } }) => {
