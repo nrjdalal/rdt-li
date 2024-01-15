@@ -1,7 +1,7 @@
 import CreateShortUrls from '@/app/createPublic'
 import { db } from '@/lib/db'
-import { publicShortUrls, shortUrls, users } from '@/lib/db/schema'
-import { count } from 'drizzle-orm'
+import { shortUrls, users } from '@/lib/db/schema'
+import { count, isNotNull, isNull } from 'drizzle-orm'
 import { Anchor, ArrowDown, ExternalLink, Star, User } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,10 +12,16 @@ export default async function Page() {
   const getUsersCount = (await db.select({ value: count() }).from(users))[0]
     .value
   const getShortUrlsCount = (
-    await db.select({ value: count() }).from(shortUrls)
+    await db
+      .select({ value: count() })
+      .from(shortUrls)
+      .where(isNotNull(shortUrls.userId))
   )[0].value
   const getPublicShortUrlsCount = (
-    await db.select({ value: count() }).from(publicShortUrls)
+    await db
+      .select({ value: count() })
+      .from(shortUrls)
+      .where(isNull(shortUrls.userId))
   )[0].value
 
   const githubInfo = await fetch(
