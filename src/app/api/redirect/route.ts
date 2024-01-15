@@ -1,5 +1,5 @@
 import { db } from '@/lib/db'
-import { publicShortUrls, shortUrls } from '@/lib/db/schema'
+import { shortUrls } from '@/lib/db/schema'
 import { smallDate } from '@/lib/utils'
 import { eq } from 'drizzle-orm'
 import { NextResponse } from 'next/server'
@@ -8,21 +8,6 @@ export async function POST(request: Request) {
   try {
     const { slug } = await request.json()
 
-    // public urls
-    if (slug?.startsWith('_')) {
-      const redirectLink: any = await db
-        .select({
-          url: publicShortUrls.url,
-        })
-        .from(publicShortUrls)
-        .where(eq(publicShortUrls.id, slug))
-
-      if (redirectLink.length) {
-        return NextResponse.json({ redirect: redirectLink[0].url, status: 303 })
-      }
-    }
-
-    // private urls
     const redirectLink = await db
       .select({
         url: shortUrls.url,
