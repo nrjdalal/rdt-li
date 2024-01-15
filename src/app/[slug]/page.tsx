@@ -2,9 +2,13 @@ import Link from 'next/link'
 import { permanentRedirect } from 'next/navigation'
 
 async function getData(slug: string) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/redirect?slug=${slug}`,
-  )
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/redirect`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ slug: slug }),
+  })
 
   return res.json()
 }

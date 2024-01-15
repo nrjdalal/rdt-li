@@ -4,8 +4,8 @@ import { smallDate } from '@/lib/utils'
 import { eq } from 'drizzle-orm'
 import { NextResponse } from 'next/server'
 
-export async function GET(request: Request) {
-  const slug: any = new URL(request.url).searchParams.get('slug')
+export async function POST(request: Request) {
+  const { slug } = await request.json()
 
   // public urls
   if (slug?.startsWith('_')) {
