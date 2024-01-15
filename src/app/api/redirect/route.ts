@@ -17,10 +17,7 @@ export async function POST(request: Request) {
       .where(eq(publicShortUrls.id, slug))
 
     if (redirectLink.length) {
-      return NextResponse.json(
-        { redirect: redirectLink[0].url },
-        { status: 303 },
-      )
+      return NextResponse.json({ redirect: redirectLink[0].url, status: 303 })
     }
   }
 
@@ -40,20 +37,13 @@ export async function POST(request: Request) {
     const data = redirectLink[0]
 
     if (!data.enabled)
-      return NextResponse.json(
-        { message: 'is not active' },
-        {
-          status: 423,
-        },
-      )
+      return NextResponse.json({ message: 'is not active', status: 423 })
 
     if (data.clickLimit === 0)
-      return NextResponse.json(
-        { message: 'has reached the click limit' },
-        {
-          status: 423,
-        },
-      )
+      return NextResponse.json({
+        message: 'has reached the click limit',
+        status: 423,
+      })
 
     if (typeof data.clickLimit === 'number') {
       data.clickLimit -= 1
@@ -88,9 +78,9 @@ export async function POST(request: Request) {
     })
 
     if (redirectLink.length) {
-      return NextResponse.json({ redirect: data.url }, { status: 303 })
+      return NextResponse.json({ redirect: data.url, status: 303 })
     }
   }
 
-  return NextResponse.json({ message: "doesn't exist" }, { status: 404 })
+  return NextResponse.json({ message: "doesn't exist", status: 404 })
 }
