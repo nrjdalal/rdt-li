@@ -5,24 +5,38 @@ import retry from 'p-retry'
 export const dynamic = 'force-dynamic'
 
 async function getData(slug: string) {
-  const res = await retry(
-    async () =>
-      await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/redirect`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ slug }),
-      }),
-    {
-      retries: 5,
-      onFailedAttempt: (error) => {
-        console.log(error)
-      },
-    },
-  )
+  try {
+    const res = await retry(
+      async () => {
+        const pRes = await fetch(
+          `${process.env.NEXT_PUBLIC_APP_URL}/api/redirect`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ slug }),
+          },
+        )
 
-  return res.json()
+        if (pRes.status !== 200) {
+          throw new Error('Failed to fetch')
+        }
+
+        return pRes
+      },
+      {
+        retries: 2,
+        onFailedAttempt: (error) => {
+          console.log(error)
+        },
+      },
+    )
+
+    return res.json()
+  } catch {
+    return { message: 'Click to visit', status: 409 }
+  }
 }
 
 const Page = async ({ params }: { params: { slug: string } }) => {
@@ -35,11 +49,14 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <div className="flex h-[100dvh] flex-col items-center justify-center gap-4">
-      <p className="text-sm text-foreground/50">
-        {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}/{slug}
-        &nbsp;
+      <Link
+        href={`/${slug}`}
+        className="text-center text-sm text-foreground/50"
+      >
         {data.message}
-      </p>
+        <br />
+        {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}/{slug}
+      </Link>
 
       <p className="text-sm">
         Create short URLs at{' '}
