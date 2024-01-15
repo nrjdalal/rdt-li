@@ -16,7 +16,7 @@
 </p>
 
 <p align="center" style="margin: 0 0;">No reloads: it's 2023, we hate reloads</p>
-<p>Analytics: All time, daily and unique views</p>
+<p align="center" style="margin: 0 0;">Analytics: All time, daily and unique views</p>
 <p>Bar Charts: Last 7 days views charted</p>
 <p>Editable: Edit titles, URLs and destinations easily</p>
 <p>Filters: Filter by create, views and more</p>
