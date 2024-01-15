@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { permanentRedirect } from 'next/navigation'
 
+export const dynamic = 'force-dynamic'
+
 async function getData(slug: string) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/redirect`, {
     method: 'POST',
@@ -15,20 +17,16 @@ async function getData(slug: string) {
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const slug = params.slug
-  // const data = await getData(slug)
+  const data = await getData(slug)
 
-  // if (data.redirect) {
-  //   try {
-  //     permanentRedirect(data.redirect)
-  //   } catch (e) {
-  //     console.log(e)
-  //   }
-  // }
+  if (data.redirect) {
+    permanentRedirect(data.redirect)
+  }
 
   return (
     <div className="flex h-[100dvh] flex-col items-center justify-center gap-4">
       <p className="text-sm text-foreground/50">
-        {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}/{slug}
+        {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}/{slug} {data.message}
       </p>
 
       <p className="text-sm">
