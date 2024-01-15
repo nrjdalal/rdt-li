@@ -15,13 +15,15 @@
   <a href="https://rdt.li/site" tardet="_blank">Redirect.link</a> self hostable, feature rich, minimalistic and open source URL shortener. Built with Next.js, Drizzle, NextAuth and Postgres.
 </p>
 
-<p align="center" style="margin: 0 0;">No reloads: it's 2023, we hate reloads</p>
-<p align="center" style="margin: 0 0;">Analytics: All time, daily and unique views</p>
-<p>Bar Charts: Last 7 days views charted</p>
-<p>Editable: Edit titles, URLs and destinations easily</p>
-<p>Filters: Filter by create, views and more</p>
-<p>Search: Search for URLs with syntax highlighting</p>
-<p>Theme: Light (default) and dark mode</p>
+<p align="center">
+• No reloads: it's 2023, we hate reloads <br/>
+• Analytics: All time, daily and unique views <br/>
+• Bar Charts: Last 7 days views charted <br/>
+• Editable: Edit titles, URLs and destinations easily <br/>
+• Filters: Filter by create, views and more <br/>
+• Search: Search for URLs with syntax highlighting <br/>
+• Theme: Light (default) and dark mode
+</p>
 
 <p align="center"><a href="https://rdt.li/site" tardet="_blank">Try now</a> or <a href="#one-click-deploy">self host</a> it.</p>
 
