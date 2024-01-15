@@ -47,7 +47,9 @@ export async function POST(request: Request) {
 
     if (typeof data.clickLimit === 'number') {
       data.clickLimit -= 1
-      data.enabled = false
+      if (data.clickLimit === 0) {
+        data.enabled = false
+      }
     }
 
     const zeroTime = new Date().toISOString()
