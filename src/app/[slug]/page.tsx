@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { permanentRedirect } from 'next/navigation'
 
+export const dynamic = 'force-dynamic'
+
 async function getData(slug: string) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/redirect`, {
     method: 'POST',
