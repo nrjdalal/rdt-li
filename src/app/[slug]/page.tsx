@@ -1,48 +1,32 @@
-import { db } from '@/lib/db'
-import { shortUrls } from '@/lib/db/schema'
-import { smallDate } from '@/lib/utils'
-import { eq } from 'drizzle-orm'
+import axios from 'axios'
 import Link from 'next/link'
 import { permanentRedirect } from 'next/navigation'
-import retry from 'p-retry'
+
+export const dynamic = 'force-dynamic'
+
+async function getData(slug: string) {
+  const res = await axios.post(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/redirect`,
+    { slug },
+  )
+
+  return res.data
+}
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const slug = params.slug
+  const data = await getData(slug)
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/redirect?slug=${slug}`,
-  )
-
-  const data = await res.json()
-
-  if (res.status === 303) {
+  if (data.redirect) {
     permanentRedirect(data.redirect)
   }
-
-  if (data.message)
-    return (
-      <div className="flex h-[100dvh] flex-col items-center justify-center gap-4">
-        <p className="text-sm text-foreground/50">
-          {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}/{slug}{' '}
-          {data.message}
-        </p>
-
-        <p className="text-sm">
-          Create short URLs at{' '}
-          <Link
-            className="animate-pulse text-sm font-bold text-orange-500 underline"
-            href="/"
-          >
-            {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}
-          </Link>
-        </p>
-      </div>
-    )
 
   return (
     <div className="flex h-[100dvh] flex-col items-center justify-center gap-4">
       <p className="text-sm text-foreground/50">
-        Something went wrong. Please try again later.
+        {process.env.NEXT_PUBLIC_APP_URL?.split('://')[1]}/{slug}
+        &nbsp;
+        {data.message}
       </p>
 
       <p className="text-sm">
