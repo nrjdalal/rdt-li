@@ -27,14 +27,14 @@ export async function POST(request: Request) {
         return NextResponse.json({ redirect: data.url, status: 303 })
       }
 
-      if (!data.enabled)
-        return NextResponse.json({ message: 'is not active', status: 423 })
-
       if (data.clickLimit === 0)
         return NextResponse.json({
-          message: 'has reached the click limit',
+          message: 'Click limit reached',
           status: 423,
         })
+
+      if (!data.enabled)
+        return NextResponse.json({ message: 'URL is not active', status: 423 })
 
       if (typeof data.clickLimit === 'number') {
         data.clickLimit -= 1
@@ -75,8 +75,8 @@ export async function POST(request: Request) {
       }
     }
 
-    return NextResponse.json({ message: "doesn't exist", status: 404 })
+    return NextResponse.json({ message: "URL does't exist", status: 404 })
   } catch {
-    return NextResponse.json({ message: '-> please try again', status: 409 })
+    return NextResponse.json({ message: 'Please try again', status: 409 })
   }
 }
