@@ -7,19 +7,23 @@
   </h1>
 </a>
 
+<p align="center">At 1000 stars will integrate Redis for insane performance</p>
+
 ![](https://rdt.li/gh-repo-visits-rdt-li)
 
 <p align="center">
   <a href="https://rdt.li/site" tardet="_blank">Redirect.link</a> self hostable, feature rich, minimalistic and open source URL shortener. Built with Next.js, Drizzle, NextAuth and Postgres.
 </p>
 
-- No reloads: it's 2023, we hate reloads
-- Analytics: All time, daily and unique views
-- Bar Charts: Last 7 days views charted
-- Editable: Edit titles, URLs and destinations easily
-- Filters: Filter by create, views and more
-- Search: Search for URLs with syntax highlighting
-- Theme: Light (default) and dark mode
+<p align="center">
+• No reloads: it's 2023, we hate reloads <br/>
+• Analytics: All time, daily and unique views <br/>
+• Bar Charts: Last 7 days views charted <br/>
+• Editable: Edit titles, URLs and destinations easily <br/>
+• Filters: Filter by create, views and more <br/>
+• Search: Search for URLs with syntax highlighting <br/>
+• Theme: Light (default) and dark mode
+</p>
 
 <p align="center"><a href="https://rdt.li/site" tardet="_blank">Try now</a> or <a href="#one-click-deploy">self host</a> it.</p>
 
