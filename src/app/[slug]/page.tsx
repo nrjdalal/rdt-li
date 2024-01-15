@@ -1,16 +1,26 @@
 import Link from 'next/link'
 import { permanentRedirect } from 'next/navigation'
+import retry from 'p-retry'
 
 export const dynamic = 'force-dynamic'
 
 async function getData(slug: string) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/redirect`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
+  const res = await retry(
+    async () =>
+      await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/redirect`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ slug }),
+      }),
+    {
+      retries: 5,
+      onFailedAttempt: (error) => {
+        console.log(error)
+      },
     },
-    body: JSON.stringify({ slug }),
-  })
+  )
 
   return res.json()
 }
