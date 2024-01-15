@@ -17,8 +17,14 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   const slug = params.slug
   const data = await getData(slug)
 
+  console.log('Got data: ', data)
+
   if (data.redirect) {
-    permanentRedirect(data.redirect)
+    try {
+      permanentRedirect(data.redirect)
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   return (
