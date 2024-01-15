@@ -10,6 +10,7 @@ export async function POST(request: Request) {
 
     const redirectLink = await db
       .select({
+        userId: shortUrls.userId,
         url: shortUrls.url,
         visits: shortUrls.visits,
         enabled: shortUrls.enabled,
@@ -21,6 +22,10 @@ export async function POST(request: Request) {
 
     if (redirectLink.length) {
       const data = redirectLink[0]
+
+      if (!data.userId) {
+        return NextResponse.json({ redirect: data.url, status: 303 })
+      }
 
       if (!data.enabled)
         return NextResponse.json({ message: 'is not active', status: 423 })
