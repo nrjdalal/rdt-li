@@ -91,7 +91,7 @@ const Page = () => {
 
   if (isError) {
     return (
-      <div className="mt-[92px] flex items-center justify-center">
+      <div className="mt-[202px] flex items-center justify-center">
         <p className="mb-[388px] text-slate-500">Something went wrong</p>
       </div>
     )
@@ -99,7 +99,7 @@ const Page = () => {
 
   if (isPending) {
     return (
-      <div className="mt-[92px] flex items-center justify-center">
+      <div className="mt-[202px] flex items-center justify-center">
         <Loader2 className="mb-[388px] animate-spin" />
       </div>
     )
@@ -129,6 +129,7 @@ const Page = () => {
     )
   })
 
+  // sorting
   const sortedData = filtered?.sort((a: any, b: any) => {
     if (sortBy === 'updatedAt') {
       return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
@@ -139,12 +140,33 @@ const Page = () => {
         getGraphData(a.visits).reduce((a: any, b: any) => a + b[1], 0)
       )
     }
+    if (sortBy === 'todayViews') {
+      const zeroTime = new Date().toISOString()
+      const localTime = new Date(
+        new Date(zeroTime).getTime() + a.timeOffset * -60 * 1000,
+      )
+      const onlyDate = smallDate(localTime)
+
+      const aVisits = a.visits || []
+      const bVisits = b.visits || []
+
+      const aTodayVisits = aVisits[0]?.startsWith(onlyDate)
+        ? Number(aVisits[0].split('x')[1])
+        : 0
+
+      const bTodayVisits = bVisits[0]?.startsWith(onlyDate)
+        ? Number(bVisits[0].split('x')[1])
+        : 0
+
+      return bTodayVisits - aTodayVisits
+    }
     if (sortBy === 'recentlyVisited') {
       return new Date(b.lastVisit).getTime() - new Date(a.lastVisit).getTime()
     }
     return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   })
 
+  // searching
   const xData = sortedData.map((item: any) => {
     let id_html = `${process.env.NEXT_PUBLIC_APP_URL?.split('//')[1]}/${
       item.id
@@ -196,17 +218,20 @@ const Page = () => {
                 <SelectValue defaultValue={sortBy} placeholder="Created At" />
               </SelectTrigger>
               <SelectContent className="w-36">
-                <SelectItem className="text-[0.7rem]" value="createdAt">
-                  Created At
+                <SelectItem className="text-[0.7rem]" value="views">
+                  Views
+                </SelectItem>
+                <SelectItem className="text-[0.7rem]" value="todayViews">
+                  Today Views
+                </SelectItem>
+                <SelectItem className="text-[0.7rem]" value="recentlyVisited">
+                  Recently Visited
                 </SelectItem>
                 <SelectItem className="text-[0.7rem]" value="updatedAt">
                   Updated At
                 </SelectItem>
-                <SelectItem className="text-[0.7rem]" value="views">
-                  Views
-                </SelectItem>
-                <SelectItem className="text-[0.7rem]" value="recentlyVisited">
-                  Recently Visited
+                <SelectItem className="text-[0.7rem]" value="createdAt">
+                  Created At
                 </SelectItem>
               </SelectContent>
             </Select>
@@ -252,17 +277,21 @@ const Page = () => {
                   <div className="flex items-center gap-1 px-2">
                     {shortUrl?.visits?.length ? (
                       <>
-                        <ArrowUp className="h-3 w-3 text-green-500" />
-                        <p className="flex text-green-500">
-                          {smallDate(
-                            new Date(
-                              new Date(new Date().toISOString()).getTime() +
-                                shortUrl.timeOffset * -60 * 1000,
-                            ),
-                          ) === shortUrl.visits[0].split('x')[0]
-                            ? shortUrl.visits[0].split('x')[1]
-                            : 0}
-                        </p>
+                        {smallDate(
+                          new Date(
+                            new Date(new Date().toISOString()).getTime() +
+                              shortUrl.timeOffset * -60 * 1000,
+                          ),
+                        ) === shortUrl.visits[0].split('x')[0] ? (
+                          <>
+                            <ArrowUp className="h-3 w-3 text-green-500" />
+                            <p className="flex text-green-500">
+                              {shortUrl.visits[0].split('x')[1]}
+                            </p>
+                          </>
+                        ) : (
+                          ''
+                        )}
                       </>
                     ) : (
                       ''
