@@ -3,4 +3,5 @@ export const blocked = [
   'captchabot-auth.com',
   'captchabotverify.xyz',
   'verifycaptcha-bot.com',
+  'verifier-captchabot.site',
 ]
