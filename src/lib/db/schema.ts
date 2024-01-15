@@ -60,9 +60,7 @@ export const verificationTokens = pgTable(
 )
 
 export const shortUrls = pgTable('shortUrls', {
-  userId: text('userId')
-    .notNull()
-    .references(() => users.id, { onDelete: 'cascade' }),
+  userId: text('userId').references(() => users.id, { onDelete: 'cascade' }),
   id: text('id').notNull().primaryKey(),
   url: text('url').notNull(),
   title: text('title'),

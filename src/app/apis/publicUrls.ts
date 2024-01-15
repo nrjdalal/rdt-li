@@ -1,18 +1,16 @@
 'use server'
 
 import { db } from '@/lib/db'
-import { publicShortUrls } from '@/lib/db/schema'
+import { shortUrls } from '@/lib/db/schema'
 import { nanoid } from '@/lib/utils'
 import { blocked } from '@/url-center/blocked'
-import { like, lt, sql } from 'drizzle-orm'
+import { and, isNull, like, lt, sql } from 'drizzle-orm'
 
 export const createPublicShortUrl = async ({ url }: { url: string }) => {
   for (const blockedUrl of blocked) {
     if (new URL(url).host.includes(blockedUrl)) {
       try {
-        await db
-          .delete(publicShortUrls)
-          .where(like(publicShortUrls.url, `%${blockedUrl}%`))
+        await db.delete(shortUrls).where(like(shortUrls.url, `%${blockedUrl}%`))
       } catch {
         console.log('Error deleting old publicShortUrls')
       }
@@ -28,25 +26,30 @@ export const createPublicShortUrl = async ({ url }: { url: string }) => {
 
   try {
     await db
-      .delete(publicShortUrls)
-      .where(lt(publicShortUrls.createdAt, sql`NOW() - INTERVAL '25 hours'`))
+      .delete(shortUrls)
+      .where(
+        and(
+          isNull(shortUrls.userId),
+          lt(shortUrls.createdAt, sql`NOW() - INTERVAL '24 hours'`),
+        ),
+      )
   } catch {
     console.log('Error deleting old publicShortUrls')
   }
 
   const shortUrlData = await db
-    .insert(publicShortUrls)
+    .insert(shortUrls)
     .values({
-      id: '_' + nanoid(5),
+      userId: null,
+      id: nanoid(6),
       url,
       createdAt: new Date(),
+      updatedAt: new Date(),
     })
     .returning({
-      id: publicShortUrls.id,
-      url: publicShortUrls.url,
+      id: shortUrls.id,
+      url: shortUrls.url,
     })
-
-  console.log('shortUrlData', shortUrlData)
 
   return shortUrlData // []
 }
