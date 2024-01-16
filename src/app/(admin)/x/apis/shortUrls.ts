@@ -63,12 +63,7 @@ export const createShortUrl = async ({
     url,
     title: title || null,
     enabled: enabled === 'true' ? true : enabled === 'false' ? false : null,
-    clickLimit:
-      Number(clickLimit) === 0
-        ? Number(clickLimit)
-        : Number(clickLimit)
-          ? Number(clickLimit)
-          : null,
+    clickLimit: clickLimit === '' ? null : Number(clickLimit),
     password: password || null,
     timeOffset: Number(timeOffset) || 0,
     createdAt: new Date(),
