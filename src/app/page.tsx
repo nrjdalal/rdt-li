@@ -6,7 +6,7 @@ import { Anchor, ArrowDown, ExternalLink, Star, User } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export const revalidate = 60
+export const revalidate = 60 * 60
 
 export default async function Page() {
   const getUsersCount = (await db.select({ value: count() }).from(users))[0]
