@@ -4,7 +4,7 @@ import { db } from '@/lib/db'
 import { shortUrls } from '@/lib/db/schema'
 import { nanoid } from '@/lib/utils'
 import { blocked } from '@/url-center/blocked'
-import { and, isNull, like, lt, sql } from 'drizzle-orm'
+import { and, count, isNull, like, lt, sql } from 'drizzle-orm'
 
 export const createPublicShortUrl = async ({ url }: { url: string }) => {
   for (const blockedUrl of blocked) {
@@ -35,6 +35,29 @@ export const createPublicShortUrl = async ({ url }: { url: string }) => {
       )
   } catch {
     console.log('Error deleting old publicShortUrls')
+  }
+
+  try {
+    const existingShortUrl = await db
+      .select({ value: count() })
+      .from(shortUrls)
+      .where(
+        and(
+          isNull(shortUrls.userId),
+          like(shortUrls.url, `%${new URL(url).host}%`),
+        ),
+      )
+
+    if (existingShortUrl[0].value > 100) {
+      return {
+        error: {
+          code: 409,
+          message: 'URL already exists',
+        },
+      }
+    }
+  } catch {
+    console.log('Error checking existing publicShortUrls')
   }
 
   const shortUrlData = await db
