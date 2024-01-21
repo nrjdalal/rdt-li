@@ -70,7 +70,7 @@ export async function POST(request: Request) {
           ]
         : [onlyDate + 'x1', ...visits]
 
-      db.transaction(async () => {
+      await db.transaction(async () => {
         await db
           .update(shortUrls)
           .set({
