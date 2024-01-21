@@ -33,7 +33,7 @@ export const createShortUrl = async ({
   url: string
   title: string
   enabled: string
-  clickLimit: string
+  clickLimit: string | number | null
   password: string
   timeOffset: number
 }) => {
@@ -57,13 +57,17 @@ export const createShortUrl = async ({
   const session = await getServerSession(authOptions)
   if (!session) throw new Error('Session not found')
 
+  if (clickLimit && isNaN(Number(clickLimit))) {
+    return { error: { code: '400', message: 'Click limit is not a number' } }
+  }
+
   const data = {
     userId: session.user.id,
     id: sanitize(id) || nanoid(6),
     url,
     title: title || null,
     enabled: enabled === 'true' ? true : enabled === 'false' ? false : null,
-    clickLimit: clickLimit === '' ? null : Number(clickLimit) || null,
+    clickLimit: Number(clickLimit) || null,
     password: password || null,
     timeOffset: Number(timeOffset) || 0,
     createdAt: new Date(),
