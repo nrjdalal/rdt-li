@@ -7,7 +7,7 @@
   </h1>
 </a>
 
-<p align="center">At 1000 stars will integrate Redis for insane performance</p>
+<p align="center">At 1000 stars will integrate Redis for insane performance. Checkout more amazing projects at <a href="https://rdt.li/gh-follow" target="_blank">@nrjdalal</a>.</p>
 
 ![](https://rdt.li/gh-repo-visits-rdt-li)
 
