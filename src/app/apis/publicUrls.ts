@@ -52,7 +52,7 @@ export const createPublicShortUrl = async ({ url }: { url: string }) => {
       return {
         error: {
           code: 409,
-          message: 'URL already exists',
+          message: 'URL marked as spam for the next 24 hours',
         },
       }
     }

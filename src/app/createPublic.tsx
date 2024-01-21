@@ -47,7 +47,7 @@ export default function Page() {
     const res: any = await createPublicShortUrl(values)
 
     if (res?.error) {
-      if (res?.error.code === 406) {
+      if (res?.error.code === 406 || res?.error.code === 409) {
         toast.error(res?.error.message)
       } else {
         toast.error("Couldn't create short URL!")
