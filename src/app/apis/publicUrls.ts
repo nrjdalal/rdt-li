@@ -6,6 +6,19 @@ import { nanoid } from '@/lib/utils'
 import { blocked } from '@/url-center/blocked'
 import { and, count, isNull, like, lt, sql } from 'drizzle-orm'
 
+export const getPublicShortUrls = async () => {
+  const shortUrlsData = await db
+    .select({
+      id: shortUrls.id,
+      url: shortUrls.url,
+    })
+    .from(shortUrls)
+    .where(isNull(shortUrls.userId))
+    .limit(100)
+
+  return shortUrlsData
+}
+
 export const createPublicShortUrl = async ({ url }: { url: string }) => {
   for (const blockedUrl of blocked) {
     if (new URL(url).host.includes(blockedUrl)) {
