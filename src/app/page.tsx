@@ -163,6 +163,7 @@ export default async function Page() {
           </h2>
           <p className="max-w-[85%] text-xs leading-normal text-muted-foreground">
             Redirect.link is open source and powered by open source software.
+            <br />
             The source code is available on{' '}
             <Link
               href="https://rdt.li/github"
@@ -225,7 +226,8 @@ export default async function Page() {
           </div>
 
           <p className="text-xs">
-            {getPublicShortUrlsCount} public links today.
+            <Link href={'/public'}>{getPublicShortUrlsCount} </Link>
+            public {getPublicShortUrlsCount === 1 ? 'link' : 'links'} today.
             <br />
             Report abuse at this{' '}
             <Link

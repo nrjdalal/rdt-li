@@ -37,6 +37,15 @@ export const createShortUrl = async ({
   password: string
   timeOffset: number
 }) => {
+  if (id.length < 4) {
+    return {
+      error: {
+        code: '400',
+        message: 'Short URL must be at least 4 characters long',
+      },
+    }
+  }
+
   for (const blockedUrl of blocked) {
     if (new URL(url).host.includes(blockedUrl)) {
       try {
