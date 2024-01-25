@@ -225,10 +225,8 @@ export default async function Page() {
           </div>
 
           <p className="text-xs">
-            <Link href={'/public'}>
-              {getPublicShortUrlsCount} public{' '}
-              {getPublicShortUrlsCount === 1 ? 'link' : 'links'} today.
-            </Link>
+            <Link href={'/public'}>{getPublicShortUrlsCount}</Link>
+            public {getPublicShortUrlsCount === 1 ? 'link' : 'links'} today.
             <br />
             Report abuse at this{' '}
             <Link
