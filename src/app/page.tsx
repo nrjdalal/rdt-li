@@ -163,6 +163,7 @@ export default async function Page() {
           </h2>
           <p className="max-w-[85%] text-xs leading-normal text-muted-foreground">
             Redirect.link is open source and powered by open source software.
+            <br />
             The source code is available on{' '}
             <Link
               href="https://rdt.li/github"
