@@ -157,6 +157,17 @@ export default function Page() {
                           </Avatar>
                         </MenubarTrigger>
                         <MenubarContent className="absolute -right-6">
+                          <MenubarItem>
+                            <Link
+                              href={'/x/key'}
+                              className="flex w-full justify-end text-xs"
+                            >
+                              API Key
+                            </Link>
+                          </MenubarItem>
+
+                          <MenubarSeparator />
+
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <MenubarItem className="flex w-full justify-end text-xs capitalize">
