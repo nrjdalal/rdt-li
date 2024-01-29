@@ -1,5 +1,5 @@
 import { db } from '@/lib/db'
-import { users } from '@/lib/db/schema'
+import { shortUrls, users } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
 import { NextResponse } from 'next/server'
 
@@ -42,7 +42,9 @@ const decryptor = async (text: string) => {
   const decryptedString = new TextDecoder().decode(decrypted)
 
   if (decryptedString === user[0].id + '.' + user[0].apiKeySalt) {
-    return true
+    return {
+      id: user[0].id,
+    }
   }
 
   return false
@@ -50,15 +52,25 @@ const decryptor = async (text: string) => {
 
 export async function POST(request: Request) {
   try {
-    // get bearer token
     const apiKey = request.headers.get('Authorization')?.split(' ')[1]
 
-    // verifier for actions starts
     const isMatch = await decryptor(apiKey as string)
 
-    if (isMatch)
-      return NextResponse.json({ message: 'User does exist', status: 200 })
-    // verifier for actions ends
+    if (isMatch) {
+      // get short urls
+      const shortUrlsData = await db
+        .select()
+        .from(shortUrls)
+        .where(eq(shortUrls.userId, isMatch.id))
+
+      return NextResponse.json({
+        data: shortUrlsData,
+        status: 200,
+      })
+
+      // create short url ...
+      // update short url ...
+    }
 
     return NextResponse.json({ message: 'User does not exist', status: 404 })
   } catch {
