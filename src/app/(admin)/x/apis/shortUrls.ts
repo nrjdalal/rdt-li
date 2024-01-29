@@ -2,11 +2,82 @@
 
 import { authOptions } from '@/lib/auth'
 import { db } from '@/lib/db'
-import { shortUrls } from '@/lib/db/schema'
+import { shortUrls, users } from '@/lib/db/schema'
 import { nanoid, sanitize } from '@/lib/utils'
 import { blocked } from '@/url-center/blocked'
 import { and, eq, like } from 'drizzle-orm'
 import { getServerSession } from 'next-auth'
+
+export const getApiKey = async ({ intent }: { intent: string }) => {
+  const session = await getServerSession(authOptions)
+  if (!session) throw new Error('Session not found')
+
+  console.log('session', intent)
+
+  // check if API key exists
+  const user = await db
+    .select()
+    .from(users)
+    .where(eq(users.id, session.user.id))
+
+  if (intent === 'new' || !user[0].apiKey) {
+    const salt = nanoid(32)
+    const text = `${session.user.id}.${salt}`
+    const key = process.env.NEXTAUTH_SECRET
+
+    const encodedSalt = new TextEncoder().encode(salt)
+    const encodedText = new TextEncoder().encode(text)
+    const encodedKey = new TextEncoder().encode(key)
+
+    const importedKey = await crypto.subtle.importKey(
+      'raw',
+      encodedSalt,
+      { name: 'AES-GCM' },
+      false,
+      ['encrypt'],
+    )
+    const encrypted = await crypto.subtle.encrypt(
+      {
+        name: 'AES-GCM',
+        iv: encodedKey,
+      },
+      importedKey,
+      encodedText,
+    )
+    const encryptedText = btoa(
+      String.fromCharCode.apply(null, new Uint8Array(encrypted) as any),
+    )
+
+    // update user
+    await db
+      .update(users)
+      .set({
+        apiKey: encryptedText.slice(0, 32),
+        apiKeySalt: salt,
+      })
+      .where(eq(users.id, session.user.id))
+
+    return encryptedText
+  }
+
+  return true
+
+  // const decryptedText = atob(encryptedText)
+  // const decryptedBuffer = new Uint8Array(
+  //   decryptedText.split('').map((char) => char.charCodeAt(0)),
+  // ) as any
+
+  // const decrypted = await crypto.subtle.decrypt(
+  //   {
+  //     name: 'AES-GCM',
+  //     iv: encodedKey,
+  //   },
+  //   importedKey,
+  //   decryptedBuffer,
+  // )
+
+  // const decryptedString = new TextDecoder().decode(decrypted)
+}
 
 export const getShortUrls = async () => {
   const session = await getServerSession(authOptions)
