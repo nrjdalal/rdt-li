@@ -1,6 +1,7 @@
 import { db } from '@/lib/db'
 import { shortUrls, users } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
+import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 
 const decryptor = async (text: string) => {
@@ -48,6 +49,31 @@ const decryptor = async (text: string) => {
   }
 
   return false
+}
+
+// GET /api/v1 for docs
+export async function GET() {
+  return NextResponse.json({
+    message: 'Please use POST method',
+    endpoint: `${process.env.NEXT_PUBLIC_APP_URL}/api/v1`,
+    headers: {
+      authorization: 'Bearer <API Key>',
+    },
+    '1. To get short urls': {
+      body: {
+        intent: 'get',
+      },
+    },
+    '2. To create short url': {
+      message: 'Not implemented',
+    },
+    '3. To update short url': {
+      message: 'Not implemented',
+    },
+    '4. To delete short url': {
+      message: 'Not implemented',
+    },
+  })
 }
 
 export async function POST(request: Request) {
