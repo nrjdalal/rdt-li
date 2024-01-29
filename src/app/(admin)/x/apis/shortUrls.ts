@@ -54,6 +54,7 @@ export const getApiKey = async ({ intent }: { intent: string }) => {
       .set({
         apiKey: encryptedText.slice(0, 32),
         apiKeySalt: salt,
+        updatedAt: new Date(),
       })
       .where(eq(users.id, session.user.id))
 
