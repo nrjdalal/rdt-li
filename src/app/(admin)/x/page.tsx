@@ -114,15 +114,24 @@ export default function Page() {
 
   return (
     <div className="container flex min-h-[100dvh] max-w-3xl flex-col p-5 font-mono">
-      {/* <Alert className="mb-5" variant="default">
+      <Alert className="mb-5" variant="default">
         <AlertTitle className="text-xs font-semibold">
-          Upcoming features...
+          API access added!
         </AlertTitle>
         <AlertDescription className="text-[0.7rem]">
-          * Custom URLs and changeable destinations
-          <br />* Names for tracking and tags for grouping
+          * Generate API key{' '}
+          <Link className="underline" href="/x/key">
+            here
+          </Link>
+          <br />* Docs:{' '}
+          <Link
+            className="underline"
+            href={`${process.env.NEXT_PUBLIC_APP_URL}/api/v1`}
+          >
+            rdt.li/docs
+          </Link>
         </AlertDescription>
-      </Alert> */}
+      </Alert>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} autoComplete="off">
