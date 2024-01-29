@@ -52,24 +52,33 @@ const decryptor = async (text: string) => {
 
 export async function POST(request: Request) {
   try {
+    const { intent } = await request.json()
+
+    if (!intent) return NextResponse.json({ message: 'No intent', status: 400 })
+
+    if (!['get', 'create', 'update', 'delete'].includes(intent))
+      return NextResponse.json({ message: 'Invalid intent', status: 400 })
+
     const apiKey = request.headers.get('Authorization')?.split(' ')[1]
 
     const isMatch = await decryptor(apiKey as string)
 
     if (isMatch) {
-      // get short urls
-      const shortUrlsData = await db
-        .select()
-        .from(shortUrls)
-        .where(eq(shortUrls.userId, isMatch.id))
+      if (intent === 'get') {
+        const shortUrlsData = await db
+          .select()
+          .from(shortUrls)
+          .where(eq(shortUrls.userId, isMatch.id))
 
-      return NextResponse.json({
-        data: shortUrlsData,
-        status: 200,
-      })
+        return NextResponse.json({
+          data: shortUrlsData,
+          status: 200,
+        })
+      }
 
-      // create short url ...
-      // update short url ...
+      if (intent === 'create' || intent === 'update' || intent === 'delete') {
+        return NextResponse.json({ message: 'Not implemented', status: 501 })
+      }
     }
 
     return NextResponse.json({ message: 'User does not exist', status: 404 })
