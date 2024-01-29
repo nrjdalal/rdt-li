@@ -17,6 +17,8 @@ export const users = pgTable('user', {
   image: text('image'),
   apiKey: text('apiKey'),
   apiKeySalt: text('apiKeySalt'),
+  createdAt: timestamp('createdAt', { mode: 'date' }),
+  updatedAt: timestamp('updatedAt', { mode: 'date' }),
 })
 
 export const accounts = pgTable(

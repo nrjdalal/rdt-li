@@ -5,7 +5,7 @@ import { getPublicShortUrls } from '../apis/publicUrls'
 
 const Page = () => {
   const { isPending, isError, data } = useQuery({
-    queryKey: ['shortUrls'],
+    queryKey: ['publicShortUrls'],
     queryFn: async () => {
       return await getPublicShortUrls()
     },
