@@ -124,7 +124,10 @@ export default function Page() {
             here
           </Link>
           <br />* Docs:{' '}
-          <Link className="underline" href="https://rdt.li/api/v1">
+          <Link
+            className="underline"
+            href={`${process.env.NEXT_PUBLIC_APP_URL}/api/v1`}
+          >
             rdt.li/docs
           </Link>
         </AlertDescription>
