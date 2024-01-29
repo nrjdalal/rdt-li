@@ -1,5 +1,6 @@
 'use client'
 
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import Link from 'next/link'
 import { toast } from 'sonner'
@@ -56,7 +57,20 @@ const Page = () => {
 
         {typeof data === 'string' ? (
           <>
-            <p className="select-none">{data.slice(0, 32) + ' ...'}</p>
+            <Alert
+              className="flex cursor-pointer select-none flex-col items-center gap-3 text-center"
+              onClick={() => {
+                navigator.clipboard.writeText(data)
+                toast.success('Copied to clipboard')
+              }}
+            >
+              <AlertTitle>{data.slice(0, 32) + ' ...'}</AlertTitle>
+              <AlertDescription className="text-red-500">
+                Save this key somewhere safe.
+                <br />
+                You will not be able to copy it again.
+              </AlertDescription>
+            </Alert>
             <div className="flex gap-4">
               <button
                 className="rounded-md bg-black px-6 py-1.5 text-white hover:bg-blue-500"
@@ -79,7 +93,14 @@ const Page = () => {
           </>
         ) : (
           <>
-            <p>API Key Already exists!</p>
+            <Alert className="flex cursor-default select-none flex-col items-center gap-3 text-center">
+              <AlertTitle>You have already generated a key!</AlertTitle>
+              <AlertDescription className="text-red-500">
+                You can generate a new key if you want.
+                <br />
+                Previous key will be invalidated.
+              </AlertDescription>
+            </Alert>
             <button
               className="rounded-md bg-black px-6 py-1.5 text-white hover:bg-blue-500"
               onClick={() => {
