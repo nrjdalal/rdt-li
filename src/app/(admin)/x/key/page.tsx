@@ -30,8 +30,8 @@ const Page = () => {
   if (isPending) {
     return (
       <>
-        <div className="container my-24 flex min-h-[100dvh] max-w-xl flex-col items-center gap-y-4 p-5 font-mono">
-          <p className="font-sans">API Key</p>
+        <div className="container my-24 flex min-h-[100dvh] max-w-xl flex-col items-center gap-y-5 p-5 font-mono">
+          <p className="font-sans font-medium">API Key</p>
           <p>Loading...</p>
         </div>
       </>
@@ -41,8 +41,8 @@ const Page = () => {
   if (isError) {
     return (
       <>
-        <div className="container my-24 flex min-h-[100dvh] max-w-xl flex-col items-center gap-y-4 p-5 font-mono">
-          <p className="font-sans">API Key</p>
+        <div className="container my-24 flex min-h-[100dvh] max-w-xl flex-col items-center gap-y-5 p-5 font-mono">
+          <p className="font-sans font-medium">API Key</p>
           <p>Error</p>
         </div>
       </>
@@ -51,9 +51,11 @@ const Page = () => {
 
   return (
     <>
-      <div className="container my-24 flex min-h-[100dvh] max-w-xl flex-col items-center gap-y-4 p-5 font-mono">
-        <Link href="/x">Back</Link>
-        <p className="mb-12 font-sans text-xl font-semibold">API Key</p>
+      <div className="container my-24 flex min-h-[100dvh] max-w-xl flex-col items-center gap-y-5 p-5 font-mono">
+        <Link className="mb-12 font-sans text-sm underline" href="/x">
+          Back to Dashboard
+        </Link>
+        <p className="font-sans font-medium">API Key</p>
 
         {typeof data === 'string' ? (
           <>
@@ -98,7 +100,7 @@ const Page = () => {
               <AlertDescription className="text-red-500">
                 You can generate a new key if you want.
                 <br />
-                Previous key will be invalidated.
+                Previous keys will be invalidated.
               </AlertDescription>
             </Alert>
             <button
