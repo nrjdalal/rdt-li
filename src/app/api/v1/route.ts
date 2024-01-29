@@ -55,6 +55,8 @@ const decryptor = async (text: string) => {
 export async function GET() {
   return NextResponse.json({
     message: 'Use POST method to access API',
+    contributeAt:
+      'https://github.com/nrjdalal/rdt-li/blob/main/src/app/api/v1/route.ts',
     endpoint: `${process.env.NEXT_PUBLIC_APP_URL}/api/v1`,
     headers: {
       authorization: 'Bearer <API Key>',
