@@ -108,6 +108,8 @@ export const createShortUrl = async ({
   password: string
   timeOffset: number
 }) => {
+  id = sanitize(id) || nanoid(6)
+
   if (id.length < 4) {
     return {
       error: {
@@ -143,7 +145,7 @@ export const createShortUrl = async ({
 
   const data = {
     userId: session.user.id,
-    id: sanitize(id) || nanoid(6),
+    id,
     url,
     title: title || null,
     enabled: enabled === 'true' ? true : enabled === 'false' ? false : null,
