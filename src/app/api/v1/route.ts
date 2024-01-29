@@ -54,10 +54,8 @@ const decryptor = async (text: string) => {
 // GET /api/v1 for docs
 export async function GET() {
   return NextResponse.json({
-    message: 'Use POST method to access API',
-    contributeAt:
-      'https://github.com/nrjdalal/rdt-li/blob/main/src/app/api/v1/route.ts',
     endpoint: `${process.env.NEXT_PUBLIC_APP_URL}/api/v1`,
+    message: 'Use POST method to access the API',
     headers: {
       authorization: 'Bearer <API Key>',
     },
@@ -66,15 +64,17 @@ export async function GET() {
         intent: 'get',
       },
       '2. To create short url': {
-        message: 'Not implemented',
+        message: 'Not implemented yet',
       },
       '3. To update short url': {
-        message: 'Not implemented',
+        message: 'Not implemented yet',
       },
       '4. To delete short url': {
-        message: 'Not implemented',
+        message: 'Not implemented yet',
       },
     },
+    contributeAt:
+      'https://github.com/nrjdalal/rdt-li/blob/main/src/app/api/v1/route.ts',
   })
 }
 
