@@ -10,7 +10,8 @@
     "start": "next start",
     "lint": "next lint",
     "db:push": "drizzle-kit push:pg --config drizzle.config.ts",
-    "db:studio": "drizzle-kit studio --config drizzle.config.ts"
+    "db:studio": "drizzle-kit studio --config drizzle.config.ts",
+    "prepare": "husky"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^0.3.5",
@@ -58,6 +59,8 @@
     "drizzle-kit": "latest",
     "eslint": "^8",
     "eslint-config-next": "14.0.1",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "postcss": "^8",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.6",
