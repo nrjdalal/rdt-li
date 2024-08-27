@@ -1,10 +1,42 @@
 import Link from 'next/link'
+import { headers } from 'next/headers'
 import { permanentRedirect } from 'next/navigation'
 import retry from 'p-retry'
 
 export const dynamic = 'force-dynamic'
 
 async function getData(slug: string) {
+  try {
+    if (process.env.NEXT_PUBLIC_UMAMI_URL) {
+      const Headers = headers()
+
+      const umami = {
+        payload: {
+          host: Headers.get('host'),
+          language: 'en-US',
+          referrer: Headers.get('referer'),
+          screen: '1x1',
+          title: 'Umami',
+          url: `/${slug}`,
+          website: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
+          name: `${process.env.NEXT_PUBLIC_APP_URL}/${slug}`,
+        },
+        type: 'event',
+      }
+
+      fetch(`${process.env.NEXT_PUBLIC_UMAMI_URL}/api/send`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'User-Agent': Headers.get('user-agent') || 'Unknown Device',
+        },
+        body: JSON.stringify(umami),
+      })
+    }
+  } catch {
+    console.log('Umami error!')
+  }
+
   try {
     const res = await retry(
       async () => {
