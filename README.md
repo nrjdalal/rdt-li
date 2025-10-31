@@ -124,7 +124,7 @@ bun dev
 
 ## Author
 
-Created by [@nrjdalal](https://twitter.com/x-nrjdalal) ![](https://rdt.li/gh-repo-visits-rdt-li) in 2023, released under the [MIT license](https://github.com/nrjdalal/onset/blob/main/LICENSE.md).
+Created by [@nrjdalal](https://x.com/nrjdalal_dev) ![](https://rdt.li/gh-repo-visits-rdt-li) in 2023, released under the [MIT license](https://github.com/nrjdalal/onset/blob/main/LICENSE.md).
 
 ## Credits
 
