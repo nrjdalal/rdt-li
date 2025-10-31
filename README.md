@@ -7,7 +7,7 @@
   </h1>
 </a>
 
-<p align="center">At 1000 stars will integrate Redis for insane performance. Checkout more amazing projects at <a href="https://rdt.li/gh-follow" target="_blank">@nrjdalal</a>.</p>
+<p align="center">At 1000 stars will integrate Redis for insane performance. Checkout more amazing projects at <a href="https://github.com/nrjdalal" target="_blank">@nrjdalal</a>.</p>
 
 ![](https://rdt.li/gh-repo-visits-rdt-li)
 
@@ -28,7 +28,7 @@
 <p align="center"><a href="https://rdt.li/site" tardet="_blank">Try now</a> or <a href="#one-click-deploy">self host</a> it.</p>
 
 <p align="center">
-  <a href="https://rdt.li/x-nrjdalal">
+  <a href="https://x.com/nrjdalal_dev">
     <img src="https://img.shields.io/twitter/follow/nrjdalal_com?style=flat&label=nrjdalal_com&logo=twitter&color=0bf&logoColor=fff" alt="Follow Neeraj on Twitter" />
   </a>
 </p>
