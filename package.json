@@ -32,7 +32,7 @@
     "chart.js": "^4.4.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "drizzle-orm": "^0.29.3",
+    "drizzle-orm": "^0.45.0",
     "lucide-react": "^0.292.0",
     "nanoid": "^5.0.2",
     "next": "latest",
