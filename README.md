@@ -7,6 +7,8 @@
   </h1>
 </a>
 
+> **rdt-li is no longer actively maintained.** There are no new features or support. Security fixes may still land occasionally. Fork this repository if you want to keep using it.
+
 <p align="center">At 1000 stars will integrate Redis for insane performance. Checkout more amazing projects at <a href="https://github.com/nrjdalal" target="_blank">@nrjdalal</a>.</p>
 
 ![](https://rdt.li/gh-repo-visits-rdt-li)
