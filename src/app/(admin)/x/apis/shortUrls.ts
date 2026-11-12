@@ -120,10 +120,21 @@ export const createShortUrl = async ({
     }
   }
 
+  const session = await getServerSession(authOptions)
+
   for (const blockedUrl of blocked) {
     if (new URL(url).host.includes(blockedUrl)) {
       try {
-        await db.delete(shortUrls).where(like(shortUrls.url, `%${blockedUrl}%`))
+        if (session) {
+          await db
+            .delete(shortUrls)
+            .where(
+              and(
+                eq(shortUrls.userId, session.user.id),
+                like(shortUrls.url, `%${blockedUrl}%`),
+              ),
+            )
+        }
       } catch {
         console.log('Error deleting old shortUrls')
       }
@@ -137,7 +148,6 @@ export const createShortUrl = async ({
     }
   }
 
-  const session = await getServerSession(authOptions)
   if (!session) throw new Error('Session not found')
 
   if (clickLimit && isNaN(Number(clickLimit))) {
@@ -248,7 +258,9 @@ export const deleteShortUrl = async ({ id }: { id: string }) => {
   const session = await getServerSession(authOptions)
   if (!session) throw new Error('Session not found')
 
-  const shortUrlData = await db.delete(shortUrls).where(eq(shortUrls.id, id))
+  const shortUrlData = await db
+    .delete(shortUrls)
+    .where(and(eq(shortUrls.userId, session.user.id), eq(shortUrls.id, id)))
 
   return shortUrlData // []
 }

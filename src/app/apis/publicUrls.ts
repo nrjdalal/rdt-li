@@ -23,7 +23,14 @@ export const createPublicShortUrl = async ({ url }: { url: string }) => {
   for (const blockedUrl of blocked) {
     if (new URL(url).host.includes(blockedUrl)) {
       try {
-        await db.delete(shortUrls).where(like(shortUrls.url, `%${blockedUrl}%`))
+        await db
+          .delete(shortUrls)
+          .where(
+            and(
+              isNull(shortUrls.userId),
+              like(shortUrls.url, `%${blockedUrl}%`),
+            ),
+          )
       } catch {
         console.log('Error deleting old publicShortUrls')
       }
